@@ -2,6 +2,7 @@ import React, { useState, useEffect, ComponentType, ReactElement } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { faCode, faChartBar, faEye } from '@fortawesome/free-solid-svg-icons';
+import { CommonNinjaPlugin } from 'commonninja-react';
 
 import {
 	pluginService,
@@ -38,7 +39,6 @@ import {
 } from '../../../external/types';
 import { useQuery } from '../../../external/hooks/query.hook';
 import { IExtraMenuItem } from '../exportMenu/exportMenu.comp';
-import { CommonNinjaPlugin } from '../commonninjaPlugin/commonninjaPlugin.comp';
 import { VendorUpgradePopup } from '../vendorUpgradePopup/vendorUpgradePopup.comp';
 import PublishSettingsComp from '../publishSettings/publishSettings.comp';
 import { TemplatesPopup } from '../templatesPopup/templatesPopup.comp';

@@ -9,7 +9,6 @@ export * from './cnApp';
 export * from './cnDashboard';
 export * from './cnEditor';
 export * from './cnVendorDashboardApp';
-export * from './commonninjaPlugin';
 export * from './contextMenu';
 export * from './contextMenuLoader';
 export * from './editor';
