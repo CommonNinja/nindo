@@ -49,7 +49,7 @@ export const Editor = ({
 		vendor: TPlatform;
 	};
 
-	const { menuItems, pageToComp } = mapConfigToPats(config);
+	const { menuItems, pageToComp } = mapConfigToPaths(config);
 
 	return (
 		<CNEditor
@@ -66,23 +66,21 @@ export const Editor = ({
 	);
 };
 
-function mapConfigToPats(config: IEditorConfig<any>): IConfigParts {
-	const pagesMap = config.sections.reduce(
-		(map, { id, component, context }) => {
-			map.set(id, {
-				comp: component,
-				context: context || 'menu',
-			});
-			return map;
-		},
-		new Map<
-			TActivePage,
-			{
-				comp: ComponentType<any> | ReactElement;
-				context: 'menu' | 'main';
-			}
-		>()
-	);
+function mapConfigToPaths(config: IEditorConfig<any>): IConfigParts {
+	const pagesMap: Map<
+		TActivePage,
+		{
+			comp: ComponentType<any> | ReactElement;
+			context: 'menu' | 'main';
+		}
+	> = new Map();
+	
+	config.sections.forEach(({ id, component, context }) => {
+		pagesMap.set(id, {
+			comp: component,
+			context: context || 'menu',
+		});
+	});
 
 	return {
 		menuItems: config.sections as any[],
