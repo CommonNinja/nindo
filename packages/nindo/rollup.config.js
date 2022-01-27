@@ -27,6 +27,7 @@ export default [
 				declarationDir: 'dist/types',
 			}),
 			nodeResolve(),
+			// Create stats.html file
 			visualizer(),
 		],
 		external: [
