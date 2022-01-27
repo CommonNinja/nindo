@@ -1,6 +1,6 @@
 {
 	"name": "@commonninja/nindo",
-	"version": "1.1.55",
+	"version": "1.1.56-alpha.0",
 	"description": "",
 	"scripts": {
 		"rollup": "rollup -c",
