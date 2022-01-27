@@ -18,10 +18,7 @@ import {
 
 import './editor.scss';
 
-const CNEditor = loadable(() => import('../cnEditor/cnEditor.comp'), {
-	resolveComponent: (module) => module['CNEditor'],
-	fallback: <Loader />,
-});
+const CNEditor = loadable(() => import('../cnEditor/cnEditor.comp'));
 
 interface IConfigParts {
 	menuItems: IAppMenuLink[];
@@ -53,6 +50,7 @@ export const Editor = ({
 
 	return (
 		<CNEditor
+			fallback={<Loader />}
 			menuLinks={menuItems}
 			resolveContextComp={pageToComp}
 			defaultPluginData={defaultPluginData}
