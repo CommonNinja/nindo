@@ -29,7 +29,9 @@ export default [
 				declaration: true,
 				declarationDir: 'dist/types',
 			}),
-			postcss(),
+			postcss({
+				modules: true
+			}),
 		],
 		external: [
 			// Use external version of React
