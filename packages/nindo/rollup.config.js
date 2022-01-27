@@ -7,8 +7,6 @@ import postcss from 'rollup-plugin-postcss';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import dts from 'rollup-plugin-dts';
 import { getFiles } from './scripts/buildUtils';
-import alias from '@rollup/plugin-alias';
-import path from 'path';
 
 const packageJson = require('./package.json');
 const extensions = ['.js', '.ts', '.jsx', '.tsx'];
@@ -25,11 +23,6 @@ export default [
 		},
 		plugins: [
 			nodeResolve(),
-			alias({
-				entries: [
-					{ find: 'react', replacement: path.resolve('./node_modules/react') },
-				],
-			}),
 			commonjs(),
 			typescript({
 				tsconfig: './tsconfig.json',
