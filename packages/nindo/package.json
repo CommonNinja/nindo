@@ -17,10 +17,6 @@
 	"bin": {
 		"cn-scripts": "./bin/cn-scripts.js"
 	},
-	"sideEffects": [
-		"**/*.css",
-		"**/*.scss"
-	],
 	"files": [
 		"dist",
 		"bin",

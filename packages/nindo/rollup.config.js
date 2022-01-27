@@ -7,10 +7,6 @@ import postcss from 'rollup-plugin-postcss';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import dts from 'rollup-plugin-dts';
 import visualizer from 'rollup-plugin-visualizer';
-// import { getFiles } from './scripts/buildUtils';
-
-// const packageJson = require('./package.json');
-// const extensions = ['.js', '.ts', '.jsx', '.tsx'];
 
 export default [
 	{
