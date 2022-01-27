@@ -30,7 +30,8 @@ export default [
 				declarationDir: 'dist/types',
 			}),
 			postcss({
-				modules: true
+				inject: true,
+				extract: true,
 			}),
 		],
 		external: [
