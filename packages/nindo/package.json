@@ -55,7 +55,6 @@
 		"@types/react-router-dom": "^5.3.3",
 		"@types/uuid": "^8.3.3",
 		"color2k": "^1.2.4",
-		"commonninja-react": "^1.0.2",
 		"dotenv": "^10.0.0",
 		"es6-promise": "^4.2.8",
 		"mimic": "^2.0.9",
