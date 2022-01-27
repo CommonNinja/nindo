@@ -6,14 +6,15 @@ import typescript from '@rollup/plugin-typescript';
 import postcss from 'rollup-plugin-postcss';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import dts from 'rollup-plugin-dts';
-import { getFiles } from './scripts/buildUtils';
+import visualizer from 'rollup-plugin-visualizer';
+// import { getFiles } from './scripts/buildUtils';
 
-const packageJson = require('./package.json');
-const extensions = ['.js', '.ts', '.jsx', '.tsx'];
+// const packageJson = require('./package.json');
+// const extensions = ['.js', '.ts', '.jsx', '.tsx'];
 
 export default [
 	{
-		input: ['src/index.ts', ...getFiles('./src/external', extensions)],
+		input: ['src/index.ts'],
 		output: {
 			dir: 'dist',
 			format: 'esm',
@@ -22,16 +23,15 @@ export default [
 			sourcemap: true,
 		},
 		plugins: [
-			nodeResolve(),
+			postcss(),
 			commonjs(),
 			typescript({
 				tsconfig: './tsconfig.json',
 				declaration: true,
 				declarationDir: 'dist/types',
 			}),
-			postcss({
-				inject: true,
-			}),
+			nodeResolve(),
+			visualizer(),
 		],
 		external: [
 			// Use external version of React
