@@ -31,7 +31,6 @@ export default [
 			}),
 			postcss({
 				inject: true,
-				extract: true,
 			}),
 		],
 		external: [
