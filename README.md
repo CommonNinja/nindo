@@ -1,5 +1,5 @@
 <p align="center">
-    <a href="https://www.commoninja.com/develoeprs">
+    <a href="https://www.commoninja.com/developers">
       <img width="200" src="./docs/images/nindo-icon.png" alt="Nindo Icon"/>
       <br /><br />
       <img width="300" src="./docs/images/nindo-logo.png" alt="Nindo Logo"/>
