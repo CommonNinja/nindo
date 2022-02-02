@@ -187,7 +187,7 @@ const modulesWithImage = {
 				// 'strike',
 				{ list: 'ordered' },
 				{ list: 'bullet' },
-				{ align: ['left', 'center', 'right'] },
+				{ align: ['', 'center', 'right'] },
 				'link',
 				'uimage',
 			],
