@@ -35,7 +35,6 @@ export default [
 			// To prevent loading react twice
 			'react',
 			'react-dom',
-			'react-router-dom',
 			'react-is',
 		],
 	},
