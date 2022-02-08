@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 import { PreviewPage } from '../previewPage/previewPage.comp';
 import { IExtraRouteProps } from '../../../external/types/app.types';
+import { AppNotifications } from '../appNotifications/appNotifications.comp';
 
 import './cnApp.scss';
 
@@ -42,7 +43,7 @@ export const CNApp = (props: {
 			REACT_APP_NINJA_PLUGIN_PATH
 		`);
 	}
-	
+
 	const {
 		extraRoutes = [],
 		defaultRoutePath,
@@ -163,6 +164,7 @@ export const CNApp = (props: {
 					/>
 				</Switch>
 			</Router>
+			<AppNotifications />
 		</div>
 	);
 };
