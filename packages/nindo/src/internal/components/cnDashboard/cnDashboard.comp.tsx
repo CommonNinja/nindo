@@ -235,9 +235,11 @@ export const CNDashboard = ({
 			const qs = `page=${searchState.page}&limit=${searchState.limit}&search=${
 				searchState.searchTerm
 			}&${query.toString()}`;
-			const result = await httpService.makeRequest(
-				`/${vendor}/api/instances/${componentType}?${qs}`
-			);
+			let url = `/${vendor}/api/instances/${componentType}?${qs}`;
+			if (query.get('nindo')) {
+				url = `/nindo/api/instances/${componentType}?${qs}`;
+			}
+			const result = await httpService.makeRequest(url);
 
 			if (!result.success || !result.data?.docs) {
 				throw new Error(result.message || 'Could not load items.');

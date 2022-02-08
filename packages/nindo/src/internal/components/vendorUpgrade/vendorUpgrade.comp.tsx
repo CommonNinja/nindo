@@ -7,6 +7,8 @@ import { TPlatform } from '../../../external/types/editor.types';
 import { IUser } from '../../../external/types/user.types';
 import { IPlan, IPricingModel } from '../../../external/types/plan.types';
 import { notificationHelper } from '../../../external/helpers/notification.helper';
+import { useQuery } from '../../..';
+import { nindoService } from '../../services/nindo.service';
 
 interface IVendorUpgradeProps {
 	user: IUser;
@@ -22,6 +24,7 @@ export const VendorUpgrade = ({
 	const [planData, setPlanData] = useState<null | IPricingModel>(null);
 	const [postUpgrade, setPostUpgrade] = useState<boolean>(false);
 	const dispatch = useDispatch();
+	const query = useQuery();
 
 	async function onPlanSelect(plan: IPlan, activeCycleId: number) {
 		notificationHelper.removeAll();
@@ -31,9 +34,16 @@ export const VendorUpgrade = ({
 
 			try {
 				setPostUpgrade(true);
-				const result = await shopifyService.createUserSubscription(
-					plan.planIds?.[activeCycle?.period || 'month'].commonninja || ''
-				);
+				let result;
+				const subscriptionTypeId =
+					plan.planIds?.[activeCycle?.period || 'month'].commonninja || '';
+				if (query.get('nindo')) {
+					result = await nindoService.updateSubscription(subscriptionTypeId);
+				} else {
+					result = await shopifyService.createUserSubscription(
+						subscriptionTypeId
+					);
+				}
 				if (
 					result?.data?.confirmationUrl &&
 					typeof window !== 'undefined' &&
