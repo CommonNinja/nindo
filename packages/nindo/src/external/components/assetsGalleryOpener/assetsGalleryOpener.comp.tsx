@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useRouteMatch } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImages } from '@fortawesome/free-solid-svg-icons';
 
@@ -50,7 +50,8 @@ export const AssetsGalleryOpener = (props: AssetsGalleryOpenerProps) => {
 	} = props;
 	const [opened, setOpened] = useState<boolean>(false);
 	const query = useQuery();
-	const { vendor } = useParams() as any;
+	const match = useRouteMatch();
+	const { vendor } = match.params as any;
 	const queryParams: string = `multi=true&assetType=${assetType}&pluginType=${
 		pluginService.pluginType
 	}&serviceName=${pluginService.serviceName}${

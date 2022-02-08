@@ -1,5 +1,5 @@
 import React, { useRef, ChangeEvent } from 'react';
-import { useParams } from 'react-router-dom';
+import { useRouteMatch } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpload } from '@fortawesome/free-solid-svg-icons';
 
@@ -43,7 +43,8 @@ export const FileUpload = (props: IFileUploadProps) => {
 		disabledCallback,
 	} = props;
 	const query = useQuery();
-	const { vendor } = useParams() as any;
+	const match = useRouteMatch();
+	const { vendor } = match.params as any;
 	const accept = FileTypes.get(acceptType) as string;
 	const inputRef = useRef<HTMLInputElement>(null);
 	const queryParams: string = [

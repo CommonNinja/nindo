@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router';
+import { useRouteMatch } from 'react-router-dom';
 
 import { premiumHelper } from '../../helpers/premium.helper';
 import { privacyUpdated } from '../../../internal/actions/plugin.actions';
@@ -14,7 +14,8 @@ export const PrivacySelector = ({
 }: {
 	currentValue: TPluginPrivacy;
 }) => {
-	const { vendor } = useParams() as any;
+	const match = useRouteMatch();
+	const { vendor } = match.params as any;
 	const dispatch = useDispatch();
 	const privateModeAvailable: boolean =
 		!!premiumHelper.getFeatureValue('linkPrivacy');

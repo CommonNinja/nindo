@@ -4,7 +4,7 @@ import {
 	Route,
 	RouteProps,
 	Switch,
-	useParams,
+	useRouteMatch,
 } from 'react-router-dom';
 import {
 	faDollarSign,
@@ -36,7 +36,8 @@ const LocalAppMenu = ({
 	includePricing: boolean;
 	vendor?: TPlatform;
 }) => {
-	const params = useParams() as any;
+	const match = useRouteMatch();
+	const { params } = match as any;
 	let componentType =
 		params.componentType ||
 		(window?.location?.href || '').split('?')[0].match(/([^\/]*)\/*$/)?.[1] ||

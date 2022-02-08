@@ -1,5 +1,5 @@
 import React, { useState, useEffect, ComponentType, ReactElement } from 'react';
-import { useParams } from 'react-router-dom';
+import { useRouteMatch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { faCode, faChartBar, faEye } from '@fortawesome/free-solid-svg-icons';
 import { CommonNinjaPlugin } from 'commonninja-react';
@@ -94,7 +94,8 @@ export const CNEditor = ({
 }: ICNEditor<any>) => {
 	const query = useQuery();
 	const dispatch = useDispatch();
-	const { pluginId, page } = useParams() as any;
+	const match = useRouteMatch();
+	const { pluginId, page } = match.params as any;
 	const { isSaved, plugin, user } = useSelector((state: IAppState<any>) => ({
 		isSaved: state.editor.isSaved,
 		plugin: state.plugin,

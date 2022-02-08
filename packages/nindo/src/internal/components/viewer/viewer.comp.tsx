@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useRouteMatch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { IViewerProps } from '../../../external/types/viewer.types';
@@ -18,7 +18,8 @@ export const Viewer = (props: {
 	pluginLoaderComp?: IPluginLoaderComp;
 }) => {
 	const dispatch = useDispatch();
-	const { vendor, pluginId } = useParams() as any;
+	const match = useRouteMatch();
+	const { pluginId, vendor } = match.params as any;
 	const { pluginComp, pluginLoaderComp, ...otherProps } = props;
 
 	useEffect(() => {

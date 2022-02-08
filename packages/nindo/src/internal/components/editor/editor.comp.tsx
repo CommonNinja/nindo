@@ -1,10 +1,9 @@
 import React, { ComponentType, ReactElement } from 'react';
 import loadable from '@loadable/component';
-import { useParams } from 'react-router-dom';
+import { useRouteMatch } from 'react-router-dom';
 import {
 	IEditorConfig,
 	TActivePage,
-	TPlatform,
 } from '../../../external/types/editor.types';
 import { PluginWrapper } from '../pluginWrapper/pluginWrapper.comp';
 import { Loader } from '../../../external/components/loader/loader.comp';
@@ -44,10 +43,8 @@ export const Editor = ({
 	defaultPluginData,
 	...restProps
 }: IEditorProps<any>) => {
-	const { vendor } = useParams() as {
-		vendor: TPlatform;
-	};
-
+	const match = useRouteMatch();
+	const { vendor } = match.params as any;
 	const { menuItems, pageToComp } = mapConfigToPaths(config);
 
 	return (

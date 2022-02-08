@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useParams } from 'react-router-dom';
+import { useRouteMatch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useResizeDetector } from 'react-resize-detector';
 
@@ -45,7 +45,8 @@ export const PluginLoader = ({
 	const plugin = useSelector((state: any) => state.plugin);
 	const [loading, setLoading] = useState<boolean>(true);
 	const [error, setError] = useState<string>('');
-	const { pluginId, galleryId } = useParams() as any;
+	const match = useRouteMatch();
+	const { pluginId, galleryId } = match.params as any;
 	const {
 		inlineElm = false,
 		viewerSelector = '#viewer',
