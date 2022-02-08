@@ -18,7 +18,9 @@ import {
 
 import './editor.scss';
 
-const CNEditor = loadable(() => import('../cnEditor/cnEditor.comp'));
+const CNEditor = loadable(() => import('../cnEditor/cnEditor.comp'), {
+	resolveComponent: (module) => module['CNEditor'],
+});
 
 interface IConfigParts {
 	menuItems: IAppMenuLink[];
@@ -50,7 +52,7 @@ export const Editor = ({
 
 	return (
 		<CNEditor
-			// fallback={<Loader />}
+			fallback={<Loader />}
 			menuLinks={menuItems}
 			resolveContextComp={pageToComp}
 			defaultPluginData={defaultPluginData}
@@ -65,27 +67,27 @@ export const Editor = ({
 };
 
 function mapConfigToPaths(config: IEditorConfig<any>): IConfigParts {
-  const pagesMap = config.sections.reduce(
-    (map, { id, component, context }) => {
-      map.set(id, {
-        comp: component,
-        context: context || 'menu',
-      });
-      return map;
-    },
-    new Map<
-      TActivePage,
-      {
-        comp: ComponentType<any> | ReactElement;
-        context: 'menu' | 'main';
-      }
-    >(),
-  );
+	const pagesMap = config.sections.reduce(
+		(map, { id, component, context }) => {
+			map.set(id, {
+				comp: component,
+				context: context || 'menu',
+			});
+			return map;
+		},
+		new Map<
+			TActivePage,
+			{
+				comp: ComponentType<any> | ReactElement;
+				context: 'menu' | 'main';
+			}
+		>()
+	);
 
-  return {
-    menuItems: config.sections as any[],
-    pageToComp: (activePage: TActivePage) => {
-      return pagesMap.get(activePage)!;
-    },
-  };
+	return {
+		menuItems: config.sections as any[],
+		pageToComp: (activePage: TActivePage) => {
+			return pagesMap.get(activePage)!;
+		},
+	};
 }

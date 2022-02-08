@@ -492,5 +492,3 @@ export const CNEditor = ({
 		</div>
 	);
 };
-
-export default CNEditor;
