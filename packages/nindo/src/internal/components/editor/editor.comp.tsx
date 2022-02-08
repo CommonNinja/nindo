@@ -50,7 +50,7 @@ export const Editor = ({
 
 	return (
 		<CNEditor
-			fallback={<Loader />}
+			// fallback={<Loader />}
 			menuLinks={menuItems}
 			resolveContextComp={pageToComp}
 			defaultPluginData={defaultPluginData}
@@ -65,25 +65,27 @@ export const Editor = ({
 };
 
 function mapConfigToPaths(config: IEditorConfig<any>): IConfigParts {
-	const pagesMap: Map<
-		TActivePage,
-		{
-			comp: ComponentType<any> | ReactElement;
-			context: 'menu' | 'main';
-		}
-	> = new Map();
-	
-	config.sections.forEach(({ id, component, context }) => {
-		pagesMap.set(id, {
-			comp: component,
-			context: context || 'menu',
-		});
-	});
+  const pagesMap = config.sections.reduce(
+    (map, { id, component, context }) => {
+      map.set(id, {
+        comp: component,
+        context: context || 'menu',
+      });
+      return map;
+    },
+    new Map<
+      TActivePage,
+      {
+        comp: ComponentType<any> | ReactElement;
+        context: 'menu' | 'main';
+      }
+    >(),
+  );
 
-	return {
-		menuItems: config.sections as any[],
-		pageToComp: (activePage: TActivePage) => {
-			return pagesMap.get(activePage)!;
-		},
-	};
+  return {
+    menuItems: config.sections as any[],
+    pageToComp: (activePage: TActivePage) => {
+      return pagesMap.get(activePage)!;
+    },
+  };
 }
