@@ -130,7 +130,6 @@ export const PricingTable = ({
 							</main>
 							<footer>
 
-
 							</footer>
 						</div>
 					))
