@@ -131,69 +131,58 @@ export const PricingComparisonTable = ({
 
 	return (
 		<div className="full-comparison-table-wrapper">
-			<button
-				onClick={scrollToTable}
-				className={`full-plan-btn ${getBrowserName()}`}
-			>
-				Full Plans Comparison <SystemIcon type="chevron-down" size={30} />
-			</button>
+			<button onClick={scrollToTable} className={`full-plan-btn ${getBrowserName()}`}>Full Plans Comparison <SystemIcon type='chevron-down' size={30} /></button>
 
 			<main ref={ref} className="full-comparison-table-overflow ">
 				<div className="full-comparison-table">
-					{planData.featureGroups.map((group: IFeatureGroup) => (
-						<React.Fragment key={`group_${group.name}`}>
-							<header>
-								<div className="group-title">
-									<h4>{group.display}</h4>
-								</div>
-								{planData.plans.map((plan: IPlan) => (
-									<div
-										className={`plan-container ${plan.name}`}
-										key={plan.name}
-									>
-										<h6 className="title">{plan.name}</h6>
-										<div className="price">
-											${calculatePricing(plan.pricing, activeCycle.discount)}
-											<span>/ Month</span>
-											{plan.pricing !==
-												calculatePricing(
-													plan.pricing,
-													activeCycle.discount
-												) && (
-												<span className="after-discount">
-													&nbsp;&nbsp;${plan.pricing}&nbsp;&nbsp;
-												</span>
-											)}
-										</div>
-										{buttonsRenderer(plan)}
+					{
+						planData.featureGroups.map((group: IFeatureGroup) => (
+							<React.Fragment key={`group_${group.name}`}>
+								<header>
+									<div className="group-title">
+										<h4>{group.display}</h4>
 									</div>
-								))}
-							</header>
-							<section className="pricing-table-content-wrapper">
-								{group.features.filter(vendorFeaturesFilter).map((feature) => (
-									<div
-										className="pricing-table-content"
-										key={`group_${feature.display}`}
-									>
-										<h5 className="feature-name">{feature.display}</h5>
-										{planData.plans.map((plan: IPlan) => {
-											const value = plan.features[feature.name];
-											return (
-												<p className="feature-value">
-													{' '}
-													{typeof value === 'boolean' ? (
-														<StarSvg icon={value ? 'checked' : 'unChecked'} />
-													) : (
-														value
-													)}
-												</p>
-											);
-										})}
-									</div>
-								))}
-							</section>
-						</React.Fragment>
-					))}
+									{
+										planData.plans.map((plan: IPlan) => (
+											<div className={`plan-container ${plan.name}`} key={plan.name}>
+												<h6 className="title">{plan.name}</h6>
+												<div className="price">
+													${calculatePricing(plan.pricing, activeCycle.discount)}
+													<span>/ Month</span>
+													{
+														plan.pricing !== calculatePricing(plan.pricing, activeCycle.discount) &&
+														<span className="after-discount">&nbsp;&nbsp;${plan.pricing}&nbsp;&nbsp;</span>
+													}
+												</div>
+												{buttonsRenderer(plan)}
+											</div>
+										))
+									}
+								</header>
+								<section className="pricing-table-content-wrapper">
+									{
+										group.features.filter(vendorFeaturesFilter).map((feature) => (
+											<div className="pricing-table-content" key={`group_${feature.display}`}>
+												<h5 className="feature-name">{feature.display}</h5>
+												{
+													planData.plans.map((plan: IPlan) => {
+														const value = plan.features[feature.name];
+														return (
+															<p className={`feature-value ${value ? 'checked' : ''}`}> {
+																typeof value === 'boolean' ?
+																	<StarSvg icon={value ? 'checked' : 'unChecked'} /> :
+																	value
+															}</p>
+														)
+													})
+												}
+											</div>
+										))
+									}
+								</section>
+							</React.Fragment>
+						))
+					}
 				</div>
 			</main>
 		</div>

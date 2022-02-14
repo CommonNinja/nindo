@@ -82,63 +82,58 @@ export const PricingTable = ({
 	return (
 		<div className="pricing-table-wrapper">
 			<div className="pricing-table">
-				{planData.plans.map((plan: IPlan) => (
-					<div
-						className={`mini-box ${plan.className}`}
-						key={`mini_plan_${plan.className}`}
-					>
-						{/* {
-                plan.className === 'pro' &&
-                <div className="ribbon"><span>Popular</span></div>
-              } */}
-						<div className="title">{plan.name}</div>
-						<div className="price">
-							{plan.pricing !==
-								calculatePricing(plan.pricing, activeCycle.discount) && (
-								<span className="after-discount">
-									&nbsp;&nbsp;${plan.pricing}&nbsp;&nbsp;
-								</span>
-							)}
-							$
-							{calculatePricing(plan.pricing, activeCycle.discount) === 0
-								? '0.00'
-								: calculatePricing(plan.pricing, activeCycle.discount)}
+				{
+					planData.plans.map((plan: IPlan) => (
+						<div className={`mini-box ${plan.className}`} key={`mini_plan_${plan.className}`}>
+							{/* {
+				  plan.className === 'pro' &&
+				  <div className="ribbon"><span>Popular</span></div>
+				} */}
+							<div className="title">{plan.name}</div>
+							<div className="price">
+								{
+									plan.pricing !== calculatePricing(plan.pricing, activeCycle.discount) &&
+									<span className="after-discount">&nbsp;&nbsp;${(plan.pricing)}&nbsp;&nbsp;</span>
+								}
+								${(calculatePricing(plan.pricing, activeCycle.discount) === 0) ? '0.00' : (calculatePricing(plan.pricing, activeCycle.discount))}
+							</div>
+							<p className={`per-month-txt ${plan.className}`}>{`Per month, Billed ${(activeCycle.period === 'year') ? 'annually' : 'monthly'} `}</p>
+							{buttonsRenderer(plan)}
+							{/* {
+					fullComparisonAvailable &&
+					<Button 
+					  className="see-all-button" 
+					  type="button" 
+					  mode="default" 
+					  color="transparent"
+					  onClick={() => document.querySelector('.full-comparison-table-wrapper')?.scrollIntoView({ behavior: 'smooth' })}
+					>See all features</Button>
+				  } */}
+							<main>
+								{
+									highlightedFeatures.map((feature) => {
+										const value = plan.features[feature.name];
+										return (
+											<div key={`highlighted_feature_${feature.name}`}>
+												<span className="value">{value}</span>
+												<span className={`feature-display ${(value) ? '' : 'unchecked'}`}>{feature.display}</span>
+												{
+													feature.tip &&
+													<Tooltip
+														content={feature.tip}
+													/>
+												}
+											</div>
+										);
+									})
+								}
+							</main>
+							<footer>
+
+							</footer>
 						</div>
-						<p
-							className={`per-month-txt ${plan.className}`}
-						>{`Per month, Billed ${
-							activeCycle.period === 'year' ? 'annually' : 'monthly'
-						} `}</p>
-						{buttonsRenderer(plan)}
-						{/* {
-                  fullComparisonAvailable &&
-                  <Button 
-                    className="see-all-button" 
-                    type="button" 
-                    mode="default" 
-                    color="transparent"
-                    onClick={() => document.querySelector('.full-comparison-table-wrapper')?.scrollIntoView({ behavior: 'smooth' })}
-                  >See all features</Button>
-                } */}
-						<main>
-							{highlightedFeatures.map((feature) => {
-								const value = plan.features[feature.name];
-								return (
-									<div key={`highlighted_feature_${feature.name}`}>
-										<span className="value">{value}</span>
-										<span
-											className={`feature-display ${value ? '' : 'unchecked'}`}
-										>
-											{feature.display}
-										</span>
-										{feature.tip && <Tooltip content={feature.tip} />}
-									</div>
-								);
-							})}
-						</main>
-						<footer></footer>
-					</div>
-				))}
+					))
+				}
 			</div>
 		</div>
 	);
