@@ -1,257 +1,232 @@
 @import '../../../external/styles/_vars';
 
-// Pricing table
+//Pricing table
 .pricing-table-wrapper {
 	margin: 100px auto;
 	align-items: center;
 	font-family: Spartan, sans-serif;
-
+  
 	.pricing-table {
-		gap: 36px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		flex-wrap: wrap;
-		flex-direction: row;
-		margin: 0;
-
-		.mini-box {
-			position: relative;
-			text-align: center;
-			background: #f7f7ff;
-			color: $black-20;
-			box-shadow: 0px 0px 60px rgba(0, 0, 0, 0.15);
-
-			box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-			border-radius: 10px;
-			// margin: 0 7px 20px;
-			padding: 36px 25px 36px 20px;
-			font-size: 14px;
-			box-sizing: border-box;
-			width: 342px;
-			max-width: 342px;
-			min-height: fit-content;
-			// flex: 1;
-
-			flex: 16rem;
-
-			@media screen and (max-width: $breakpoint-4) {
-				min-width: 270px;
-			}
-
-			&.pro {
-				padding: 62px 41px 67px 41px;
-				box-shadow: 0px 0px 42.9338px rgba(255, 69, 114, 0.25);
-				width: 385px;
-				max-width: 385px;
-				min-height: fit-content;
-
-				@media screen and (max-width: $breakpoint-4) {
-					padding: 36px 25px 36px 20px;
-					min-width: 270px;
-				}
-
-				.title {
-					color: $pink-10;
-					font-size: 39px;
-
-					@media screen and (max-width: $breakpoint-4) {
-						font-size: 38px;
-					}
-				}
-
-				.checkout-buttons-wrapper .button {
-					background: $pink-10;
-					opacity: 1;
-					border: 2px solid $pink-10;
-					color: #f7f7ff;
-					transition: all 0.2s ease-in-out;
-
-					&:disabled {
-						opacity: 0.3;
-					}
-
-					&:not(:disabled):hover {
-						background-color: #f92157;
-						border: 2px solid #f92157;
-						color: #f7f7ff;
-					}
-				}
-			}
-
-			.title {
-				font-size: 38px;
-				margin: 0 0 20px;
-				font-weight: 600;
-				color: #4c73f0;
-				line-height: 1.5;
-
-				@media screen and (max-width: $breakpoint-4) {
-					font-size: 35px;
-				}
-			}
-
-			.price {
-				padding: 0 0 30px;
-				margin: 36px 0 0;
-				position: relative;
-				font-family: Spartan;
-
-				font-weight: 700;
-				font-size: 50px;
-				line-height: 135%;
-
-				text-align: center;
-				color: #1c3144;
-
-				@media screen and (max-width: $breakpoint-4) {
-					font-size: 50px;
-					margin: 25px 0 0;
-					padding: 0 0 20px;
-				}
-
-				span {
-					font-size: 14px;
-					font-weight: 200;
-					color: #9095a5;
-
-					@media screen and (max-width: $breakpoint-4) {
-						font-size: 12px;
-					}
-				}
-
-				.after-discount {
-					position: absolute;
-					bottom: -10px;
-					left: 50%;
-					transform: translateX(-50%);
-					text-decoration: line-through;
-				}
-			}
-
-			.per-month-txt {
-				font-size: 18px;
-				margin: 0;
-				line-height: 135%;
-				font-weight: normal;
-				color: #1c3144;
-
-				@media screen and (max-width: $breakpoint-4) {
-					font-size: 16px;
-				}
-			}
-
-			.checkout-buttons-wrapper .button {
-				margin: 36px 0 58px 0;
-				color: #1c3144;
-				background: #f7f7ff;
-				position: relative;
-				transition: all 0.2s ease;
-
-				opacity: 0.5;
-				border: 2px solid #1c3144;
-				box-sizing: border-box;
-
-				font-size: 20px;
-				border-radius: 10px;
-				padding: 11px 30px 11px 30px;
-				font-weight: 500;
-				box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
-
-				@media screen and (max-width: $breakpoint-4) {
-					margin: 30px 0 40px 0;
-				}
-
-				&:hover {
-					box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
-					transform: translateY(4px);
-					border: 2px solid $pink-10;
-					color: $pink-10;
-					opacity: 1;
-				}
-
-				&:disabled {
-					opacity: 0.5;
-					cursor: default;
-				}
-			}
-
-			.see-all-button {
-				margin-top: 5px;
-				font-size: 12px;
-			}
-
-			main {
-				> div {
-					display: flex;
-					// align-items: center;
-					justify-content: center;
-					margin-bottom: 25px;
-					// text-align: center;
-					position: relative;
-					color: #1c3144;
-
-					.feature-display {
-						font-weight: 300;
-						font-size: 18px;
-						line-height: 22.4px;
-
-						@media screen and (max-width: $breakpoint-4) {
-							font-size: 16px;
-						}
-
-						&.unchecked {
-							text-decoration: line-through;
-							text-decoration-thickness: 2px;
-						}
-					}
-
-					.tooltip {
-						margin-left: 5px;
-						transform: scale(0.9);
-						z-index: 10;
-					}
-
-					.tooltip-pointer {
-						background: none;
-						color: $blue-10;
-						border: 1px solid $blue-10;
-						transition: all 0.2s ease;
-						font-size: 14px;
-
-						&:hover {
-							background-color: $blue-10;
-							color: #fff;
-						}
-					}
-
-					.tooltip-content {
-						background-color: $blue-10;
-						z-index: 10;
-
-						&::before {
-							border-top-color: $blue-10;
-						}
-					}
-
-					.value {
-						font-weight: 600;
-						font-size: 18px;
-						text-align: center;
-						margin-right: 5px;
-
-						i,
-						svg {
-							color: $blue-10;
-							margin-right: 3px;
-
-							&.fa-times {
-								color: #e0e3ee;
-							}
-						}
-					}
-				}
-			}
+	  gap: 36px;
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  flex-wrap: wrap;
+	  flex-direction: row;
+	  margin: 0;
+  
+	  .mini-box {
+		position: relative;
+		text-align: center;
+		background: #f7f7ff;
+		color: $black-20;
+		box-shadow: 0px 0px 60px rgba(0, 0, 0, 0.15);
+  
+		box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+		border-radius: 10px;
+		// margin: 0 7px 20px;
+		padding: 20px 13px 20px 13px;
+		font-size: 14px;
+		box-sizing: border-box;
+		width: 342px;
+		max-width: 342px;
+		min-height: fit-content;
+		// flex: 1;
+  
+		flex: 16rem;
+  
+		@media screen and (max-width: $breakpoint-4) {
+		  min-width: 270px;
 		}
+  
+		&.pro {
+		  padding: 40px 13px 40px 13px;
+		  box-shadow: 0px 0px 42.9338px rgba(255, 69, 114, 0.25);
+		  width: 385px;
+		  max-width: 385px;
+		  min-height: fit-content;
+  
+		  .title {
+			color: $pink-10;
+			font-size: 25px;
+		  }
+  
+		  .checkout-buttons-wrapper .button {
+			background: $pink-10;
+			opacity: 1;
+			border: 2px solid $pink-10;
+			color: #f7f7ff;
+			transition: all 0.2s ease-in-out;
+  
+			&:disabled {
+			  opacity: 0.3;
+			}
+  
+			&:not(:disabled):hover {
+			  background-color: #f92157;
+			  border: 2px solid #f92157;
+			  color: #f7f7ff;
+			}
+		  }
+		}
+  
+		.title {
+		  font-size: 25px;
+		  font-weight: 600;
+		  color: #4c73f0;
+		  line-height: 1.5;
+		}
+  
+		.price {
+		  padding: 0 0 30px;
+		  margin: 10px 0 0;
+		  position: relative;
+		  font-family: Spartan;
+  
+		  font-weight: 700;
+		  font-size: 35px;
+		  line-height: 135%;
+  
+		  text-align: center;
+		  color: #1c3144;
+  
+		  @media screen and (max-width: $breakpoint-4) {
+			margin: 25px 0 0;
+			padding: 0 0 20px;
+		  }
+  
+		  span {
+			font-size: 14px;
+			font-weight: 200;
+			color: #9095a5;
+  
+			@media screen and (max-width: $breakpoint-4) {
+			  font-size: 12px;
+			}
+		  }
+  
+		  .after-discount {
+			position: absolute;
+			bottom: -10px;
+			left: 50%;
+			transform: translateX(-50%);
+			text-decoration: line-through;
+		  }
+		}
+  
+		.per-month-txt {
+		  font-size: 16px;
+		  margin: 0;
+		  line-height: 135%;
+		  font-weight: normal;
+		  color: #1c3144;
+  
+		}
+  
+		.checkout-buttons-wrapper .button {
+		  margin: 30px 0 40px 0;
+		  color: #1c3144;
+		  background: #f7f7ff;
+		  position: relative;
+		  transition: all 0.2s ease;
+  
+		  opacity: 0.5;
+		  border: 2px solid #1c3144;
+		  box-sizing: border-box;
+  
+		  font-size: 16px;
+		  border-radius: 10px;
+		  padding: 11px 30px 11px 30px;
+		  font-weight: 500;
+		  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  
+		  &:hover {
+			box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+			transform: translateY(4px);
+			border: 2px solid $pink-10;
+			color: $pink-10;
+			opacity: 1;
+		  }
+  
+		  &:disabled {
+			opacity: 0.5;
+			cursor: default;
+		  }
+		}
+  
+		.see-all-button {
+		  margin-top: 5px;
+		  font-size: 12px;
+		}
+  
+		main {
+		  > div {
+			display: flex;
+			// align-items: center;
+			justify-content: center;
+			margin-bottom: 25px;
+			// text-align: center;
+			position: relative;
+			color: #1c3144;
+  
+			.feature-display {
+			  font-weight: 300;
+			  font-size: 16px;
+			  line-height: 22.4px;
+  
+			  &.unchecked {
+				text-decoration: line-through;
+				text-decoration-thickness: 2px;
+			  }
+			}
+  
+			.tooltip {
+			  margin-left: 5px;
+			  transform: scale(0.9);
+			  z-index: 10;
+			}
+  
+			.tooltip-pointer {
+			  background: none;
+			  color: $blue-10;
+			  border: 1px solid $blue-10;
+			  transition: all 0.2s ease;
+			  font-size: 14px;
+  
+			  &:hover {
+				background-color: $blue-10;
+				color: #fff;
+			  }
+			}
+  
+			.tooltip-content {
+			  background-color: $blue-10;
+			  z-index: 10;
+  
+			  &::before {
+				border-top-color: $blue-10;
+			  }
+			}
+  
+			.value {
+			  font-weight: 600;
+			  font-size: 16px;
+			  text-align: center;
+			  margin-right: 5px;
+  
+			  i,
+			  svg {
+				color: $blue-10;
+				margin-right: 3px;
+  
+				&.fa-times {
+				  color: #e0e3ee;
+				}
+			  }
+			}
+		  }
+		}
+	  }
 	}
-}
+  }
+  
