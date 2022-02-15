@@ -1,6 +1,6 @@
 {
 	"name": "@commonninja/nindo",
-	"version": "1.2.2",
+	"version": "1.2.3",
 	"description": "",
 	"scripts": {
 		"rollup": "rollup -c",
@@ -37,9 +37,9 @@
 	},
 	"dependencies": {
 		"@commonninja/commonninja-auth-sdk": "^1.0.23",
+		"@fortawesome/fontawesome-common-types": "^0.3.0",
 		"@fortawesome/fontawesome-svg-core": "^1.2.36",
 		"@fortawesome/free-solid-svg-icons": "^6.0.0",
-		"@fortawesome/fontawesome-common-types": "^0.3.0",
 		"@fortawesome/react-fontawesome": "^0.1.16",
 		"@loadable/component": "^5.15.2",
 		"@types/jest": "^27.0.2",
