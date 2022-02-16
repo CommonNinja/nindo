@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import ReactQuill from 'react-quill';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImages } from '@fortawesome/free-solid-svg-icons';
-import { Quill } from 'quill';
 // @ts-ignore
 import ImageResize from 'quill-image-resize-module-react';
+import * as QuillNamespace from 'quill';
 
 import { AssetsGalleryOpener } from '../assetsGalleryOpener/assetsGalleryOpener.comp';
 
@@ -12,6 +12,7 @@ import 'react-quill/dist/quill.snow.css';
 import './richEditor.scss';
 
 let Icons, TextAlignStyle, Size, Link;
+let Quill: any = QuillNamespace;
 
 Quill.register('modules/imageResize', ImageResize);
 
