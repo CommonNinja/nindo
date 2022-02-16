@@ -18,6 +18,9 @@ export default [
 			preserveModulesRoot: 'src',
 			sourcemap: true,
 		},
+		globals: {
+			quill: 'Quill'
+		},
 		plugins: [
 			postcss(),
 			commonjs(),
