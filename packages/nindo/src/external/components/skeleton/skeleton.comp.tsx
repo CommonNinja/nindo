@@ -4,6 +4,8 @@ import { darken, lighten, getLuminance } from 'color2k';
 
 import { TChildren } from '../../types/plugin.types';
 
+import 'react-loading-skeleton/dist/skeleton.css';
+
 type NinjaSkeletonThemeProps = {
 	children: TChildren;
 	leadColor?: string;
