@@ -84,7 +84,7 @@ export const PluginLoader = ({
 
 		// Set wix widget height only if app height is smaller than window height
 		if (vendor === 'wix' && typeof window?.Wix !== 'undefined') {
-			window?.Wix.setHeight(height);
+			window?.Wix.setHeight(finalHeight);
 		}
 
 		eventService.postEventToParent('COMMONNINJA_DIMENSIONS_UPDATE', pluginId, {
