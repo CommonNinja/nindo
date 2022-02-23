@@ -4,14 +4,14 @@ const apiBaseUrl: string = process.env.REACT_APP_PLUGIN_API_URL || '';
 
 class ShopifyService extends HttpService {
 	public async getUserSubscription() {
-		const url = `${apiBaseUrl}/api/v1/shopify/userSubscriptions?pluginType=${this.pluginType}&serviceName=${this.serviceName}&${this.queryParams}`;
+		const url = `${apiBaseUrl}/api/v1/shopify/userSubscriptions?serviceName=${this.serviceName}&${this.queryParams}`;
 		return await this.makeRequest(url);
 	}
 
 	public async createUserSubscription(subscriptionTypeId: string) {
 		const url = `${apiBaseUrl}/shopify/api/${
 			subscriptionTypeId ? 'createSubscription' : 'cancelSubscription'
-		}/${this.pluginType}?pluginType=${this.pluginType}&${this.queryParams}`;
+		}/${this.pluginType}?${this.queryParams}`;
 		return await this.makeRequest(url, {
 			method: 'post',
 			headers: {
