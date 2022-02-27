@@ -2,7 +2,7 @@
 	"name": "nindo-app",
 	"version": "1.0.0",
 	"private": true,
-	"proxy": "http://localhost:5006/",
+	"proxy": "http://localhost:4000/",
 	"engines": {
 		"npm": "^6 || ^7 || ^8",
 		"node": "^12 || ^14 || ^16 || ^18"
