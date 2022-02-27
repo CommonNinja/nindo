@@ -227,9 +227,9 @@ const modulesWithImage = {
 			},
 		},
 	},
-	// imageResize: {
-	// 	modules: ['Resize', 'DisplaySize', 'Toolbar'],
-	// },
+	imageResize: {
+		modules: ['Resize', 'DisplaySize', 'Toolbar'],
+	},
 };
 
 export const RichEditorWithImages = (props: IRichEditorWithImageProps) => {

@@ -37,6 +37,7 @@
 	},
 	"dependencies": {
 		"@commonninja/commonninja-auth-sdk": "^1.0.23",
+		"@commonninja/types": "^1.2.0",
 		"@fortawesome/fontawesome-common-types": "^0.3.0",
 		"@fortawesome/fontawesome-svg-core": "^1.2.36",
 		"@fortawesome/free-solid-svg-icons": "^6.0.0",
