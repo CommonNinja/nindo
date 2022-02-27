@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { HttpService, IHttpResult } from '..';
+import { HttpService, IHttpResult } from '../';
 
 interface IApiResourceState {
   loading: boolean;
