@@ -6,6 +6,7 @@ import * as serviceWorker from './serviceWorker';
 
 import defaultUserState from '../../../internal/mocks/userState.mocks';
 import {
+	apiMocks,
 	assetMocks,
 	eventMocks,
 	pluginMocks,
@@ -37,6 +38,7 @@ export function cnBootstrap<T, P = {}>(appConfig: IAppConfig<T, P>) {
 				...userMocks(userState),
 				...eventMocks(),
 				...assetMocks(),
+				...apiMocks(),
 			],
 		};
 

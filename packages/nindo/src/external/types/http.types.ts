@@ -1,7 +1,7 @@
-export interface IHttpResult {
+export interface IHttpResult<T = any> {
 	success: boolean;
 	message?: string;
-	data?: any;
+	data?: T;
 }
 
 export interface ILocalState {

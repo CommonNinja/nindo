@@ -1,3 +1,4 @@
+export * from './api.hook';
 export * from './plugin.hook';
 export * from './pluginContext.hook';
 export * from './pluginData.hook';
