@@ -5,12 +5,14 @@ import { basicMockConfig } from './basic.config';
 
 const { origin, responseBody } = basicMockConfig;
 
+const baseUrl = `${origin}/nindo/api/v1`;
+
 export const apiMocks = () => {
 	const getProducts = {
 		id: uuidv4(),
 		active: true,
 		method: 'GET',
-		url: `${origin}/integrations/api/v1/products*?*`,
+		url: `${baseUrl}/products*?*`,
 		headers: {},
 		params: '',
 		response: {

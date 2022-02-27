@@ -58,15 +58,19 @@ export function useApi({
 				};
 			}
 
-			let paginationQueryParams = '';
+			let queryParams = '';
 			if (method === 'get' && pagination) {
-				paginationQueryParams += `page=${pagination.page || ''}&limit=${
+				queryParams += `&page=${pagination.page || ''}&limit=${
 					pagination.limit || ''
 				}`;
 			}
 
+			if (client.queryParams) {
+				queryParams += `&${client.queryParams}`;
+			}
+
 			const response: IHttpResult = await client.makeRequest(
-				`${apiBaseUrl}${finalUrl}?platform=${platform}&${paginationQueryParams}${client.queryParams}`,
+				`${apiBaseUrl}${finalUrl}?platform=${platform}${queryParams}`,
 				{
 					method,
 					...options,
