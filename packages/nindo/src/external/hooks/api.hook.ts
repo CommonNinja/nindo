@@ -31,7 +31,7 @@ export function useApi({
 		page?: string;
 	};
 }): IApiResource {
-	const apiPrefix = '/integrations/api/v1';
+	const apiPrefix = '/nindo/api/v1';
 	const resourcePath: string = path.startsWith('/') ? path : `/${path}`;
 	const finalUrl = resourcePath.startsWith(apiPrefix)
 		? resourcePath
