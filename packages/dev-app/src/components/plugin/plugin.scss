@@ -1,0 +1,11 @@
+#plugin-wrapper {
+	background: no-repeat center center;
+	background-size: cover;
+
+	> h2 {
+		font-size: 32px;
+		margin-bottom: 20px;
+		line-height: 1.5em;
+		word-break: break-word;
+	}
+}
