@@ -4,6 +4,7 @@
 	"description": "",
 	"scripts": {
 		"rollup": "rollup -c",
+		"dev": "rollup -c -w",
 		"test": "jest",
 		"clean": "rm -rf dist",
 		"prepare": "npm run build",
