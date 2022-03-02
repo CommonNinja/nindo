@@ -18,6 +18,7 @@ export * from './fontFamilySelector';
 export * from './formLabel';
 export * from './formRow';
 export * from './icon';
+export * from './input';
 export * from './itemsManager';
 export * from './loader';
 export * from './nameFieldEditor';
