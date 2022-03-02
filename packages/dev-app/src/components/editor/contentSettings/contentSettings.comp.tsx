@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import {
 	FormRow,
 	ContextMenuWrapper,
 	ContextMenuSection,
+	Input,
 	FormLabel,
 	usePluginData,
 } from '../../../exports';
@@ -28,6 +29,15 @@ export const ContentSettingsComp = () => {
 			<ContextMenuSection title="Content Settings">
 				<FormRow>
 					<FormLabel>Content test field</FormLabel>
+					<Input
+						type="number"
+						max={10}
+						min={3}
+						onChange={(e: ChangeEvent<HTMLInputElement>) =>
+							console.log('input', e.target.value)
+						}
+					/>
+
 					<input
 						type="text"
 						value={content.test}
