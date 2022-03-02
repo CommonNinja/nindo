@@ -1,9 +1,8 @@
-import React, { ChangeEvent } from 'react';
+import React from 'react';
 import {
 	FormRow,
 	ContextMenuWrapper,
 	ContextMenuSection,
-	Input,
 	FormLabel,
 	usePluginData,
 } from '../../../exports';
