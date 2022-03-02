@@ -1,91 +1,91 @@
 import React, { ChangeEvent, InputHTMLAttributes, useEffect, useRef, useState } from 'react';
-import { debounce } from "lodash"
+import { debounce } from "lodash";
 import validator from 'validator';
 
 import './input.scss';
 
 interface IInputProps extends InputHTMLAttributes<Element> {
 	showInvalidMessage?: boolean
-}
+};
 
 export const Input = ({ showInvalidMessage = true, ...props }: IInputProps) => {
-	const [invalidText, setInvalidText] = useState('')
-	const inputRef = useRef<any>()
+	const [invalidText, setInvalidText] = useState('');
+	const inputRef = useRef<any>();
 
 	function validateInput(text: string) {
 		if (!text.trim() || inputRef.current?.validity.valid) {
-			setInvalidText('')
-			return
-		}
+			setInvalidText('');
+			return;
+		};
 
 		if (inputRef.current?.validity?.tooShort) {
-			setInvalidText(`Should be at least ${inputRef.current?.minLength} characters`)
-			return
-		}
+			setInvalidText(`Text is too short`);
+			return;
+		};
 
 		if (inputRef.current?.validity?.tooLong) {
-			setInvalidText(`Should not be more than ${inputRef.current?.maxLength} characters`)
-			return
-		}
+			setInvalidText(`Text is too long`);
+			return;
+		};
 
 		if (inputRef.current?.validity?.rangeUnderflow) {
-			setInvalidText(`Value is too small`)
-			return
-		}
+			setInvalidText(`Value is too small`);
+			return;
+		};
 
 		if (inputRef.current?.validity?.rangeOverflow) {
-			setInvalidText(`Value is too big`)
-			return
-		}
+			setInvalidText(`Value is too big`);
+			return;
+		};
 
 		if (inputRef.current?.validity?.typeMismatch) {
-			setInvalidText(`Input has a type mismatch`)
-			return
-		}
+			setInvalidText(`Invalid value`);
+			return;
+		};
 
 		if (inputRef.current?.validity?.valueMissing) {
-			setInvalidText(`Input has a missing value`)
-			return
-		}
+			setInvalidText(`Field cannot remain empty`);
+			return;
+		};
 
 		if (props.type === 'email') {
 			if (validator.isEmail(text)) {
-				setInvalidText('')
-				return
-			}
-			setInvalidText('Invalid email')
+				setInvalidText('');
+				return;
+			};
+			setInvalidText('Invalid email');
 			return;
-		}
+		};
 
 		if (props.type === 'url') {
 			if (validator.isURL(text)) {
-				setInvalidText('')
-				return
-			}
-			setInvalidText('Invalid url')
+				setInvalidText('');
+				return;
+			};
+			setInvalidText('Invalid url');
 			return;
-		}
+		};
 
 		if (!inputRef.current?.validity?.valid) {
-			setInvalidText(`Invalid input`)
-			return
-		}
-	}
+			setInvalidText(`Invalid input`);
+			return;
+		};
+	};
 
 	const debouncedSearch = debounce(async (event) => {
-		validateInput(event.target.value)
+		validateInput(event.target.value);
 	}, 300);
 
 	const onChange = (e: ChangeEvent<HTMLInputElement>) => {
 		props.onChange?.(e);
 		debouncedSearch(e);
-	}
+	};
 
 	useEffect(() => {
 		return () => {
 			debouncedSearch.cancel();
-		}
-	}, [debouncedSearch, inputRef])
+		};
+	}, [debouncedSearch, inputRef]);
 
 	return (
 		<div className="input-wrapper">
