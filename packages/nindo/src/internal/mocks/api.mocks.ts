@@ -5,7 +5,7 @@ import { basicMockConfig } from './basic.config';
 
 const { origin, responseBody } = basicMockConfig;
 
-const baseUrl = `${origin}/nindo/api/v1`;
+const baseUrl = `${origin}/nindo/api/resource`;
 
 export const apiMocks = () => {
 	const getProducts = {
