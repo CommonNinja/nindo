@@ -1,0 +1,14 @@
+@import '../../styles/_vars';
+
+.input-wrapper {
+	position: relative;
+	
+	.input-error {
+		color: $gray-20;
+		font-size: 12px;
+		left: 0;
+		top: 100%;
+		line-height: normal;
+		position: absolute;
+	}
+}
