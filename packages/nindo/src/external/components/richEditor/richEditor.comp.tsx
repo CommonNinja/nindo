@@ -60,6 +60,8 @@ interface IRichEditorProps {
 	html: string;
 	onChange: (html: string) => void;
 	onKeyDown?: (e: any) => void;
+	formats?: string[];
+	modules?: {};
 }
 
 interface IRichEditorWithImageProps extends IRichEditorProps {
@@ -68,7 +70,7 @@ interface IRichEditorWithImageProps extends IRichEditorProps {
 	pluginId?: string;
 }
 
-const formats = [
+const defaultFormats = [
 	'size',
 	'font-size',
 	'bold',
@@ -83,7 +85,7 @@ const formats = [
 	'link',
 ];
 
-const modules = {
+const defaultModules = {
 	toolbar: {
 		container: [
 			[
@@ -94,7 +96,8 @@ const modules = {
 				'bold',
 				'italic',
 				'underline',
-				/* 'strike', */ { list: 'ordered' },
+				/* 'strike', */
+				{ list: 'ordered' },
 				{ list: 'bullet' },
 				'link',
 			],
@@ -106,7 +109,7 @@ const modules = {
 };
 
 export const RichEditor = (props: IRichEditorProps) => {
-	const { onChange, onKeyDown, html } = props;
+	const { onChange, onKeyDown, html, formats, modules } = props;
 	const [fromInit, setFromInit] = useState<boolean>(true);
 
 	function handleChange(html: string) {
@@ -138,8 +141,8 @@ export const RichEditor = (props: IRichEditorProps) => {
 				onKeyDown={onKeyDown ? (e: any) => onKeyDown(e) : () => {}}
 				onChange={handleChange}
 				theme="snow"
-				formats={formats}
-				modules={modules}
+				formats={formats || defaultFormats}
+				modules={modules || defaultModules}
 				bounds={'.rich-editor-wrapper'}
 			/>
 		</div>
@@ -148,7 +151,7 @@ export const RichEditor = (props: IRichEditorProps) => {
 
 let registeredSubmitImageCallback = (url: string) => {};
 
-const formatsWithImage = [
+const defaultFormatsWithImage = [
 	'size',
 	'font-size',
 	'bold',
@@ -166,7 +169,7 @@ const formatsWithImage = [
 	'height',
 ];
 
-const modulesWithImage = {
+const defaultModulesWithImage = {
 	clipboard: {
 		matchVisual: false,
 	},
@@ -220,6 +223,8 @@ const modulesWithImage = {
 
 				// Attach post submit image callback
 				registeredSubmitImageCallback = (url: string) => {
+					console.log('got here');
+
 					// by 'image' option below, you just have to put src(link) of img here.
 					// @ts-ignore
 					this.quill.insertEmbed(range.index, 'image', url);
@@ -240,6 +245,8 @@ export const RichEditorWithImages = (props: IRichEditorWithImageProps) => {
 		imageUploadEnabled,
 		assetApiBaseUrl,
 		pluginId,
+		formats,
+		modules,
 	} = props;
 	const [fromInit, setFromInit] = useState<boolean>(true);
 
@@ -264,6 +271,8 @@ export const RichEditorWithImages = (props: IRichEditorWithImageProps) => {
 			}, 10);
 		}
 	}, []);
+	console.log('formats', formats);
+	console.log('modules', modules);
 
 	return (
 		<div className="rich-editor-wrapper">
@@ -272,8 +281,8 @@ export const RichEditorWithImages = (props: IRichEditorWithImageProps) => {
 				onKeyDown={onKeyDown ? (e: any) => onKeyDown(e) : () => {}}
 				onChange={handleChange}
 				theme="snow"
-				formats={formatsWithImage}
-				modules={modulesWithImage}
+				formats={defaultFormatsWithImage}
+				modules={defaultModulesWithImage}
 				bounds={'.rich-editor-wrapper'}
 			/>
 			<div style={{ display: 'none' }}>
