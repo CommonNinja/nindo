@@ -38,5 +38,12 @@
 .installation-tutorials {
 	a {
 		text-decoration: none;
+		color: rgba(255,255,255,0.5);
+		border-color: rgba(255,255,255,0.5);
+
+		&:hover {
+			color: rgba(255,255,255,0.75);
+			border-color: rgba(255,255,255,0.75);
+		}
 	}
 }

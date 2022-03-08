@@ -165,7 +165,7 @@ export const InstallationTutorials = () => {
 			<a
 				href="https://help.commoninja.com/hc/en-us/sections/360002482278-Adding-Common-Ninja-s-Apps-to-Your-Website"
 				target="_blank"
-				className="button green"
+				className="button"
 			>
 				Learn how to install on any website
 			</a>
