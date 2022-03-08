@@ -30,7 +30,7 @@ export const PublishSettingsComp = (props: PublishSettingsProps) => {
 				<Tabs items={items} resolveTabComp={(activeTab) => {
 					if (activeTab === 'App Block Installation') {
 						return (
-							<ContextMenuSection title='App Block Installation'  >
+							<ContextMenuSection >
 								<InstallationCode
 									vendor='shopify'
 									componentId={pluginId}
@@ -42,8 +42,9 @@ export const PublishSettingsComp = (props: PublishSettingsProps) => {
 						)
 					} else {
 						return (
-							<ContextMenuSection title='Manual Installation' >
+							<ContextMenuSection >
 								<InstallationCode
+									vendor={'shopify-manual'}
 									componentId={pluginId}
 									componentType={pluginService.pluginType}
 									buttonClassName="button green"
@@ -58,7 +59,7 @@ export const PublishSettingsComp = (props: PublishSettingsProps) => {
 
 		if (platform === 'duda') {
 			return (
-				<ContextMenuSection title='Installation' >
+				<ContextMenuSection >
 					<InstallationCode
 						vendor={'duda'}
 						componentId={pluginId}
@@ -70,7 +71,7 @@ export const PublishSettingsComp = (props: PublishSettingsProps) => {
 			)
 		} else {
 			return (
-				<ContextMenuSection title='Manual Installation' >
+				<ContextMenuSection >
 					<InstallationCode
 						componentId={pluginId}
 						componentType={pluginService.pluginType}

@@ -13,7 +13,7 @@ type InstallationCodeProps = {
 	buttonClassName?: string;
 	className?: string;
 	htmlOnly?: boolean;
-	vendor?: 'shopify' | 'duda' | ''
+	vendor?: 'shopify' | 'duda' | 'shopify-manual'
 };
 
 export const InstallationCode = (props: InstallationCodeProps) => {
@@ -100,6 +100,37 @@ export const InstallationCode = (props: InstallationCodeProps) => {
 						</ol>
 						<CopyInput
 							value={componentId}
+							inputType="textarea"
+							buttonClassName={buttonClassName}
+						/>
+					</>
+				}
+				{vendor === 'shopify-manual' &&
+					<>
+						<h6>Add the app to your website using the “Embed” option</h6>
+						<ol>
+							<li>
+								<p>Copy the code below.</p>
+							</li>
+							<li>
+								<p>
+									On your shop’s desired page, add the “Custom Liquid”
+									section.
+								</p>
+							</li>
+							<li>
+								<p>
+									Paste the code you’ve copied into Custom Liquid’s field,
+									and click save.
+								</p>
+							</li>
+						</ol>
+						<p>
+							Copy this code & paste it into the “Custom Liquid” section on
+							your store’s preferred page
+						</p>
+						<CopyInput
+							value={`<div class="commonninja_component" comp-type="${componentType}" comp-id="${componentId}"></div>`}
 							inputType="textarea"
 							buttonClassName={buttonClassName}
 						/>
