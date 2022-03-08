@@ -15,6 +15,19 @@
 		right: 0;
 		top: 0;
 	}
+
+	h6 {
+		margin-bottom: 0;
+	}
+	ol {
+		color: $gray-20;
+		list-style: disc;
+		padding-left: 20px;
+
+		p {
+			margin-bottom: 5px;
+		}
+	}
 }
 
 .installation-tutorials {

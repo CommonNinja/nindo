@@ -9,6 +9,8 @@ import { ContextMenuWrapper } from '../../../external/components/contextMenuWrap
 import { ContextMenuSection } from '../../../external/components/contextMenuSection/contextMenuSection.comp';
 
 import './publishSettings.scss';
+import { Tabs } from '../../../external/components/tabs/tabs.comp';
+import { usePluginContext } from '../../..';
 
 type PublishSettingsProps = {
 	pluginId: string | null;
@@ -19,6 +21,18 @@ type PublishSettingsProps = {
 
 export const PublishSettingsComp = (props: PublishSettingsProps) => {
 	const { pluginId, showCode = true, hideTutorials, htmlCodeOnly } = props;
+	const { platform } = usePluginContext();
+	const itemss = platform === 'shopify' ? [{ id: 'App Block Installation', name: 'App Block Installation' }, { id: 'Manual Installation', name: 'Manual Installation' }]
+		:
+		[]
+
+	let items;
+	if (platform === 'shopify') {
+		items = [{ id: 'App Block Installation', name: 'App Block Installation' }, { id: 'Manual Installation', name: 'Manual Installation' }]
+	}
+	else {
+		items = [{ id: 'Manual Installation', name: 'Manual Installation' }]
+	}
 
 	return !pluginId ? (
 		<p className="center message all-centered">
@@ -28,14 +42,49 @@ export const PublishSettingsComp = (props: PublishSettingsProps) => {
 	) : (
 		<ContextMenuWrapper className="publish-settings">
 			{showCode && (
-				<ContextMenuSection title="Installation Guide">
-					<InstallationCode
-						componentId={pluginId}
-						componentType={pluginService.pluginType}
-						buttonClassName="button green"
-						htmlOnly={htmlCodeOnly}
-					/>
-				</ContextMenuSection>
+				<>
+					<Tabs items={items} resolveTabComp={(activeTab) => {
+						if (activeTab === 'App Block Installation') {
+							return (
+								<ContextMenuSection title='App Block Installation'  >
+									<InstallationCode
+										vendor='shopify'
+										componentId={pluginId}
+										componentType={pluginService.pluginType}
+										buttonClassName="button green"
+										htmlOnly={htmlCodeOnly}
+									/>
+								</ContextMenuSection>
+							)
+						}
+						if (activeTab === 'Manual Installation' && platform === 'duda') {
+							return (
+								<ContextMenuSection title='Manual Installation' >
+									<InstallationCode
+										vendor='duda'
+										componentId={pluginId}
+										componentType={pluginService.pluginType}
+										buttonClassName="button green"
+										htmlOnly={htmlCodeOnly}
+									/>
+								</ContextMenuSection>
+							)
+						}
+						else {
+							return (
+								<ContextMenuSection title='Manual Installation'>
+									<InstallationCode
+										componentId={pluginId}
+										componentType={pluginService.pluginType}
+										buttonClassName="button green"
+										htmlOnly={htmlCodeOnly}
+									/>
+								</ContextMenuSection>
+							)
+						}
+
+					}} />
+				</>
 			)}
 			<ContextMenuSection title="App Details">
 				<FormRow>
