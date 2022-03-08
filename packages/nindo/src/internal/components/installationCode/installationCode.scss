@@ -37,13 +37,6 @@
 
 .installation-tutorials {
 	a {
-		margin: 0 0 20px;
-		opacity: 0.8;
-		color: $gray-20;
-		font-size: 14px;
-
-		&:hover {
-			opacity: 1;
-		}
+		text-decoration: none;
 	}
 }
