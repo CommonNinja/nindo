@@ -18,27 +18,14 @@
 }
 
 .installation-tutorials {
-	p {
+	a {
 		margin: 0 0 20px;
+		opacity: 0.8;
 		color: $gray-20;
 		font-size: 14px;
-	}
 
-	.platforms-list {
-		justify-content: flex-start;
-		flex-wrap: wrap;
-
-		a {
-			opacity: 0.8;
-
-			&:hover {
-				opacity: 1;
-			}
-		}
-
-		img {
-			max-height: 32px;
-			margin: 0 30px 20px 0;
+		&:hover {
+			opacity: 1;
 		}
 	}
 }
