@@ -13,7 +13,7 @@ type InstallationCodeProps = {
 	buttonClassName?: string;
 	className?: string;
 	htmlOnly?: boolean;
-	vendor?: 'shopify' | 'duda'
+	vendor?: 'shopify' | 'duda' | ''
 };
 
 export const InstallationCode = (props: InstallationCodeProps) => {

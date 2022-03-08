@@ -22,16 +22,64 @@ type PublishSettingsProps = {
 export const PublishSettingsComp = (props: PublishSettingsProps) => {
 	const { pluginId, showCode = true, hideTutorials, htmlCodeOnly } = props;
 	const { platform } = usePluginContext();
-	const itemss = platform === 'shopify' ? [{ id: 'App Block Installation', name: 'App Block Installation' }, { id: 'Manual Installation', name: 'Manual Installation' }]
-		:
-		[]
 
-	let items;
-	if (platform === 'shopify') {
-		items = [{ id: 'App Block Installation', name: 'App Block Installation' }, { id: 'Manual Installation', name: 'Manual Installation' }]
-	}
-	else {
-		items = [{ id: 'Manual Installation', name: 'Manual Installation' }]
+	function renderTutorial(pluginId: string) {
+		const items = [{ id: 'App Block Installation', name: 'App Block Installation' }, { id: 'Manual Installation', name: 'Manual Installation' }]
+		if (platform === 'shopify') {
+			return (
+				<Tabs items={items} resolveTabComp={(activeTab) => {
+					if (activeTab === 'App Block Installation') {
+						return (
+							<ContextMenuSection title='App Block Installation'  >
+								<InstallationCode
+									vendor='shopify'
+									componentId={pluginId}
+									componentType={pluginService.pluginType}
+									buttonClassName="button green"
+									htmlOnly={htmlCodeOnly}
+								/>
+							</ContextMenuSection>
+						)
+					} else {
+						return (
+							<ContextMenuSection title='Manual Installation' >
+								<InstallationCode
+									componentId={pluginId}
+									componentType={pluginService.pluginType}
+									buttonClassName="button green"
+									htmlOnly={htmlCodeOnly}
+								/>
+							</ContextMenuSection>
+						)
+					}
+				}} />
+			)
+		}
+
+		if (platform === 'duda') {
+			return (
+				<ContextMenuSection title='Installation' >
+					<InstallationCode
+						vendor={'duda'}
+						componentId={pluginId}
+						componentType={pluginService.pluginType}
+						buttonClassName="button green"
+						htmlOnly={htmlCodeOnly}
+					/>
+				</ContextMenuSection>
+			)
+		} else {
+			return (
+				<ContextMenuSection title='Manual Installation' >
+					<InstallationCode
+						componentId={pluginId}
+						componentType={pluginService.pluginType}
+						buttonClassName="button green"
+						htmlOnly={htmlCodeOnly}
+					/>
+				</ContextMenuSection>
+			)
+		}
 	}
 
 	return !pluginId ? (
@@ -42,65 +90,27 @@ export const PublishSettingsComp = (props: PublishSettingsProps) => {
 	) : (
 		<ContextMenuWrapper className="publish-settings">
 			{showCode && (
+				renderTutorial(pluginId)
+			)}
+			{(platform !== 'shopify' && platform !== 'duda') &&
 				<>
-					<Tabs items={items} resolveTabComp={(activeTab) => {
-						if (activeTab === 'App Block Installation') {
-							return (
-								<ContextMenuSection title='App Block Installation'  >
-									<InstallationCode
-										vendor='shopify'
-										componentId={pluginId}
-										componentType={pluginService.pluginType}
-										buttonClassName="button green"
-										htmlOnly={htmlCodeOnly}
-									/>
-								</ContextMenuSection>
-							)
-						}
-						if (activeTab === 'Manual Installation' && platform === 'duda') {
-							return (
-								<ContextMenuSection title='Manual Installation' >
-									<InstallationCode
-										vendor='duda'
-										componentId={pluginId}
-										componentType={pluginService.pluginType}
-										buttonClassName="button green"
-										htmlOnly={htmlCodeOnly}
-									/>
-								</ContextMenuSection>
-							)
-						}
-						else {
-							return (
-								<ContextMenuSection title='Manual Installation'>
-									<InstallationCode
-										componentId={pluginId}
-										componentType={pluginService.pluginType}
-										buttonClassName="button green"
-										htmlOnly={htmlCodeOnly}
-									/>
-								</ContextMenuSection>
-							)
-						}
-
-					}} />
+					<ContextMenuSection title="App Details">
+						<FormRow>
+							<label>App Instance ID</label>
+							<span>{pluginId}</span>
+						</FormRow>
+						<FormRow>
+							<label>App Type</label>
+							<span>{pluginService.pluginType}</span>
+						</FormRow>
+					</ContextMenuSection>
+					{!hideTutorials && (
+						<ContextMenuSection title="Tutorials">
+							<InstallationTutorials />
+						</ContextMenuSection>
+					)}
 				</>
-			)}
-			<ContextMenuSection title="App Details">
-				<FormRow>
-					<label>App Instance ID</label>
-					<span>{pluginId}</span>
-				</FormRow>
-				<FormRow>
-					<label>App Type</label>
-					<span>{pluginService.pluginType}</span>
-				</FormRow>
-			</ContextMenuSection>
-			{!hideTutorials && (
-				<ContextMenuSection title="Tutorials">
-					<InstallationTutorials />
-				</ContextMenuSection>
-			)}
+			}
 		</ContextMenuWrapper>
 	);
 };
