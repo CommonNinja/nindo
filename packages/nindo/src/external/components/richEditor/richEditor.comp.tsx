@@ -64,7 +64,8 @@ interface IRichEditorProps {
 	modules?: {};
 }
 
-interface IRichEditorWithImageProps extends IRichEditorProps {
+interface IRichEditorWithImageProps
+	extends Omit<IRichEditorProps, 'modules' | 'formats'> {
 	imageUploadEnabled: boolean;
 	assetApiBaseUrl?: string;
 	pluginId?: string;
@@ -245,8 +246,6 @@ export const RichEditorWithImages = (props: IRichEditorWithImageProps) => {
 		imageUploadEnabled,
 		assetApiBaseUrl,
 		pluginId,
-		formats,
-		modules,
 	} = props;
 	const [fromInit, setFromInit] = useState<boolean>(true);
 
@@ -271,8 +270,6 @@ export const RichEditorWithImages = (props: IRichEditorWithImageProps) => {
 			}, 10);
 		}
 	}, []);
-	console.log('formats', formats);
-	console.log('modules', modules);
 
 	return (
 		<div className="rich-editor-wrapper">
