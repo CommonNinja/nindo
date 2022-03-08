@@ -347,9 +347,6 @@ export const CNEditor = ({
 				comp: (
 					<PublishSettingsComp
 						pluginId={pluginId}
-						showCode={vendor !== 'duda' && vendor !== 'wix'}
-						htmlCodeOnly={!!vendor}
-						hideTutorials={!!vendor}
 					/>
 				),
 				context: 'menu',

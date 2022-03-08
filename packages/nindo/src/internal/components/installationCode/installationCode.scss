@@ -15,30 +15,35 @@
 		right: 0;
 		top: 0;
 	}
+
+	p {
+		color: $gray-20;
+	}
+
+	h6 {
+		margin-bottom: 5px;
+		color: $gray-20;
+	}
+	ol {
+		color: $gray-20;
+		list-style: disc;
+		padding-left: 20px;
+
+		p {
+			margin-bottom: 9px;
+		}
+	}
 }
 
 .installation-tutorials {
-	p {
-		margin: 0 0 20px;
-		color: $gray-20;
-		font-size: 14px;
-	}
+	a {
+		text-decoration: none;
+		color: rgba(255,255,255,0.5);
+		border-color: rgba(255,255,255,0.5);
 
-	.platforms-list {
-		justify-content: flex-start;
-		flex-wrap: wrap;
-
-		a {
-			opacity: 0.8;
-
-			&:hover {
-				opacity: 1;
-			}
-		}
-
-		img {
-			max-height: 32px;
-			margin: 0 30px 20px 0;
+		&:hover {
+			color: rgba(255,255,255,0.75);
+			border-color: rgba(255,255,255,0.75);
 		}
 	}
 }
