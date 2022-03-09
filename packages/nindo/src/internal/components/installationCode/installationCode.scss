@@ -35,6 +35,7 @@
 	}
 }
 
+<<<<<<< HEAD
 .installation-tutorials-wrapper {
 	display: flex;
 	align-items: center;
@@ -59,6 +60,17 @@
 			&:hover {
 				opacity: 1;
 			}
+=======
+.installation-tutorials {
+	a {
+		text-decoration: none;
+		color: rgba(255,255,255,0.5);
+		border-color: rgba(255,255,255,0.5);
+
+		&:hover {
+			color: rgba(255,255,255,0.75);
+			border-color: rgba(255,255,255,0.75);
+>>>>>>> 1d4016f6a92c960fef3fecabd9a29f9b63ce32df
 		}
 	}
 }
