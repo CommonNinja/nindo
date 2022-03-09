@@ -17,7 +17,7 @@ const iconSvg =
 	'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMTIxLjg2IDEyMi44OCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMTIxLjg2IDEyMi44OCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PHN0eWxlIHR5cGU9InRleHQvY3NzIj4uc3Qwe2ZpbGwtcnVsZTpldmVub2RkO2NsaXAtcnVsZTpldmVub2RkO308L3N0eWxlPjxnPjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik03Mi4wOSwxOC43Mmg0Mi4zN2MyLjA1LDAsMy44OSwwLjg0LDUuMjIsMi4xOGMxLjM0LDEuMzQsMi4xOCwzLjIsMi4xOCw1LjIydjg5LjM2IGMwLDIuMDUtMC44NCwzLjg5LTIuMTgsNS4yMmMtMS4zNCwxLjM0LTMuMiwyLjE4LTUuMjIsMi4xOEgyNC40OGMtMi4wNSwwLTMuODktMC44NC01LjIyLTIuMThjLTEuMzQtMS4zNC0yLjE4LTMuMi0yLjE4LTUuMjIgVjcxLjQ2YzIuNDcsMSw1LjA1LDEuNzgsNy43MiwyLjI5djIwLjI4aDAuMDNsMCwwQzM3LjcyLDgxLjcsNDYuMjYsNzUuNjEsNTkuMDgsNjUuMmMwLjA1LDAuMDUsMC4xLDAuMSwwLjE1LDAuMTUgYzAuMDMsMC4wMywwLjAzLDAuMDYsMC4wNiwwLjA2bDI2LjgyLDMxLjczbDQuMS0yNS4yNGMwLjI4LTEuNjIsMS44LTIuNzMsMy40Mi0yLjQ1YzAuNjIsMC4wOSwxLjE4LDAuNCwxLjYyLDAuODFsMTguODIsMTkuNzcgVjI3LjkxYzAtMC40LTAuMTYtMC43NS0wLjQ0LTAuOTljLTAuMjUtMC4yNS0wLjYyLTAuNDQtMC45OS0wLjQ0SDc0LjA1QzczLjY0LDIzLjgsNzIuOTgsMjEuMjEsNzIuMDksMTguNzJMNzIuMDksMTguNzJ6IE0zMi43OSwwIEM1MC45LDAsNjUuNTgsMTQuNjgsNjUuNTgsMzIuNzljMCwxOC4xMS0xNC42OCwzMi43OS0zMi43OSwzMi43OUMxNC42OCw2NS41OCwwLDUwLjksMCwzMi43OUMwLDE0LjY4LDE0LjY4LDAsMzIuNzksMEwzMi43OSwweiBNMTUuMzcsMzMuMzdoMTEuMDR2MTUuNzZoMTIuNDVWMzMuMzdoMTEuMzZMMzIuOCwxNi40NEwxNS4zNywzMy4zN0wxNS4zNywzMy4zN0wxNS4zNywzMy4zN3ogTTk0LjI3LDM1LjY2IGMyLjk1LDAsNS42NiwxLjIxLDcuNTgsMy4xNGMxLjk2LDEuOTYsMy4xNCw0LjYzLDMuMTQsNy41OWMwLDIuOTUtMS4yMSw1LjY2LTMuMTQsNy41OGMtMS45NiwxLjk2LTQuNjMsMy4xNC03LjU4LDMuMTQgYy0yLjk1LDAtNS42Ni0xLjIxLTcuNTktMy4xNGMtMS45Ni0xLjk2LTMuMTQtNC42My0zLjE0LTcuNThjMC0yLjk1LDEuMjEtNS42NSwzLjE0LTcuNTlDODguNjUsMzYuODQsOTEuMzIsMzUuNjYsOTQuMjcsMzUuNjYgTDk0LjI3LDM1LjY2TDk0LjI3LDM1LjY2eiIvPjwvZz48L3N2Zz4=';
 Icons = ReactQuill.Quill.import('ui/icons');
 Icons[
-	'uimage'
+	'image'
 ] = `<i class="upload-image-icon" title="Upload Image" aria-hidden="true"><img src="data:image/svg+xml;base64,${iconSvg}" /></i>`;
 Icons.align['left'] = Icons.align[''];
 
@@ -189,25 +189,12 @@ const defaultModulesWithImage = {
 				{ list: 'bullet' },
 				{ align: ['', 'center', 'right'] },
 				'link',
-				'uimage',
+				'image',
 			],
 		],
 		handlers: {
 			// Note, using an arrow function will cause quill to be undefined.
 			image: function () {
-				// @ts-ignore
-				const range = this.quill.getSelection();
-				const link = prompt('Insert an image url');
-
-				if (!link) {
-					return;
-				}
-
-				// by 'image' option below, you just have to put src(link) of img here.
-				// @ts-ignore
-				this.quill.insertEmbed(range.index, 'image', link);
-			},
-			uimage: function () {
 				const opener: HTMLElement | null = document.querySelector(
 					'.rich-editor-wrapper .assets-gallery-opener'
 				);
@@ -224,8 +211,6 @@ const defaultModulesWithImage = {
 
 				// Attach post submit image callback
 				registeredSubmitImageCallback = (url: string) => {
-					console.log('got here');
-
 					// by 'image' option below, you just have to put src(link) of img here.
 					// @ts-ignore
 					this.quill.insertEmbed(range.index, 'image', url);
