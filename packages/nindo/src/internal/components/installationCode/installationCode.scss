@@ -35,15 +35,30 @@
 	}
 }
 
-.installation-tutorials {
-	a {
-		margin: 0 0 20px;
-		opacity: 0.8;
-		color: $gray-20;
-		font-size: 14px;
+.installation-tutorials-wrapper {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	.icon {
+		border-radius: 50%;
+		width: 50px;
+		height: 50px;
+		background-color: #000;
+	}
+	.installation-tutorials {
+		p {
+			color: $gray-20;
+			margin-bottom: 6px;
+		}
+		a {
+			margin: 0 0 20px;
+			opacity: 0.8;
+			font-size: 14px;
+			color: inherit;
 
-		&:hover {
-			opacity: 1;
+			&:hover {
+				opacity: 1;
+			}
 		}
 	}
 }
