@@ -35,42 +35,41 @@
 	}
 }
 
-<<<<<<< HEAD
 .installation-tutorials-wrapper {
 	display: flex;
 	align-items: center;
-	gap: 20px;
+	gap: 15px;
+
 	.icon {
 		border-radius: 50%;
-		width: 50px;
-		height: 50px;
-		background-color: #000;
+		padding: 0.8rem 1.2rem;
+		background-color: $black-30;
+		font-size: 35px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
+
 	.installation-tutorials {
+		line-height: normal;
+
 		p {
 			color: $gray-20;
 			margin-bottom: 6px;
+
+			&.light {
+				color: $white-10;
+			}
 		}
+
 		a {
-			margin: 0 0 20px;
-			opacity: 0.8;
-			font-size: 14px;
-			color: inherit;
+			color: #77b7ff;
+			text-decoration: none;
 
 			&:hover {
+				text-decoration: underline;
 				opacity: 1;
 			}
-=======
-.installation-tutorials {
-	a {
-		text-decoration: none;
-		color: rgba(255,255,255,0.5);
-		border-color: rgba(255,255,255,0.5);
-
-		&:hover {
-			color: rgba(255,255,255,0.75);
-			border-color: rgba(255,255,255,0.75);
->>>>>>> 1d4016f6a92c960fef3fecabd9a29f9b63ce32df
 		}
 	}
 }
