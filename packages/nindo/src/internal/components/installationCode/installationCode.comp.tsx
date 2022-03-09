@@ -161,14 +161,16 @@ export const InstallationCode = (props: InstallationCodeProps) => {
 
 export const InstallationTutorials = () => {
 	return (
-		<div className="installation-tutorials center">
-			<a
-				href="https://help.commoninja.com/hc/en-us/sections/360002482278-Adding-Common-Ninja-s-Apps-to-Your-Website"
-				target="_blank"
-				className="button"
-			>
-				Learn how to install on any website
-			</a>
+		<div className="installation-tutorials-wrapper">
+			<div className="icon">i</div>
+			<div className="installation-tutorials">
+				<p className='light'>Would you like a more detailed tutorial?</p>
+				<p> Our knowledge base has detailed instructions (with guiding screenshots) for most platforms. You can find your platform {' '}
+					<a className='base-center-link' href="https://help.commoninja.com/hc/en-us/sections/360002482278-Adding-Common-Ninja-s-Apps-to-Your-Website" target='_blank'>
+						here.
+					</a>
+				</p>
+			</div>
 		</div>
 	);
 };
