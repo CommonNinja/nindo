@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import ReactQuill from 'react-quill';
+import { isPlainObject as _isPlainObject } from 'lodash';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImages } from '@fortawesome/free-solid-svg-icons';
 // @ts-ignore
 import ImageResize from 'quill-image-resize-module-react';
 
 import { AssetsGalleryOpener } from '../assetsGalleryOpener/assetsGalleryOpener.comp';
+
+import type { StringMap } from 'quill';
 
 import 'react-quill/dist/quill.snow.css';
 import './richEditor.scss';
@@ -17,7 +20,7 @@ const iconSvg =
 	'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMTIxLjg2IDEyMi44OCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMTIxLjg2IDEyMi44OCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PHN0eWxlIHR5cGU9InRleHQvY3NzIj4uc3Qwe2ZpbGwtcnVsZTpldmVub2RkO2NsaXAtcnVsZTpldmVub2RkO308L3N0eWxlPjxnPjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik03Mi4wOSwxOC43Mmg0Mi4zN2MyLjA1LDAsMy44OSwwLjg0LDUuMjIsMi4xOGMxLjM0LDEuMzQsMi4xOCwzLjIsMi4xOCw1LjIydjg5LjM2IGMwLDIuMDUtMC44NCwzLjg5LTIuMTgsNS4yMmMtMS4zNCwxLjM0LTMuMiwyLjE4LTUuMjIsMi4xOEgyNC40OGMtMi4wNSwwLTMuODktMC44NC01LjIyLTIuMThjLTEuMzQtMS4zNC0yLjE4LTMuMi0yLjE4LTUuMjIgVjcxLjQ2YzIuNDcsMSw1LjA1LDEuNzgsNy43MiwyLjI5djIwLjI4aDAuMDNsMCwwQzM3LjcyLDgxLjcsNDYuMjYsNzUuNjEsNTkuMDgsNjUuMmMwLjA1LDAuMDUsMC4xLDAuMSwwLjE1LDAuMTUgYzAuMDMsMC4wMywwLjAzLDAuMDYsMC4wNiwwLjA2bDI2LjgyLDMxLjczbDQuMS0yNS4yNGMwLjI4LTEuNjIsMS44LTIuNzMsMy40Mi0yLjQ1YzAuNjIsMC4wOSwxLjE4LDAuNCwxLjYyLDAuODFsMTguODIsMTkuNzcgVjI3LjkxYzAtMC40LTAuMTYtMC43NS0wLjQ0LTAuOTljLTAuMjUtMC4yNS0wLjYyLTAuNDQtMC45OS0wLjQ0SDc0LjA1QzczLjY0LDIzLjgsNzIuOTgsMjEuMjEsNzIuMDksMTguNzJMNzIuMDksMTguNzJ6IE0zMi43OSwwIEM1MC45LDAsNjUuNTgsMTQuNjgsNjUuNTgsMzIuNzljMCwxOC4xMS0xNC42OCwzMi43OS0zMi43OSwzMi43OUMxNC42OCw2NS41OCwwLDUwLjksMCwzMi43OUMwLDE0LjY4LDE0LjY4LDAsMzIuNzksMEwzMi43OSwweiBNMTUuMzcsMzMuMzdoMTEuMDR2MTUuNzZoMTIuNDVWMzMuMzdoMTEuMzZMMzIuOCwxNi40NEwxNS4zNywzMy4zN0wxNS4zNywzMy4zN0wxNS4zNywzMy4zN3ogTTk0LjI3LDM1LjY2IGMyLjk1LDAsNS42NiwxLjIxLDcuNTgsMy4xNGMxLjk2LDEuOTYsMy4xNCw0LjYzLDMuMTQsNy41OWMwLDIuOTUtMS4yMSw1LjY2LTMuMTQsNy41OGMtMS45NiwxLjk2LTQuNjMsMy4xNC03LjU4LDMuMTQgYy0yLjk1LDAtNS42Ni0xLjIxLTcuNTktMy4xNGMtMS45Ni0xLjk2LTMuMTQtNC42My0zLjE0LTcuNThjMC0yLjk1LDEuMjEtNS42NSwzLjE0LTcuNTlDODguNjUsMzYuODQsOTEuMzIsMzUuNjYsOTQuMjcsMzUuNjYgTDk0LjI3LDM1LjY2TDk0LjI3LDM1LjY2eiIvPjwvZz48L3N2Zz4=';
 Icons = ReactQuill.Quill.import('ui/icons');
 Icons[
-	'uimage'
+	'image'
 ] = `<i class="upload-image-icon" title="Upload Image" aria-hidden="true"><img src="data:image/svg+xml;base64,${iconSvg}" /></i>`;
 Icons.align['left'] = Icons.align[''];
 
@@ -60,6 +63,8 @@ interface IRichEditorProps {
 	html: string;
 	onChange: (html: string) => void;
 	onKeyDown?: (e: any) => void;
+	formats?: string[];
+	modules?: StringMap;
 }
 
 interface IRichEditorWithImageProps extends IRichEditorProps {
@@ -68,7 +73,7 @@ interface IRichEditorWithImageProps extends IRichEditorProps {
 	pluginId?: string;
 }
 
-const formats = [
+const defaultFormats = [
 	'size',
 	'font-size',
 	'bold',
@@ -83,7 +88,7 @@ const formats = [
 	'link',
 ];
 
-const modules = {
+const defaultModules = {
 	toolbar: {
 		container: [
 			[
@@ -94,19 +99,17 @@ const modules = {
 				'bold',
 				'italic',
 				'underline',
-				/* 'strike', */ { list: 'ordered' },
+				/* 'strike', */
+				{ list: 'ordered' },
 				{ list: 'bullet' },
 				'link',
 			],
 		],
 	},
-	clipboard: {
-		matchVisual: false,
-	},
 };
 
 export const RichEditor = (props: IRichEditorProps) => {
-	const { onChange, onKeyDown, html } = props;
+	const { onChange, onKeyDown, html, formats, modules } = props;
 	const [fromInit, setFromInit] = useState<boolean>(true);
 
 	function handleChange(html: string) {
@@ -138,8 +141,8 @@ export const RichEditor = (props: IRichEditorProps) => {
 				onKeyDown={onKeyDown ? (e: any) => onKeyDown(e) : () => {}}
 				onChange={handleChange}
 				theme="snow"
-				formats={formats}
-				modules={modules}
+				formats={formats || defaultFormats}
+				modules={modules || defaultModules}
 				bounds={'.rich-editor-wrapper'}
 			/>
 		</div>
@@ -148,7 +151,7 @@ export const RichEditor = (props: IRichEditorProps) => {
 
 let registeredSubmitImageCallback = (url: string) => {};
 
-const formatsWithImage = [
+const defaultFormatsWithImage = [
 	'size',
 	'font-size',
 	'bold',
@@ -166,10 +169,7 @@ const formatsWithImage = [
 	'height',
 ];
 
-const modulesWithImage = {
-	clipboard: {
-		matchVisual: false,
-	},
+const defaultModulesWithImage = {
 	toolbar: {
 		container: [
 			[
@@ -185,25 +185,12 @@ const modulesWithImage = {
 				{ list: 'bullet' },
 				{ align: ['', 'center', 'right'] },
 				'link',
-				'uimage',
+				'image',
 			],
 		],
 		handlers: {
 			// Note, using an arrow function will cause quill to be undefined.
 			image: function () {
-				// @ts-ignore
-				const range = this.quill.getSelection();
-				const link = prompt('Insert an image url');
-
-				if (!link) {
-					return;
-				}
-
-				// by 'image' option below, you just have to put src(link) of img here.
-				// @ts-ignore
-				this.quill.insertEmbed(range.index, 'image', link);
-			},
-			uimage: function () {
 				const opener: HTMLElement | null = document.querySelector(
 					'.rich-editor-wrapper .assets-gallery-opener'
 				);
@@ -240,6 +227,8 @@ export const RichEditorWithImages = (props: IRichEditorWithImageProps) => {
 		imageUploadEnabled,
 		assetApiBaseUrl,
 		pluginId,
+		formats,
+		modules,
 	} = props;
 	const [fromInit, setFromInit] = useState<boolean>(true);
 
@@ -272,9 +261,28 @@ export const RichEditorWithImages = (props: IRichEditorWithImageProps) => {
 				onKeyDown={onKeyDown ? (e: any) => onKeyDown(e) : () => {}}
 				onChange={handleChange}
 				theme="snow"
-				formats={formatsWithImage}
-				modules={modulesWithImage}
-				bounds={'.rich-editor-wrapper'}
+				formats={formats || defaultFormatsWithImage}
+				modules={
+					modules
+						? {
+								...modules,
+								// see https://quilljs.com/docs/modules/toolbar/
+								toolbar: _isPlainObject(modules.toolbar)
+									? {
+											...modules.toolbar,
+											handlers: {
+												...modules.toolbar.handlers,
+												image: defaultModulesWithImage.toolbar.handlers.image,
+											},
+									  }
+									: {
+											...defaultModulesWithImage.toolbar,
+											container: modules.toolbar,
+									  },
+						  }
+						: defaultFormatsWithImage
+				}
+				bounds=".rich-editor-wrapper"
 			/>
 			<div style={{ display: 'none' }}>
 				<AssetsGalleryOpener
