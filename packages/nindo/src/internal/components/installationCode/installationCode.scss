@@ -15,30 +15,61 @@
 		right: 0;
 		top: 0;
 	}
-}
 
-.installation-tutorials {
 	p {
-		margin: 0 0 20px;
 		color: $gray-20;
-		font-size: 14px;
 	}
 
-	.platforms-list {
-		justify-content: flex-start;
-		flex-wrap: wrap;
+	h6 {
+		margin-bottom: 5px;
+		color: $gray-20;
+	}
+	ol {
+		color: $gray-20;
+		list-style: disc;
+		padding-left: 20px;
 
-		a {
-			opacity: 0.8;
+		p {
+			margin-bottom: 9px;
+		}
+	}
+}
 
-			&:hover {
-				opacity: 1;
+.installation-tutorials-wrapper {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+
+	.icon {
+		border-radius: 50%;
+		padding: 0.8rem 1.2rem;
+		background-color: $black-30;
+		font-size: 35px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.installation-tutorials {
+		line-height: normal;
+
+		p {
+			color: $gray-20;
+			margin-bottom: 6px;
+
+			&.light {
+				color: $white-10;
 			}
 		}
 
-		img {
-			max-height: 32px;
-			margin: 0 30px 20px 0;
+		a {
+			color: #77b7ff;
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: underline;
+				opacity: 1;
+			}
 		}
 	}
 }
