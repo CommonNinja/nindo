@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import ReactQuill from 'react-quill';
+import { isPlainObject as _isPlainObject } from 'lodash';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImages } from '@fortawesome/free-solid-svg-icons';
 // @ts-ignore
 import ImageResize from 'quill-image-resize-module-react';
 
 import { AssetsGalleryOpener } from '../assetsGalleryOpener/assetsGalleryOpener.comp';
+
+import type { StringMap } from 'quill';
 
 import 'react-quill/dist/quill.snow.css';
 import './richEditor.scss';
@@ -61,11 +64,10 @@ interface IRichEditorProps {
 	onChange: (html: string) => void;
 	onKeyDown?: (e: any) => void;
 	formats?: string[];
-	modules?: {};
+	modules?: StringMap;
 }
 
-interface IRichEditorWithImageProps
-	extends Omit<IRichEditorProps, 'modules' | 'formats'> {
+interface IRichEditorWithImageProps extends IRichEditorProps {
 	imageUploadEnabled: boolean;
 	assetApiBaseUrl?: string;
 	pluginId?: string;
@@ -103,9 +105,6 @@ const defaultModules = {
 				'link',
 			],
 		],
-	},
-	clipboard: {
-		matchVisual: false,
 	},
 };
 
@@ -171,9 +170,6 @@ const defaultFormatsWithImage = [
 ];
 
 const defaultModulesWithImage = {
-	clipboard: {
-		matchVisual: false,
-	},
 	toolbar: {
 		container: [
 			[
@@ -231,6 +227,8 @@ export const RichEditorWithImages = (props: IRichEditorWithImageProps) => {
 		imageUploadEnabled,
 		assetApiBaseUrl,
 		pluginId,
+		formats,
+		modules,
 	} = props;
 	const [fromInit, setFromInit] = useState<boolean>(true);
 
@@ -263,9 +261,28 @@ export const RichEditorWithImages = (props: IRichEditorWithImageProps) => {
 				onKeyDown={onKeyDown ? (e: any) => onKeyDown(e) : () => {}}
 				onChange={handleChange}
 				theme="snow"
-				formats={defaultFormatsWithImage}
-				modules={defaultModulesWithImage}
-				bounds={'.rich-editor-wrapper'}
+				formats={formats || defaultFormatsWithImage}
+				modules={
+					modules
+						? {
+								...modules,
+								// see https://quilljs.com/docs/modules/toolbar/
+								toolbar: _isPlainObject(modules.toolbar)
+									? {
+											...modules.toolbar,
+											handlers: {
+												...modules.toolbar.handlers,
+												image: defaultModulesWithImage.toolbar.handlers.image,
+											},
+									  }
+									: {
+											...defaultModulesWithImage.toolbar,
+											container: modules.toolbar,
+									  },
+						  }
+						: defaultFormatsWithImage
+				}
+				bounds=".rich-editor-wrapper"
 			/>
 			<div style={{ display: 'none' }}>
 				<AssetsGalleryOpener
