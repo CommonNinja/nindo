@@ -4,7 +4,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 
 import { EditorToolbar } from '../editorToolbar/editorToolbar.comp';
 import { ExportMenu, IExtraMenuItem } from '../exportMenu/exportMenu.comp';
-import { savePlugin, nameUpdated, pluginContextUpdated } from '../../actions';
+import { savePlugin, nameUpdated, contextUpdated } from '../../actions';
 import { TChildren } from '../../../external/types/plugin.types';
 import {
 	IPreSaveValidation,
@@ -65,7 +65,7 @@ export const MainArea = ({
 		history.push(nextUrl);
 
 		// Update plugin context with new ID
-		dispatch(pluginContextUpdated({ instanceId: pluginId }));
+		dispatch(contextUpdated({ instanceId: pluginId }));
 
 		notificationHelper.success({
 			title: 'Your changes have been successfully saved.',

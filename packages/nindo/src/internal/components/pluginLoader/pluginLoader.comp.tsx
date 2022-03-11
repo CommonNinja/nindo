@@ -20,7 +20,7 @@ import { PluginSkeleton } from '../../../external/components/pluginSkeleton/plug
 import { eventHelper } from '../../../external/helpers/event.helper';
 import { TPlatform } from '../../../external/types/editor.types';
 import { IViewerProps } from '../../../external/types/viewer.types';
-import { pluginContextUpdated } from '../../actions/pluginContext.actions';
+import { contextUpdated } from '../../actions/pluginContext.actions';
 
 export interface IPluginLoader<T> extends IViewerProps<T> {
 	pluginComp: TChildren;
@@ -177,7 +177,7 @@ export const PluginLoader = ({
 
 			// Set plugin context
 			dispatch(
-				pluginContextUpdated({
+				contextUpdated({
 					instanceId: finalPluginData.guid || '',
 					mode: 'viewer',
 				})

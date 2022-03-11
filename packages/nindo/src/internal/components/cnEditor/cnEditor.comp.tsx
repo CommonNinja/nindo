@@ -43,7 +43,7 @@ import { VendorUpgradePopup } from '../vendorUpgradePopup/vendorUpgradePopup.com
 import PublishSettingsComp from '../publishSettings/publishSettings.comp';
 import { TemplatesPopup } from '../templatesPopup/templatesPopup.comp';
 import { premiumHelper } from '../../../external/helpers';
-import { pluginContextUpdated } from '../../actions/pluginContext.actions';
+import { contextUpdated } from '../../actions/pluginContext.actions';
 
 import './cnEditor.scss';
 
@@ -291,7 +291,7 @@ export const CNEditor = ({
 
 		// Updating plugin context
 		dispatch(
-			pluginContextUpdated({
+			contextUpdated({
 				instanceId: pluginId,
 				mode: 'editor',
 				platform: vendor,

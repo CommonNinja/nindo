@@ -1,7 +1,6 @@
 export * from './addItemButton';
 export * from './assetsGalleryOpener';
 export * from './button';
-export * from './cnBootstrap';
 export * from './colorPicker';
 export * from './confirmationPopup';
 export * from './contextMenuSection';
@@ -22,6 +21,7 @@ export * from './input';
 export * from './itemsManager';
 export * from './loader';
 export * from './nameFieldEditor';
+export * from './nindoApp';
 export * from './paginated';
 export * from './panel';
 export * from './pluginSkeleton';

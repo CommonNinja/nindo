@@ -9,7 +9,7 @@ import {
 } from '../../../external/types/plugin.types';
 import { PluginLoader } from '../pluginLoader/pluginLoader.comp';
 import { PluginWrapper } from '../pluginWrapper/pluginWrapper.comp';
-import { pluginContextUpdated } from '../../actions/pluginContext.actions';
+import { contextUpdated } from '../../actions/pluginContext.actions';
 
 import './viewer.scss';
 
@@ -25,7 +25,7 @@ export const Viewer = (props: {
 	useEffect(() => {
 		// Updating plugin context
 		dispatch(
-			pluginContextUpdated({
+			contextUpdated({
 				instanceId: pluginId,
 				mode: 'viewer',
 				platform: vendor,

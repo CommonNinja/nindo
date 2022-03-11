@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { gotPluginData } from '../../actions/plugin.actions';
-import { pluginContextUpdated } from '../../actions/pluginContext.actions';
+import { contextUpdated } from '../../actions/pluginContext.actions';
 
 interface IPreviewPageProps {
 	children: any;
@@ -32,7 +32,7 @@ export const PreviewPage = (props: IPreviewPageProps) => {
 
 		// Set plugin context
 		dispatch(
-			pluginContextUpdated({
+			contextUpdated({
 				instanceId: '',
 				mode: 'preview',
 			})

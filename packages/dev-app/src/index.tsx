@@ -1,4 +1,4 @@
-import { nindoApp, getDefaultPlugin } from './exports';
+import { nindoApp, getDefaultPlugin, nindoBackofficeApp } from './exports';
 
 import userStateMock from './mocks/userState.mocks';
 import { getEditorConfig } from './components/editor/editor.config';
@@ -7,14 +7,32 @@ import { defaultPluginData } from './components/plugin/plugin.default';
 import { IPluginData } from './components/plugin/plugin.types';
 
 // Initialize Nindo app
-nindoApp<IPluginData, {}>({
-	editor: {
-		config: getEditorConfig(),
-	},
-	plugin: {
-		defaultData: getDefaultPlugin(defaultPluginData(), 'My App'),
-		pluginComponent: Plugin,
-	},
+// nindoApp<IPluginData, {}>({
+// 	editor: {
+// 		config: getEditorConfig(),
+// 	},
+// 	plugin: {
+// 		defaultData: getDefaultPlugin(defaultPluginData(), 'My App'),
+// 		pluginComponent: Plugin,
+// 	},
+// 	mocks: {
+// 		userState: userStateMock,
+// 	},
+// });
+
+nindoBackofficeApp<IPluginData, {}>({
+	pages: [
+		{
+			id: 'home',
+			name: 'Home',
+			component: () => <div>Home</div>,
+		},
+		{
+			id: 'test',
+			name: 'Test',
+			component: () => <div>Test</div>,
+		},
+	],
 	mocks: {
 		userState: userStateMock,
 	},
