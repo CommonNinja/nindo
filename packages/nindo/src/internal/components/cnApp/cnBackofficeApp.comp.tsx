@@ -52,18 +52,16 @@ export const CNBackofficeApp = (config: {
 		}
 
 		if (!nestedPage && pageData.component) {
-			comp = React.cloneElement(pageData.component, props);
-		}
-
-		if (!nestedPage && pageData.nestedRoutes?.[0]?.component) {
-			comp = React.cloneElement(pageData.nestedRoutes[0].component, props);
-		}
-
-		const nestedPageData = pageData.nestedRoutes?.find(
-			(p) => p.id === nestedPage
-		);
-		if (nestedPageData?.component) {
-			comp = React.cloneElement(nestedPageData.component, props);
+			comp = pageData.component;
+		} else if (!nestedPage && pageData.nestedRoutes?.[0]?.component) {
+			comp = pageData.nestedRoutes[0].component;
+		} else {
+			const nestedPageData = pageData.nestedRoutes?.find(
+				(p) => p.id === nestedPage
+			);
+			if (nestedPageData?.component) {
+				comp = nestedPageData.component;
+			}
 		}
 
 		return (
