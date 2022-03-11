@@ -25,12 +25,19 @@ nindoBackofficeApp<IPluginData, {}>({
 		{
 			id: 'home',
 			name: 'Home',
-			component: () => <div>Home</div>,
+			component: <div>Home</div>,
+			nestedRoutes: [
+				{
+					id: 'home-sub',
+					name: 'Sub',
+					component: <div>Sub</div>,
+				},
+			],
 		},
 		{
 			id: 'test',
 			name: 'Test',
-			component: () => <div>Test</div>,
+			component: <div>Test</div>,
 		},
 	],
 	mocks: {

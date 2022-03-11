@@ -1,5 +1,5 @@
 import React, { useState, useEffect, ComponentType, ReactElement } from 'react';
-import { useRouteMatch } from 'react-router-dom';
+import { NavLink, useRouteMatch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 // import { IHttpResult } from '../../../external/types/http.types';
@@ -44,8 +44,8 @@ export const CNBackofficeEditor = ({
 }: ICNBackofficeEditor) => {
 	const query = useQuery();
 	const dispatch = useDispatch();
-	const match = useRouteMatch();
-	const { page, vendor } = match.params as any;
+	const { params } = useRouteMatch();
+	const { page, vendor } = params as any;
 	const { isSaved, appData, user } = useSelector(
 		(state: IBackofficeAppState<any>) => ({
 			isSaved: state.editor.isSaved,
@@ -81,9 +81,10 @@ export const CNBackofficeEditor = ({
 
 	function getMenuLinks() {
 		const links = pages.map((page) => ({
-			name: page.name,
-			url: `${pathPrefix}/${page.id}`,
+			name: page.name || page.id,
+			url: `/${pathPrefix}/${page.id}`,
 			icon: page.icon,
+			exact: false,
 		}));
 
 		return links;
@@ -135,7 +136,8 @@ export const CNBackofficeEditor = ({
 	}
 
 	useEffect(() => {
-		setActivePage(page);
+		const nextActivePage = pages.find((p) => p.id === page);
+		setActivePage(nextActivePage);
 	}, [page]);
 
 	useEffect(() => {
@@ -217,7 +219,17 @@ export const CNBackofficeEditor = ({
 	}
 
 	function renderRoutesMenu() {
-		return <>nested routes</>;
+		return (
+			<nav className="sub-navigation">
+				{activePage?.nestedRoutes?.map((route) => (
+					<NavLink
+						to={`/${pathPrefix}/${activePage.id}/${route.id}`}
+						activeClassName="active"
+						exact
+					>{route.name || route.id}</NavLink>
+				))}
+			</nav>
+		);
 	}
 
 	function renderEditor() {
@@ -240,7 +252,7 @@ export const CNBackofficeEditor = ({
 						component={
 							activePage?.nestedRoutes ? renderRoutesMenu() : undefined
 						}
-						closeLink={`/${pathPrefix}}?${query.toString()}`}
+						closeLink={`/${pathPrefix}?${query.toString()}`}
 					/>
 					<section
 						className={`main-area ${
@@ -255,7 +267,7 @@ export const CNBackofficeEditor = ({
 	}
 
 	return (
-		<div className="cn-editor">
+		<div className="cn-editor backoffice">
 			<AppHeader
 				componentName={pluginTitle}
 				anonymousUser={!!vendor}

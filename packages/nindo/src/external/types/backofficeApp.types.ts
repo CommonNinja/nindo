@@ -1,11 +1,10 @@
 import { ReactElement } from 'react';
-import { RouteComponentProps, RouteProps } from 'react-router-dom';
 import { IUserStateMocks } from './mocks.types';
 
 export interface IAppPage {
-	name: string;
 	id: string;
-	component?: React.ComponentType<RouteComponentProps<any>> | React.ComponentType<any> | undefined;
+	name?: string;
+	component?: ReactElement;
 	icon?: any;
 }
 

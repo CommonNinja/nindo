@@ -5,8 +5,8 @@ import {
 	Redirect,
 	Switch,
 	RouteProps,
+	RouteComponentProps,
 } from 'react-router-dom';
-import { PreviewPage } from '../previewPage/previewPage.comp';
 import { AppNotifications } from '../appNotifications/appNotifications.comp';
 import { IAppMainPage } from '../../../external/types/backofficeApp.types';
 
@@ -41,41 +41,81 @@ export const CNBackofficeApp = (config: {
 		`);
 	}
 	const { pages = [], loaderComp } = config;
+
+	const pageRenderer = (props: RouteComponentProps) => {
+		const { page, nestedPage } = props.match.params as any;
+		const pageData = pages.find((p) => p.id === page);
+		let comp = <>Page is empty.</>;
+
+		if (!pageData) {
+			return <Redirect to="/" />;
+		}
+
+		if (!nestedPage && pageData.component) {
+			comp = React.cloneElement(pageData.component, props);
+		}
+
+		if (!nestedPage && pageData.nestedRoutes?.[0]?.component) {
+			comp = React.cloneElement(pageData.nestedRoutes[0].component, props);
+		}
+
+		const nestedPageData = pageData.nestedRoutes?.find(
+			(p) => p.id === nestedPage
+		);
+		if (nestedPageData?.component) {
+			comp = React.cloneElement(nestedPageData.component, props);
+		}
+
+		return (
+			<CNBackofficeEditor pages={pages} loaderComp={loaderComp}>
+				{comp}
+			</CNBackofficeEditor>
+		);
+	};
+
 	const routes: RouteProps[] = [
-		...pages.map((page) => ({
+		{
 			exact: true,
-			...page,
-			path: `/${page.id}`,
-		})),
-		...pages.map((page) => ({
+			path: '/:page',
+			render: pageRenderer,
+		},
+		{
 			exact: true,
-			...page,
-			path: `/v/:vendor/${page.id}`,
-		})),
+			path: '/:page/:nestedPage',
+			render: pageRenderer,
+		},
+		{
+			exact: true,
+			path: '/v/:vendor/:page',
+			render: pageRenderer,
+		},
+		{
+			exact: true,
+			path: '/v/:vendor/:page/:nestedPage',
+			render: pageRenderer,
+		},
 	];
 
 	return (
 		<div className="cn-app">
 			<Router basename={basename}>
-				<CNBackofficeEditor pages={pages} loaderComp={loaderComp}>
-					<Switch>
-						{routes.map((route, idx) => {
-							const routePath: string = (route.path as string) || '';
-							return (
-								<Route
-									{...route}
-									path={
-										!routePath.startsWith(`/${pluginPath}`)
-											? `/${pluginPath}/${routePath.replace(/^\//g, '')}`
-											: routePath
-									}
-									key={`route_${idx}`}
-								/>
-							);
-						})}
-						<Redirect from="/" to={`/${pluginPath}`} />
-					</Switch>
-				</CNBackofficeEditor>
+				<Switch>
+					{routes.map((route, idx) => {
+						const routePath: string = (route.path as string) || '';
+						return (
+							<Route
+								{...route}
+								path={
+									!routePath.startsWith(`/${pluginPath}`)
+										? `/${pluginPath}/${routePath.replace(/^\//g, '')}`
+										: routePath
+								}
+								key={`route_${idx}`}
+							/>
+						);
+					})}
+					<Redirect from="/" to={`/${pluginPath}/${pages[0]?.id}`} />
+				</Switch>
 			</Router>
 			<AppNotifications />
 		</div>

@@ -24,7 +24,7 @@
 		}
 	}
 
-	.main-menu a:first-child {
+	&:not(.backoffice).main-menu a:first-child {
 		display: none;
 
 		@media screen and (max-width: $breakpoint-3) {
