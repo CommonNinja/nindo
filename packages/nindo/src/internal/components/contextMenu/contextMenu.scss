@@ -1,9 +1,13 @@
 @import '../../../external/styles/_vars';
 
+.cn-editor.backoffice {
+	--context-menu-width: 250px;
+}
+
 .context-menu {
 	background: $black-40;
 	position: absolute;
-	left: -$contextMenuWidth - 50px;
+	left: calc(-1 * (#{$contextMenuWidth} + 50px));
 	width: $contextMenuWidth;
 	transition: left 0.3s ease;
 	z-index: 1;

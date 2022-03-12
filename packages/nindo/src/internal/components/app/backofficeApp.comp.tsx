@@ -9,7 +9,6 @@ interface IBackofficeAppProps<T> {
 	appConfig: IBackofficeAppConfig<T>;
 }
 
-
 export const BackofficeApp = ({ appConfig }: IBackofficeAppProps<any>) => {
 	const loaderComp = appConfig.loaderComponent;
 	

@@ -41,56 +41,14 @@ export const CNBackofficeApp = (config: {
 		`);
 	}
 	const { pages = [], loaderComp } = config;
-
-	const pageRenderer = (props: RouteComponentProps) => {
-		const { page, nestedPage } = props.match.params as any;
-		const pageData = pages.find((p) => p.id === page);
-		let comp = <>Page is empty.</>;
-
-		if (!pageData) {
-			return <Redirect to="/" />;
-		}
-
-		if (!nestedPage && pageData.component) {
-			comp = pageData.component;
-		} else if (!nestedPage && pageData.nestedRoutes?.[0]?.component) {
-			comp = pageData.nestedRoutes[0].component;
-		} else {
-			const nestedPageData = pageData.nestedRoutes?.find(
-				(p) => p.id === nestedPage
-			);
-			if (nestedPageData?.component) {
-				comp = nestedPageData.component;
-			}
-		}
-
-		return (
-			<CNBackofficeEditor pages={pages} loaderComp={loaderComp}>
-				{comp}
-			</CNBackofficeEditor>
-		);
-	};
-
 	const routes: RouteProps[] = [
 		{
-			exact: true,
-			path: '/:page',
-			render: pageRenderer,
+			exact: false,
+			path: '/:page/:nestedPage?',
 		},
 		{
-			exact: true,
-			path: '/:page/:nestedPage',
-			render: pageRenderer,
-		},
-		{
-			exact: true,
-			path: '/v/:vendor/:page',
-			render: pageRenderer,
-		},
-		{
-			exact: true,
-			path: '/v/:vendor/:page/:nestedPage',
-			render: pageRenderer,
+			exact: false,
+			path: '/v/:vendor/:page/:nestedPage?',
 		},
 	];
 
@@ -109,7 +67,9 @@ export const CNBackofficeApp = (config: {
 										: routePath
 								}
 								key={`route_${idx}`}
-							/>
+							>
+								<CNBackofficeEditor pages={pages} loaderComp={loaderComp} />
+							</Route>
 						);
 					})}
 					<Redirect from="/" to={`/${pluginPath}/${pages[0]?.id}`} />

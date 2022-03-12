@@ -23,14 +23,24 @@ import { IPluginData } from './components/plugin/plugin.types';
 nindoBackofficeApp<IPluginData, {}>({
 	pages: [
 		{
-			id: 'home',
-			name: 'Home',
-			component: <div>Home</div>,
+			id: 'dashboard',
+			name: 'Dashboard',
+			component: <div>Dashboard</div>,
+		},
+		{
+			id: 'other',
+			name: 'Other',
+			component: <div>Other</div>,
 			nestedRoutes: [
 				{
-					id: 'home-sub',
-					name: 'Sub',
-					component: <div>Sub</div>,
+					id: '1',
+					name: 'Sub 1',
+					component: <div>Sub 1</div>,
+				},
+				{
+					id: '2',
+					name: 'Sub 2',
+					component: <div>Sub 2</div>,
 				},
 			],
 		},

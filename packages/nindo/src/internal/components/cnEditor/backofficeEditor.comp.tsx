@@ -28,7 +28,6 @@ import './cnEditor.scss';
 
 export interface ICNBackofficeEditor {
 	pages: IAppMainPage[];
-	children: ReactElement;
 	loaderComp?: ReactElement;
 }
 
@@ -39,13 +38,12 @@ const pluginTitle = process.env.REACT_APP_NINJA_PLUGIN_TITLE || 'App Name';
 
 export const CNBackofficeEditor = ({
 	pages,
-	children,
 	loaderComp,
 }: ICNBackofficeEditor) => {
 	const query = useQuery();
 	const dispatch = useDispatch();
 	const { params } = useRouteMatch();
-	const { page, vendor } = params as any;
+	const { page, nestedPage, vendor } = params as any;
 	const { isSaved, appData, user } = useSelector(
 		(state: IBackofficeAppState<any>) => ({
 			isSaved: state.editor.isSaved,
@@ -77,6 +75,32 @@ export const CNBackofficeEditor = ({
 		// }
 
 		setLoading(false);
+	}
+
+	function getPageComponent() {
+		const pageData = pages.find((p) => p.id === page);
+
+		if (!pageData) {
+			return <>Page is empty.</>;
+		}
+
+		if (!nestedPage && pageData.component) {
+			return pageData.component;
+		} 
+		
+		if (!nestedPage && pageData.nestedRoutes?.[0]?.component) {
+			return pageData.nestedRoutes[0].component;
+		}
+		
+		const nestedPageData = pageData.nestedRoutes?.find(
+			(p) => p.id === nestedPage
+		);
+		
+		if (nestedPageData?.component) {
+			return nestedPageData.component;
+		}
+
+		return <>Page is empty.</>;
 	}
 
 	function getMenuLinks() {
@@ -137,6 +161,7 @@ export const CNBackofficeEditor = ({
 
 	useEffect(() => {
 		const nextActivePage = pages.find((p) => p.id === page);
+		console.log('nextActivePage', nextActivePage);
 		setActivePage(nextActivePage);
 	}, [page]);
 
@@ -259,7 +284,7 @@ export const CNBackofficeEditor = ({
 							activePage?.nestedRoutes ? 'with-context-menu' : ''
 						}`}
 					>
-						{children}
+						{getPageComponent()}
 					</section>
 				</section>
 			</main>

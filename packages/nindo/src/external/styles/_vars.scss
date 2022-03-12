@@ -23,7 +23,7 @@ $transparentBg: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNi
 
 // Sizes
 $menuWidth: 240px;
-$contextMenuWidth: 440px;
+$contextMenuWidth: var(--context-menu-width);
 $headerHeight: 60px;
 $editorMenuHeight: 50px;
 $editorToolbarHeight: 51px;
@@ -33,3 +33,7 @@ $breakpoint-1: 1440px;
 $breakpoint-2: 1200px;
 $breakpoint-3: 860px;
 $breakpoint-4: 520px;
+
+html {
+  --context-menu-width: 440px;
+}
