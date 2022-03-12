@@ -14,6 +14,8 @@ export default defineConfig(() => ({
 		lib: {
 			entry: path.resolve(__dirname, 'src/index.ts'),
 			formats: ['es'],
+			fileName: 'index',
+			name: 'index',
 		},
 		rollupOptions: {
 			external: isExternal,
