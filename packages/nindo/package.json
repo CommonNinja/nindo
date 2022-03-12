@@ -4,6 +4,8 @@
 	"description": "",
 	"scripts": {
 		"rollup": "rollup -c",
+		"vite-build": "vite build",
+		"vite-dev": "vite build --watch",
 		"dev": "rollup -c -w",
 		"test": "jest",
 		"clean": "rm -rf dist",
@@ -110,7 +112,9 @@
 		"rollup-plugin-visualizer": "^5.5.4",
 		"sass": "^1.43.5",
 		"sass-loader": "^12.3.0",
-		"style-loader": "^3.3.1"
+		"style-loader": "^3.3.1",
+		"vite": "^2.8.6",
+		"vite-dts": "^1.0.4"
 	},
 	"gitHead": "0370ad8a2f3d41b06a64160564a067977960ded8"
 }

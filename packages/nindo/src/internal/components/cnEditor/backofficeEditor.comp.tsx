@@ -23,13 +23,9 @@ import { VendorUpgradePopup } from '../vendorUpgradePopup/vendorUpgradePopup.com
 import { premiumHelper } from '../../../external/helpers';
 import { contextUpdated } from '../../actions/pluginContext.actions';
 import { IAppMainPage } from '../../../external/types/backofficeApp.types';
+import { ICNBackofficeEditor } from './backofficeEditor.types';
 
 import './cnEditor.scss';
-
-export interface ICNBackofficeEditor {
-	pages: IAppMainPage[];
-	loaderComp?: ReactElement;
-}
 
 const env = process.env.NODE_ENV === 'production' ? 'prod' : 'dev';
 const pluginPath =

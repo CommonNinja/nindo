@@ -11,22 +11,11 @@ import {
 } from '../../services';
 import { IHttpResult } from '../../../external/types/http.types';
 import { gotPluginData } from '../../actions/plugin.actions';
-import {
-	IPlugin,
-	IPluginLoaderComp,
-	TChildren,
-} from '../../../external/types/plugin.types';
+import { IPlugin } from '../../../external/types/plugin.types';
 import { PluginSkeleton } from '../../../external/components/pluginSkeleton/pluginSkeleton.comp';
 import { eventHelper } from '../../../external/helpers/event.helper';
-import { TPlatform } from '../../../external/types/editor.types';
-import { IViewerProps } from '../../../external/types/viewer.types';
 import { contextUpdated } from '../../actions/pluginContext.actions';
-
-export interface IPluginLoader<T> extends IViewerProps<T> {
-	pluginComp: TChildren;
-	pluginLoaderComp?: IPluginLoaderComp;
-	vendor?: TPlatform;
-}
+import { IPluginLoader } from './pluginLoader.types';
 
 let eventsReported = false;
 let dataRefreshTimer: any = null;
