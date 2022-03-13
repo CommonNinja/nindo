@@ -1,4 +1,4 @@
-import { nindoApp, getDefaultPlugin, nindoBackofficeApp } from './exports';
+import { nindoApp, getDefaultPlugin } from './exports';
 
 import userStateMock from './mocks/userState.mocks';
 import { getEditorConfig } from './components/editor/editor.config';
