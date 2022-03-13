@@ -69,34 +69,6 @@
 		.tooltip-pointer {
 			background: $pink-10;
 		}
-
-		.tooltip-content {
-			background: $pink-10;
-
-			&.bottom {
-				&::before {
-					border-bottom-color: $pink-10;
-				}
-			}
-
-			&.top {
-				&::before {
-					border-top-color: $pink-10;
-				}
-			}
-
-			&.right {
-				&::before {
-					border-right-color: $pink-10;
-				}
-			}
-
-			&.left {
-				&::before {
-					border-left-color: $pink-10;
-				}
-			}
-		}
 	}
 
 	.color-picker-wrapper {

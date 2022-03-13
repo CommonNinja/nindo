@@ -5,6 +5,7 @@ import {
 	ContextMenuSection,
 	FormLabel,
 	usePluginData,
+	Tooltip,
 } from '../../../exports';
 import { IPluginData } from '../../plugin/plugin.types';
 
@@ -27,7 +28,10 @@ export const ContentSettingsComp = () => {
 		<ContextMenuWrapper className="content-settings">
 			<ContextMenuSection title="Content Settings">
 				<FormRow>
-					<FormLabel>Content test field</FormLabel>
+					<FormLabel>
+						Content test field
+						<Tooltip content="hey tip" />
+					</FormLabel>
 					<input
 						type="text"
 						value={content.test}

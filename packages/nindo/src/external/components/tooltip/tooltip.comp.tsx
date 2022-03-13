@@ -1,25 +1,49 @@
 import React from 'react';
+import ReactTooltip from 'react-tooltip';
 
 import './tooltip.scss';
 
-type TooltipProps = {
+interface TooltipProps {
 	content: string;
 	direction?: 'bottom' | 'left' | 'right' | 'top';
 	pointer?: string;
 	width?: number;
+	backgroundColor?: string;
+	textColor?: string;
+	arrowColor?: string;
+}
+
+export const TooltipConfig: Partial<TooltipProps> = {
+	direction: 'top',
+	pointer: '?',
+	backgroundColor: '#ff4572',
+	textColor: '#fff',
 };
 
 export const Tooltip = (props: TooltipProps) => {
-	const { pointer, content, direction, width } = props;
+	const {
+		content,
+		pointer,
+		direction,
+		backgroundColor,
+		textColor,
+		arrowColor,
+	} = { ...TooltipConfig, ...props };
 
 	return (
-		<span className="tooltip">
-			<span className="tooltip-pointer">{pointer || '?'}</span>
-			<span
-				className={`tooltip-content ${direction || 'top'}`}
-				style={{ width: `${width || 200}px` }}
-				dangerouslySetInnerHTML={{ __html: content }}
-			></span>
-		</span>
+		<>
+			<span className="tooltip" data-tip={content}>
+				<span className="tooltip-pointer">{pointer || '?'}</span>
+			</span>
+			<ReactTooltip
+				arrowColor={arrowColor}
+				textColor={textColor || 'white'}
+				place={direction}
+				backgroundColor={backgroundColor}
+				className="react-tooltip"
+				html={true}
+				effect="solid"
+			/>
+		</>
 	);
 };
