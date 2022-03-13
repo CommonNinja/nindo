@@ -19,3 +19,38 @@ nindoApp<IPluginData, {}>({
 		userState: userStateMock,
 	},
 });
+
+// nindoBackofficeApp<IPluginData, {}>({
+// 	pages: [
+// 		{
+// 			id: 'dashboard',
+// 			name: 'Dashboard',
+// 			component: <div>Dashboard</div>,
+// 		},
+// 		{
+// 			id: 'other',
+// 			name: 'Other',
+// 			component: <div>Other</div>,
+// 			nestedRoutes: [
+// 				{
+// 					id: '1',
+// 					name: 'Sub 1',
+// 					component: <div>Sub 1</div>,
+// 				},
+// 				{
+// 					id: '2',
+// 					name: 'Sub 2',
+// 					component: <div>Sub 2</div>,
+// 				},
+// 			],
+// 		},
+// 		{
+// 			id: 'test',
+// 			name: 'Test',
+// 			component: <div>Test</div>,
+// 		},
+// 	],
+// 	mocks: {
+// 		userState: userStateMock,
+// 	},
+// });

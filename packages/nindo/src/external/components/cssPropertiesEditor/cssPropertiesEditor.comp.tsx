@@ -9,6 +9,12 @@ import { NinjaSelect } from '../select/select.comp';
 import { NinjaSlider } from '../slider/slider.comp';
 import { SystemIcon } from '../icon/icon.comp';
 import { Button } from '../button/button.comp';
+import {
+	TAvailablePropertiesGroups,
+	ICSSPropertyGroup,
+	TCSSPropertyGroupName,
+	TCSSProps,
+} from './cssPropertiesEditor.types';
 
 import './cssPropertiesEditor.scss';
 
@@ -16,59 +22,6 @@ interface ICSSPropertiesEditorProps {
 	currentProperties: CSSProperties;
 	onChange: (nextProperties: CSSProperties) => void;
 	availablePropertiesGroups?: TAvailablePropertiesGroups;
-}
-
-export type TAvailablePropertiesGroups =
-	| TCSSPropertyGroupName
-	| (TCSSPropertyGroupName | ICSSPropertyGroup)[];
-
-export type TCSSPropertyGroupName =
-	| 'typography'
-	| 'background'
-	| 'borders'
-	| 'spacing'
-	| 'size';
-
-export type TCSSProps =
-	| 'fontSize'
-	| 'fontFamily'
-	| 'fontStyle'
-	| 'lineHeight'
-	| 'letterSpacing'
-	| 'textAlign'
-	| 'color'
-	| 'fontWeight'
-	| 'backgroundColor'
-	| 'backgroundImage'
-	| 'backgroundSize'
-	| 'backgroundRepeat'
-	| 'backgroundPosition'
-	| 'borderRadius'
-	| 'borderColor'
-	| 'borderStyle'
-	| 'borderWidth'
-	| 'borderTopWidth'
-	| 'borderRightWidth'
-	| 'borderBottomWidth'
-	| 'borderLeftWidth'
-	| 'margin'
-	| 'marginTop'
-	| 'marginRight'
-	| 'marginLeft'
-	| 'marginBottom'
-	| 'padding'
-	| 'paddingTop'
-	| 'paddingRight'
-	| 'paddingBottom'
-	| 'paddingLeft'
-	| 'width'
-	| 'height';
-
-interface ICSSPropertyGroup {
-	name: TCSSPropertyGroupName;
-	cssProperties?: TCSSProps[];
-	displayName?: string;
-	openedByDefault?: boolean;
 }
 
 const cssPropertiesGroups: ICSSPropertyGroup[] = [

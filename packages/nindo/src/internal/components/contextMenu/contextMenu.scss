@@ -1,9 +1,13 @@
 @import '../../../external/styles/_vars';
 
+.cn-editor.backoffice {
+	--context-menu-width: 250px;
+}
+
 .context-menu {
 	background: $black-40;
 	position: absolute;
-	left: -$contextMenuWidth - 50px;
+	left: calc(-1 * (#{$contextMenuWidth} + 50px));
 	width: $contextMenuWidth;
 	transition: left 0.3s ease;
 	z-index: 1;
@@ -35,6 +39,27 @@
 
 		.context-menu-toggler {
 			display: none;
+		}
+	}
+
+	nav.sub-navigation {
+		display: flex;
+		flex-direction: column;
+
+		a {
+			flex: 1;
+			color: $gray-10;
+			text-decoration: none;
+			padding: 10px 15px;
+
+			&:hover {
+				color: $white-10;
+			}
+
+			&.active {
+				background-color: rgba(255, 255, 255, 0.04);
+				color: $white-10;
+			}
 		}
 	}
 

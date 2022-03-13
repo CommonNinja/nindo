@@ -1,1 +1,2 @@
-export { Editor, IEditorProps } from './editor.comp';
+export { Editor } from './editor.comp';
+export type { IEditorProps } from './editor.types';

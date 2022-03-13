@@ -24,8 +24,7 @@ import {
 	getPlanFeatures,
 	dataUpdated,
 } from '../../actions/plugin.actions';
-import { IAppMenuLink } from '../../../external/types/appMenu.types';
-import { IPlugin, TChildren } from '../../../external/types/plugin.types';
+import { IPlugin } from '../../../external/types/plugin.types';
 import { IUser } from '../../../external/types/user.types';
 import { historyChange } from '../../actions/history.actions';
 import { MainArea } from '../mainArea/mainArea.comp';
@@ -34,41 +33,16 @@ import {
 	TPlatform,
 	IAppState,
 	TActivePage,
-	IPluginLoaderComp,
-	IPreSaveValidation,
 } from '../../../external/types';
 import { useQuery } from '../../../external/hooks/query.hook';
-import { IExtraMenuItem } from '../exportMenu/exportMenu.comp';
 import { VendorUpgradePopup } from '../vendorUpgradePopup/vendorUpgradePopup.comp';
 import PublishSettingsComp from '../publishSettings/publishSettings.comp';
 import { TemplatesPopup } from '../templatesPopup/templatesPopup.comp';
 import { premiumHelper } from '../../../external/helpers';
-import { pluginContextUpdated } from '../../actions/pluginContext.actions';
+import { contextUpdated } from '../../actions/pluginContext.actions';
+import { ICNEditor } from './cnEditor.types';
 
 import './cnEditor.scss';
-
-type TBoolFunc = () => boolean;
-
-export interface ICNEditor<T> {
-	menuLinks: IAppMenuLink[];
-	defaultPluginData: IPlugin<T>;
-	resolveContextComp: (page: TActivePage) => {
-		comp: ComponentType<T> | ReactElement;
-		context: 'menu' | 'main';
-	};
-	pluginComp: TChildren;
-	showExportMenu?: boolean;
-	showHistoryButtons?: boolean;
-	exportIsAvailable?: boolean | TBoolFunc;
-	pluginLoaderComp?: IPluginLoaderComp;
-	postGetDataProcess?: (data: IPlugin<T>) => IPlugin<T> | Promise<IPlugin<T>>;
-	showAnnouncements?: boolean;
-	announcementsCategoryId?: string;
-	vendor?: TPlatform;
-	extraMenuItems?: IExtraMenuItem[];
-	extraToolbarButtons?: TChildren;
-	preSaveValidation?: () => IPreSaveValidation;
-}
 
 const env = process.env.NODE_ENV === 'production' ? 'prod' : 'dev';
 const pluginPath =
@@ -291,7 +265,7 @@ export const CNEditor = ({
 
 		// Updating plugin context
 		dispatch(
-			pluginContextUpdated({
+			contextUpdated({
 				instanceId: pluginId,
 				mode: 'editor',
 				platform: vendor,
