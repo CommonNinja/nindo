@@ -1,5 +1,9 @@
 @import '../../../external/styles/_vars';
 
+.backoffice .main-area {
+	background-image: none;
+}
+
 .main-area {
 	position: relative;
 	flex: 1;

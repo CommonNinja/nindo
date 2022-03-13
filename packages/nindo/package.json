@@ -3,17 +3,19 @@
 	"version": "1.2.15",
 	"description": "",
 	"scripts": {
-		"rollup": "rollup -c",
 		"dev": "rollup -c -w",
 		"test": "jest",
 		"clean": "rm -rf dist",
 		"prepare": "npm run build",
 		"postinstall": "node ./scripts/pre-build.js",
 		"prebuild": "node ./scripts/pre-build.js",
-		"build": "npm run clean && npm run rollup"
+		"build": "npm run clean && npm run rollup",
+		"rollup": "rollup -c"
 	},
 	"main": "dist/index.js",
 	"module": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"typings": "dist/index.d.ts",
 	"outputDir": "./dist",
 	"bin": {
 		"cn-scripts": "./bin/cn-scripts.js"
@@ -24,8 +26,6 @@
 		"scripts",
 		"tsconfig.json"
 	],
-	"types": "dist/index.d.ts",
-	"typings": "dist/index.d.ts",
 	"author": "Common Ninja Ltd.",
 	"license": "ISC",
 	"homepage": "https://github.com/CommonNinja/nindo#readme",
@@ -104,6 +104,7 @@
 		"html-webpack-plugin": "^5.5.0",
 		"identity-obj-proxy": "^3.0.0",
 		"jest": "^27.3.1",
+		"rimraf": "^3.0.2",
 		"rollup": "^2.60.0",
 		"rollup-plugin-dts": "^4.0.1",
 		"rollup-plugin-postcss": "^4.0.1",

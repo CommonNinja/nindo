@@ -1,8 +1,8 @@
 import { IPluginContext } from '../../external/types/context.types';
 
-export const pluginContextUpdated = (
+export const contextUpdated = (
 	updatedState: Partial<IPluginContext>
 ) => ({
-	type: 'PLUGIN_CONTEXT_UPDATED',
+	type: 'CONTEXT_UPDATED',
 	data: updatedState,
 });

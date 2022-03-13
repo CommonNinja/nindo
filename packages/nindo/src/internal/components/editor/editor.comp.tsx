@@ -7,19 +7,10 @@ import {
 } from '../../../external/types/editor.types';
 import { PluginWrapper } from '../pluginWrapper/pluginWrapper.comp';
 import { Loader } from '../../../external/components/loader/loader.comp';
-import {
-	IAppMenuLink,
-	IEditorExtraProps,
-	IPlugin,
-	IPluginComp,
-	IPluginLoaderComp,
-} from '../../../external/types';
+import { IAppMenuLink } from '../../../external/types';
 
 import './editor.scss';
-
-const CNEditor = loadable(() => import('../cnEditor/cnEditor.comp'), {
-	resolveComponent: (module) => module['CNEditor'],
-});
+import { IEditorProps } from './editor.types';
 
 interface IConfigParts {
 	menuItems: IAppMenuLink[];
@@ -29,12 +20,9 @@ interface IConfigParts {
 	};
 }
 
-export interface IEditorProps<T> extends IEditorExtraProps<T> {
-	config: IEditorConfig<T>;
-	pluginComp: IPluginComp;
-	defaultPluginData: IPlugin<T>;
-	pluginLoaderComp?: IPluginLoaderComp;
-}
+const CNEditor = loadable(() => import('../cnEditor/cnEditor.comp'), {
+	resolveComponent: (module) => module['CNEditor'],
+});
 
 export const Editor = ({
 	config,

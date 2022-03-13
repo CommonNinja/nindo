@@ -11,7 +11,7 @@ import { AppHeader } from '../appHeader/appHeader.comp';
 import { PluginLoader } from '../pluginLoader/pluginLoader.comp';
 import { PluginWrapper } from '../pluginWrapper/pluginWrapper.comp';
 import * as userActions from '../../actions/user.actions';
-import { pluginContextUpdated } from '../../actions/pluginContext.actions';
+import { contextUpdated } from '../../actions/pluginContext.actions';
 
 import './galleryPage.scss';
 
@@ -28,7 +28,7 @@ export const GalleryPage = (props: {
 	useEffect(() => {
 		// Updating plugin context
 		dispatch(
-			pluginContextUpdated({
+			contextUpdated({
 				instanceId: '',
 				mode: 'viewer',
 			})
