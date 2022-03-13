@@ -5,6 +5,7 @@ import {
 	ContextMenuSection,
 	FormLabel,
 	usePluginData,
+	Tooltip,
 } from '../../../exports';
 import { IPluginData } from '../../plugin/plugin.types';
 
