@@ -1,7 +1,12 @@
 @import '../../styles/_vars';
 
-.react-tooltip {
+.__react_component_tooltip.react-tooltip {
 	max-width: 300px;
+	font-size: 12px;
+
+	&.show {
+		opacity: 1;
+	}
 }
 
 .tooltip {
