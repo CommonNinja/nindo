@@ -42,6 +42,27 @@
 		}
 	}
 
+	nav.sub-navigation {
+		display: flex;
+		flex-direction: column;
+
+		a {
+			flex: 1;
+			color: $gray-10;
+			text-decoration: none;
+			padding: 10px 15px;
+
+			&:hover {
+				color: $white-10;
+			}
+
+			&.active {
+				background-color: rgba(255, 255, 255, 0.04);
+				color: $white-10;
+			}
+		}
+	}
+
 	.overflow-content {
 		position: absolute;
 		overflow: auto;

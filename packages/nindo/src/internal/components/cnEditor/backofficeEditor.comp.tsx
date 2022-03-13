@@ -273,7 +273,7 @@ export const CNBackofficeEditor = ({
 						component={
 							activePage?.nestedRoutes ? renderRoutesMenu() : undefined
 						}
-						closeLink={`/${pathPrefix}?${query.toString()}`}
+						closeLink={`/${pathPrefix}/${pages[0].id}?${query.toString()}`}
 					/>
 					<section
 						className={`main-area ${

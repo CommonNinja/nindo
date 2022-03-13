@@ -10,9 +10,7 @@
 		"postinstall": "node ./scripts/pre-build.js",
 		"prebuild": "node ./scripts/pre-build.js",
 		"build": "npm run clean && npm run rollup",
-		"rollup": "rollup -c",
-		"vite-build": "vite build",
-		"vite-dev": "vite build --watch"
+		"rollup": "rollup -c"
 	},
 	"main": "dist/index.js",
 	"module": "dist/index.js",
@@ -100,7 +98,6 @@
 		"@rollup/plugin-node-resolve": "^13.1.1",
 		"@rollup/plugin-typescript": "^8.3.0",
 		"@testing-library/react": "^12.1.2",
-		"@vitejs/plugin-react": "^1.2.0",
 		"babel-jest": "^27.3.1",
 		"babel-loader": "^8.2.3",
 		"css-loader": "^6.5.1",
@@ -114,9 +111,7 @@
 		"rollup-plugin-visualizer": "^5.5.4",
 		"sass": "^1.43.5",
 		"sass-loader": "^12.3.0",
-		"style-loader": "^3.3.1",
-		"vite": "^2.8.6",
-		"vite-dts": "^1.0.4"
+		"style-loader": "^3.3.1"
 	},
 	"gitHead": "0370ad8a2f3d41b06a64160564a067977960ded8"
 }
