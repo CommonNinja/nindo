@@ -19,7 +19,7 @@ export interface IAppData<T> {
 
 export interface IBackofficeAppConfig<T = {}, P = {}> {
 	pages: IAppMainPage[];
-	state?: P;
+	globalState?: P;
 	defaultData?: IAppData<T>;
 	loaderComponent?: ReactElement;
 	onInit?: () => void;

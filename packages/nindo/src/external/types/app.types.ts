@@ -30,7 +30,7 @@ export interface IAppConfig<T, P = {}> {
 		config: IEditorConfig<T>;
 		props?: TPluginEditorProps<T>;
 	};
-	pluginState?: P;
+	globalState?: P;
 	viewer?: {
 		props?: TPluginViewerProps<T>;
 	};

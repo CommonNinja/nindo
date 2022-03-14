@@ -5,13 +5,12 @@ import {
 	Redirect,
 	Switch,
 	RouteProps,
-	RouteComponentProps,
 } from 'react-router-dom';
 import { AppNotifications } from '../appNotifications/appNotifications.comp';
 import { IAppMainPage } from '../../../external/types/backofficeApp.types';
+import { CNBackofficeEditor } from '../../components/cnEditor/backofficeEditor.comp';
 
 import './cnApp.scss';
-import { CNBackofficeEditor } from '..';
 
 const {
 	REACT_APP_NINJA_SERVICE_NAME = 'appninja',

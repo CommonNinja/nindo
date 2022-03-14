@@ -9,7 +9,7 @@ import {
 } from '../../../external/types/plugin.types';
 import { PluginLoader } from '../pluginLoader/pluginLoader.comp';
 import { PluginWrapper } from '../pluginWrapper/pluginWrapper.comp';
-import { contextUpdated } from '../../actions/pluginContext.actions';
+import { contextUpdated } from '../../actions/context.actions';
 
 import './viewer.scss';
 

@@ -39,7 +39,7 @@ import { VendorUpgradePopup } from '../vendorUpgradePopup/vendorUpgradePopup.com
 import PublishSettingsComp from '../publishSettings/publishSettings.comp';
 import { TemplatesPopup } from '../templatesPopup/templatesPopup.comp';
 import { premiumHelper } from '../../../external/helpers';
-import { contextUpdated } from '../../actions/pluginContext.actions';
+import { contextUpdated } from '../../actions/context.actions';
 import { ICNEditor } from './cnEditor.types';
 
 import './cnEditor.scss';

@@ -21,7 +21,7 @@ import { TPlatform, IBackofficeAppState } from '../../../external/types';
 import { useQuery } from '../../../external/hooks/query.hook';
 import { VendorUpgradePopup } from '../vendorUpgradePopup/vendorUpgradePopup.comp';
 import { premiumHelper } from '../../../external/helpers';
-import { contextUpdated } from '../../actions/pluginContext.actions';
+import { contextUpdated } from '../../actions/context.actions';
 import { IAppMainPage } from '../../../external/types/backofficeApp.types';
 import { ICNBackofficeEditor } from './backofficeEditor.types';
 
@@ -244,6 +244,7 @@ export const CNBackofficeEditor = ({
 			<nav className="sub-navigation">
 				{activePage?.nestedRoutes?.map((route) => (
 					<NavLink
+						key={`submenu-${activePage.id}-${route.id}`}
 						to={`/${pathPrefix}/${activePage.id}/${route.id}`}
 						activeClassName="active"
 						exact

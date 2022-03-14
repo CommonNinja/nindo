@@ -11,7 +11,7 @@ import {
 	contextReducer,
 	pluginReducer,
 	appReducer,
-	pluginStateReducer,
+	globalStateReducer,
 	userReducer,
 } from '../../reducers';
 import { IPlugin } from '../../../external/types/plugin.types';
@@ -21,36 +21,38 @@ import { IAppData, IBackofficeAppConfig } from '../../../external/types/backoffi
 
 let store: AppStateStore<any, any>;
 
-function provideReducers<T, P = {}>(
-	defaultPluginData: IPlugin<T>,
-	pluginState?: P
-): Reducer<any> {
-	return combineReducers({
+const commonReducers = (globalState: any, appType: 'widget' | 'backoffice') => {
+	return {
 		user: userReducer,
-		plugin: pluginReducer(defaultPluginData),
-		pluginState: pluginStateReducer(pluginState),
-		pluginContext: contextReducer({
+		globalState: globalStateReducer(globalState),
+		context: contextReducer({
 			mode: undefined,
 			instanceId: undefined,
 			platform: undefined,
 			appId: undefined,
+			appType,
 		}),
 		editor: editorReducer,
+	}
+}
+
+function provideReducers<T, P = {}>(
+	defaultPluginData: IPlugin<T>,
+	globalState?: P
+): Reducer<any> {
+	return combineReducers({
+		...commonReducers(globalState, 'widget'),
+		plugin: pluginReducer(defaultPluginData),
 	});
 }
 
 function providerBackofficeReducers<T, P = {}>(
 	defaultAppData: IAppData<T>,
-	appState?: P
+	globalState?: P
 ): Reducer<any> {
 	return combineReducers({
-		user: userReducer,
+		...commonReducers(globalState, 'backoffice'),
 		appData: appReducer(defaultAppData),
-		appState: pluginStateReducer(appState),
-		appContext: contextReducer({
-			platform: undefined,
-		}),
-		editor: editorReducer,
 	});
 }
 
@@ -64,7 +66,7 @@ export function genStore<T, P>(
 	if (type === 'widget') {
 		reducers = provideReducers(
 			(appConfig as IAppConfig<T>).plugin.defaultData,
-			(appConfig as IAppConfig<T>).pluginState || {}
+			(appConfig as IAppConfig<T>).globalState || {}
 		);
 	} else {
 		// Backoffice apps
@@ -73,7 +75,7 @@ export function genStore<T, P>(
 				data: {},
 				planFeatures: {},
 			},
-			(appConfig as IBackofficeAppConfig<T>).state || {}
+			(appConfig as IBackofficeAppConfig<T>).globalState || {}
 		);
 	}
 	const store = createStore(reducers, {}, applyMiddleware(thunk as any));

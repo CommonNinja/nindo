@@ -11,7 +11,7 @@ import { AppHeader } from '../appHeader/appHeader.comp';
 import { PluginLoader } from '../pluginLoader/pluginLoader.comp';
 import { PluginWrapper } from '../pluginWrapper/pluginWrapper.comp';
 import * as userActions from '../../actions/user.actions';
-import { contextUpdated } from '../../actions/pluginContext.actions';
+import { contextUpdated } from '../../actions/context.actions';
 
 import './galleryPage.scss';
 
