@@ -8,9 +8,9 @@ import {
 import { PluginWrapper } from '../pluginWrapper/pluginWrapper.comp';
 import { Loader } from '../../../external/components/loader/loader.comp';
 import { IAppMenuLink } from '../../../external/types';
+import { IEditorProps } from './editor.types';
 
 import './editor.scss';
-import { IEditorProps } from './editor.types';
 
 interface IConfigParts {
 	menuItems: IAppMenuLink[];

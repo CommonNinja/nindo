@@ -5,6 +5,7 @@
 		"node": ">=16.0.0"
 	},
 	"scripts": {
+		"dev": "cd packages/storybook && npm run storybook",
 		"publish": "lerna publish",
 		"bootstrap": "lerna bootstrap",
 		"format": "prettier --write --ignore-unknown .",
