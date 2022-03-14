@@ -9,7 +9,7 @@ class PremiumHelper {
 		// In case that the feature is not defined, return true, just in case
 		if (typeof value === 'undefined') {
 			if (featureName.startsWith('numOf') || featureName.startsWith('number')) {
-				return 1_000_000;
+				return 1000000;
 			}
 			return true;
 		}

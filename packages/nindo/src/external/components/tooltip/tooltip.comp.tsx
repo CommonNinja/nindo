@@ -1,26 +1,18 @@
 import React from 'react';
 import ReactTooltip from 'react-tooltip';
 
+import { ITooltipProps } from './tooltip.types';
+
 import './tooltip.scss';
 
-interface TooltipProps {
-	content: string;
-	direction?: 'bottom' | 'left' | 'right' | 'top';
-	pointer?: string;
-	width?: number;
-	backgroundColor?: string;
-	textColor?: string;
-	arrowColor?: string;
-}
-
-export const TooltipConfig: Partial<TooltipProps> = {
+export const TooltipConfig: Partial<ITooltipProps> = {
 	direction: 'top',
 	pointer: '?',
 	backgroundColor: '#ff4572',
 	textColor: '#fff',
 };
 
-export const Tooltip = (props: TooltipProps) => {
+export const Tooltip = (props: ITooltipProps) => {
 	const {
 		content,
 		pointer,
@@ -47,3 +39,4 @@ export const Tooltip = (props: TooltipProps) => {
 		</>
 	);
 };
+
