@@ -56,9 +56,11 @@
   },
   "devDependencies": {
     "@storybook/addon-actions": "^6.4.19",
+    "@storybook/addon-backgrounds": "^6.4.19",
     "@storybook/addon-essentials": "^6.4.19",
     "@storybook/addon-interactions": "^6.4.19",
     "@storybook/addon-links": "^6.4.19",
+    "@storybook/addon-measure": "^6.4.19",
     "@storybook/addon-postcss": "^2.0.0",
     "@storybook/builder-webpack5": "^6.4.19",
     "@storybook/manager-webpack5": "^6.4.19",
