@@ -7,6 +7,8 @@ module.exports = {
 		'@storybook/addon-essentials',
 		'@storybook/addon-interactions',
 		'@storybook/preset-scss',
+		'@storybook/addon-backgrounds',
+		'@storybook/addon-measure'
 	],
 	framework: '@storybook/react',
 };
