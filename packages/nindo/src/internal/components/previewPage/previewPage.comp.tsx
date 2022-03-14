@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { gotPluginData } from '../../actions/plugin.actions';
-import { contextUpdated } from '../../actions/pluginContext.actions';
+import { contextUpdated } from '../../actions/context.actions';
 
 interface IPreviewPageProps {
 	children: any;

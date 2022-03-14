@@ -14,7 +14,7 @@ import { gotPluginData } from '../../actions/plugin.actions';
 import { IPlugin } from '../../../external/types/plugin.types';
 import { PluginSkeleton } from '../../../external/components/pluginSkeleton/pluginSkeleton.comp';
 import { eventHelper } from '../../../external/helpers/event.helper';
-import { contextUpdated } from '../../actions/pluginContext.actions';
+import { contextUpdated } from '../../actions/context.actions';
 import { IPluginLoader } from './pluginLoader.types';
 
 let eventsReported = false;

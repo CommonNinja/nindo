@@ -7,7 +7,7 @@ import { TPlatform } from '../../../external/types/editor.types';
 import { IUser } from '../../../external/types/user.types';
 import { IPlan, IPricingModel } from '../../../external/types/plan.types';
 import { notificationHelper } from '../../../external/helpers/notification.helper';
-import { useQuery } from '../../..';
+import { useQuery } from '../../../external/hooks/query.hook';
 import { nindoService } from '../../services/nindo.service';
 
 interface IVendorUpgradeProps {

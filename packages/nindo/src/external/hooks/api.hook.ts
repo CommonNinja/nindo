@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { HttpService, IHttpResult } from '../';
-import { TPlatform } from '../types';
+import { IHttpResult } from '../../external/types/http.types';
+import { HttpService } from '../../external/services/http.service';
+import { TPlatform } from '../../external/types/editor.types';
 
 interface IApiResourceState {
 	loading: boolean;
