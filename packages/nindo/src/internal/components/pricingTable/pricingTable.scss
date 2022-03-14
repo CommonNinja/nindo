@@ -199,15 +199,6 @@
 			  }
 			}
   
-			.tooltip-content {
-			  background-color: $blue-10;
-			  z-index: 10;
-  
-			  &::before {
-				border-top-color: $blue-10;
-			  }
-			}
-  
 			.value {
 			  font-weight: 600;
 			  font-size: 16px;

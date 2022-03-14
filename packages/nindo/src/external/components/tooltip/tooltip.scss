@@ -1,5 +1,14 @@
 @import '../../styles/_vars';
 
+.__react_component_tooltip.react-tooltip {
+	max-width: 300px;
+	font-size: 12px;
+
+	&.show {
+		opacity: 1;
+	}
+}
+
 .tooltip {
 	position: relative;
 
@@ -10,7 +19,7 @@
 		width: $size;
 		height: $size;
 		color: #fff;
-		background: $blue-10;
+		background: $pink-10;
 		max-width: $size;
 		text-align: center;
 		line-height: $size;
@@ -22,90 +31,6 @@
 
 		&:hover {
 			opacity: 1;
-
-			+ .tooltip-content {
-				display: block;
-			}
-		}
-	}
-
-	.tooltip-content {
-		position: absolute;
-		background: $blue-10;
-		color: #fff;
-		z-index: 5;
-		padding: 10px;
-		border-radius: 3px;
-		width: 200px;
-		line-height: 1.7em;
-		display: none;
-
-		&::before {
-			content: '';
-			position: absolute;
-			border: 8px solid transparent;
-		}
-
-		&.left,
-		&.right {
-			top: 50%;
-			transform: translateY(-50%);
-
-			&::before {
-				top: 50%;
-				transform: translateY(-50%);
-			}
-		}
-
-		&.right {
-			left: 100%;
-			margin-left: 15px;
-
-			&::before {
-				border-right-color: $blue-10;
-				right: 100%;
-			}
-		}
-
-		&.left {
-			right: 100%;
-			margin-right: 15px;
-
-			&::before {
-				border-left-color: $blue-10;
-				left: 100%;
-			}
-		}
-
-		&.bottom,
-		&.top {
-			left: 50%;
-			transform: translateX(-50%);
-
-			&::before {
-				left: 50%;
-				transform: translateX(-50%);
-			}
-		}
-
-		&.bottom {
-			top: 100%;
-			margin-top: 15px;
-
-			&::before {
-				border-bottom-color: $blue-10;
-				bottom: 100%;
-			}
-		}
-
-		&.top {
-			bottom: 100%;
-			margin-bottom: 15px;
-
-			&::before {
-				border-top-color: $blue-10;
-				top: 100%;
-			}
 		}
 	}
 }
