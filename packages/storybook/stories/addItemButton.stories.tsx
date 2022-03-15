@@ -3,7 +3,7 @@ import { ComponentStory } from '@storybook/react';
 import { AddItemButton } from '../../nindo/src/external/components/addItemButton';
 
 export default {
-  title: 'Editor/Add Item Buttom',
+  title: 'Editor/Add Item Button',
   component: AddItemButton,
   parameters: {
     backgrounds: {
