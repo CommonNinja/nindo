@@ -18,10 +18,7 @@ export default {
       },
     },
     backgrounds: {
-      default: 'blue',
-      values: [
-        { name: 'blue', value: '#282A2D' },
-      ],
+      default: 'dark-gray',
     },
   },
 };

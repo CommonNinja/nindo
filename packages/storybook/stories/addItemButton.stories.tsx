@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { ComponentStory } from '@storybook/react';
 import { AddItemButton } from '../../nindo/src/external/components/addItemButton';
 
 export default {
@@ -8,13 +8,10 @@ export default {
   parameters: {
     backgrounds: {
       default: 'black',
-      values: [
-        { name: 'black', value: '#000' },
-      ],
     },
   },
 
-} as ComponentMeta<typeof AddItemButton>;
+};
 
 const Template: ComponentStory<typeof AddItemButton> = (args) => (
   <AddItemButton {...args} />

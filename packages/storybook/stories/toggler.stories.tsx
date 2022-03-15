@@ -19,9 +19,6 @@ export default {
     },
     backgrounds: {
       default: 'blue',
-      values: [
-        { name: 'blue', value: '#153243' },
-      ],
     },
   },
 };
