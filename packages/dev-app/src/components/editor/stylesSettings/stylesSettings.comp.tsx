@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { useState } from 'react';
 import loadable from '@loadable/component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
@@ -6,19 +6,13 @@ import {
 	premiumHelper,
 	PremiumOpener,
 	Tabs,
-	Button,
-	SystemIcon,
 	Popup,
-	FormRow,
 	ContextMenuWrapper,
 	ContextMenuSection,
-	AssetsGalleryOpener,
 	Loader,
-	CSSPropertiesEditor,
-	TAvailablePropertiesGroups,
-	FormLabel,
 	FontFamilySelector,
 	usePluginData,
+	NoCodeCSSProps,
 } from '../../../exports';
 
 import { IPluginData } from '../../plugin/plugin.types';
@@ -31,14 +25,9 @@ const CustomCSSEditor = loadable(() => import('../../../exports'), {
 	fallback: <Loader />,
 });
 
-const defaultCSS = `#plugin-wrapper {
-
-}`;
-
 export const StylesSettingsComp = () => {
 	const [pluginData, updateData] = usePluginData<IPluginData>();
 	const [cssPopupOpened, setCssPopupOpened] = useState<boolean>(false);
-	const [activeStylesProp, setActiveStylesProp] = useState<string | null>(null);
 	const { styles } = pluginData;
 
 	function stylePropChanged(propName: string, value: any) {
@@ -62,16 +51,16 @@ export const StylesSettingsComp = () => {
 		return (
 			<>
 				<ContextMenuSection title="Custom Styles">
-					<FormRow>
-						<FormLabel>Main Title</FormLabel>
-						<Button
-							className="customize-btn"
-							color="transparent"
-							onClick={() => setActiveStylesProp('title')}
-						>
-							Customize
-						</Button>
-					</FormRow>
+					<NoCodeCSSProps
+						onChange={(propName, value) => stylePropChanged(propName, value)}
+						items={[
+							{
+								value: styles.title,
+								propName: 'title',
+								label: 'Title',
+							},
+						]}
+					/>
 				</ContextMenuSection>
 				<ContextMenuSection title="Custom CSS" className="center">
 					{premiumHelper.getFeatureValue('customCSS') ? (
@@ -96,30 +85,6 @@ export const StylesSettingsComp = () => {
 					)}
 				</ContextMenuSection>
 			</>
-		);
-	}
-
-	function renderCSSPropertiesEditor() {
-		if (!activeStylesProp) {
-			return <></>;
-		}
-
-		return (
-			<div className="css-props-editor-wrapper">
-				<Button
-					className="close-css-props-editor"
-					onClick={() => setActiveStylesProp(null)}
-				>
-					<SystemIcon size={20} type="arrow-left" />
-					<span>Back</span>
-				</Button>
-				<CSSPropertiesEditor
-					currentProperties={(styles as any)[activeStylesProp]}
-					onChange={(nextProperties) => {
-						stylePropChanged(activeStylesProp, nextProperties);
-					}}
-				/>
-			</div>
 		);
 	}
 
@@ -159,7 +124,6 @@ export const StylesSettingsComp = () => {
 					}
 				}}
 			/>
-			{activeStylesProp && renderCSSPropertiesEditor()}
 			{cssPopupOpened && (
 				<Popup
 					show={cssPopupOpened}
@@ -168,7 +132,7 @@ export const StylesSettingsComp = () => {
 				>
 					<CustomCSSEditor
 						css={styles.customCSS}
-						defaultStyles={defaultCSS}
+						defaultStyles={''}
 						onUpdate={(newStyles) => {
 							onCustomCSSChange(newStyles);
 							setCssPopupOpened(false);
