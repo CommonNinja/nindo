@@ -29,10 +29,14 @@ nindoApp<IPluginData, {}>({
 
 // const Text = () => {
 // 	const context = usePluginContext();
-// 	const [appData] = useAppData<{ test: string }>();
+// 	const [appData, updateData] = useAppData<{ test: string }>();
 
 // 	return (
-// 		<>{context.appType || appData.test || 'test'}</>
+// 		<>
+// 			<p>App Type: {context.appType}</p>
+// 			<p>{appData.test || 'empty'}</p>
+// 			<button onClick={() => updateData({ test: 'clicked!' })}>Click me</button>
+// 		</>
 // 	);
 // };
 
