@@ -16,6 +16,7 @@ export const parameters = {
       { name: 'light-blue', value: '#9ADCFF' },
       { name: 'pink', value: '#FF8AAE' },
       { name: 'blue', value: '#153243' },
+      { name: 'dark-gray', value: '#282A2D' },
     ],
   },
 }
