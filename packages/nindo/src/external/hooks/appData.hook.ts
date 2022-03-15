@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 
 import { IBackofficeAppState } from '../types/state.types';
-import { dataUpdated } from '../../internal/actions/plugin.actions';
+import { appDataUpdated } from '../../internal/actions/app.actions';
 
 export function useAppData<T>(): [
 	T,
@@ -13,13 +13,13 @@ export function useAppData<T>(): [
 	}));
 
 	if (appType !== 'backoffice') {
-		throw new Error('Plugin hook can only be used in `backoffice` apps.');
+		throw new Error('App data hook can only be used in `backoffice` apps.');
 	}
 
 	const dispatch = useDispatch();
 
 	function updateData<T>(updatedData: T) {
-		dispatch(dataUpdated(updatedData));
+		dispatch(appDataUpdated(updatedData));
 	}
 
 	return [appData.data, updateData];

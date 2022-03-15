@@ -71,8 +71,8 @@ export function genStore<T, P>(
 	} else {
 		// Backoffice apps
 		reducers = providerBackofficeReducers(
-			(appConfig as IBackofficeAppConfig<T>).defaultData || {
-				data: {},
+			{
+				data: (appConfig as IBackofficeAppConfig<T>).defaultData || {},
 				planFeatures: {},
 			},
 			(appConfig as IBackofficeAppConfig<T>).globalState || {}
