@@ -50,13 +50,6 @@ export const StylesSettingsComp = () => {
 		});
 	}
 
-	function cssPropChanged(stylesProp: string, cssPropName: string, value: any) {
-		stylePropChanged(stylesProp, {
-			...(styles as any)[stylesProp],
-			[cssPropName]: value,
-		});
-	}
-
 	function onCustomCSSChange(newValue: string) {
 		stylePropChanged('customCSS', newValue);
 	}
@@ -107,48 +100,7 @@ export const StylesSettingsComp = () => {
 	}
 
 	function renderCSSPropertiesEditor() {
-		let availablePropertiesGroups: TAvailablePropertiesGroups = [];
-
-		switch (activeStylesProp) {
-			case 'background':
-				availablePropertiesGroups = [
-					{
-						name: 'background',
-						openedByDefault: true,
-						displayName: 'Background Styles',
-						cssProperties: [
-							'backgroundColor',
-							'backgroundSize',
-							'backgroundPosition',
-							'backgroundRepeat',
-						],
-					},
-				];
-				break;
-			case 'title':
-			case 'description':
-				availablePropertiesGroups = [
-					{
-						name: 'typography',
-						cssProperties: [
-							'color',
-							'fontSize',
-							'textAlign',
-							'fontWeight',
-							'fontStyle',
-							'lineHeight',
-							'letterSpacing',
-						],
-					},
-					{
-						name: 'spacing',
-						cssProperties: ['margin', 'padding'],
-					},
-				];
-				break;
-		}
-
-		if (!activeStylesProp || !availablePropertiesGroups.length) {
+		if (!activeStylesProp) {
 			return <></>;
 		}
 
@@ -166,58 +118,8 @@ export const StylesSettingsComp = () => {
 					onChange={(nextProperties) => {
 						stylePropChanged(activeStylesProp, nextProperties);
 					}}
-					availablePropertiesGroups={availablePropertiesGroups}
 				/>
 			</div>
-		);
-	}
-
-	function renderBackgroundTab() {
-		return (
-			<>
-				<ContextMenuSection
-					title="Background Settings"
-					className="background-settings"
-				>
-					<FormRow>
-						<FormLabel>Image URL</FormLabel>
-						<AssetsGalleryOpener
-							enabled={premiumHelper.getFeatureValue('imageUploads') as boolean}
-							submitCallback={(url) =>
-								cssPropChanged(
-									'background',
-									'backgroundImage',
-									url ? `url(${url})` : ''
-								)
-							}
-						/>
-						<input
-							type="url"
-							maxLength={400}
-							placeholder="Enter image URL"
-							value={
-								styles.background?.backgroundImage
-									?.replace('url(', '')
-									.replace(')', '') || ''
-							}
-							onChange={(e: ChangeEvent<HTMLInputElement>) =>
-								cssPropChanged(
-									'background',
-									'backgroundImage',
-									e.target.value ? `url(${e.target.value})` : ''
-								)
-							}
-						/>
-						<Button
-							className="customize-btn"
-							color="transparent"
-							onClick={() => setActiveStylesProp('background')}
-						>
-							Customize
-						</Button>
-					</FormRow>
-				</ContextMenuSection>
-			</>
 		);
 	}
 
@@ -246,10 +148,6 @@ export const StylesSettingsComp = () => {
 						id: 'advanced',
 						name: 'Advanced',
 					},
-					{
-						id: 'background',
-						name: 'Background',
-					},
 				]}
 				resolveTabComp={(id) => {
 					if (id === 'basic') {
@@ -259,8 +157,6 @@ export const StylesSettingsComp = () => {
 					if (id === 'advanced') {
 						return renderAdvancedTab();
 					}
-
-					return renderBackgroundTab();
 				}}
 			/>
 			{activeStylesProp && renderCSSPropertiesEditor()}

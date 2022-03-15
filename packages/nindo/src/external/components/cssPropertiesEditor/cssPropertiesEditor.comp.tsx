@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react';
+import React, { ChangeEvent, CSSProperties } from 'react';
 
 import { fontsList } from '../../helpers/font.helper';
 import { FormLabel } from '../formLabel/formLabel.comp';
@@ -15,6 +15,8 @@ import {
 	TCSSPropertyGroupName,
 	TCSSProps,
 } from './cssPropertiesEditor.types';
+import { AssetsGalleryOpener } from '../assetsGalleryOpener/assetsGalleryOpener.comp';
+import { AssetType } from '../../types/asset.types';
 
 import './cssPropertiesEditor.scss';
 
@@ -247,7 +249,27 @@ const renderCSSPropertyEditor = (
 				</FormRow>
 			);
 		case 'backgroundImage':
-			break;
+			return (
+				<FormRow key={cssPropName}>
+					<FormLabel>{displayName}</FormLabel>
+					<AssetsGalleryOpener
+						enabled={true}
+						assetType={AssetType.IMAGE}
+						submitCallback={(url) =>
+							onChange(cssPropName, url ? `url(${url})` : '')
+						}
+					/>
+					<input
+						type="url"
+						maxLength={400}
+						placeholder="Enter image URL"
+						value={(currentValue || '').replace('url(', '').replace(')', '')}
+						onChange={(e: ChangeEvent<HTMLInputElement>) =>
+							onChange(cssPropName, e.target.value)
+						}
+					/>
+				</FormRow>
+			);
 		case 'backgroundRepeat':
 		case 'backgroundSize':
 		case 'backgroundPosition':
@@ -257,7 +279,7 @@ const renderCSSPropertyEditor = (
 		case 'textAlign':
 		case 'fontFamily':
 			return (
-				<FormRow key={cssPropName} flow="column">
+				<FormRow key={cssPropName}>
 					<FormLabel>{displayName}</FormLabel>
 					<NinjaSelect
 						mode="dark"
@@ -311,6 +333,7 @@ const renderCSSPropertyEditor = (
 										}`
 									)
 								}
+								placeholder="0"
 							/>
 							<em>{maxMinOptions[cssPropName]?.unit || 'px'}</em>
 						</span>
@@ -330,15 +353,18 @@ const renderCSSPropertyEditor = (
 					/>
 				</FormRow>
 			);
+		default:
+			break;
 	}
 
 	return (
-		<FormRow key={cssPropName} flow="column">
+		<FormRow key={cssPropName}>
 			<FormLabel>{displayName}</FormLabel>
 			<input
 				type="text"
 				value={currentValue || ''}
 				onChange={(e: any) => onChange(cssPropName, e.target.value)}
+				placeholder="Enter text..."
 			/>
 		</FormRow>
 	);
