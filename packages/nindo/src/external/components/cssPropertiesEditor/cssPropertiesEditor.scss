@@ -26,6 +26,7 @@
 
 				label {
 					margin: 0;
+					max-width: none;
 				}
 
 				> input {
@@ -34,6 +35,9 @@
 			}
 
 			label {
+				flex-basis: 160px;
+				max-width: 160px;
+
 				> span {
 					display: flex;
 					justify-content: space-between;
