@@ -80,7 +80,7 @@ export const StylesSettingsComp = () => {
 					) : (
 						<p style={{ margin: 0 }}>
 							<FontAwesomeIcon
-								icon={faStar}
+								icon={faStar as any}
 								title="Premium Feature"
 								style={{ marginRight: 5 }}
 							/>
