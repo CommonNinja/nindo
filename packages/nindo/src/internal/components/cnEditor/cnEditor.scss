@@ -305,7 +305,7 @@
 		left: 0;
 		top: 0;
 		width: 100%;
-		height: calc(100vh - 50px - #{$headerHeight});
+		min-height: calc(100vh - 50px - #{$headerHeight});
 		z-index: 2;
 		background-color: $black-40;
 		padding: 20px;
