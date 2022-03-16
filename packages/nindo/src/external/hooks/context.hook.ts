@@ -10,5 +10,3 @@ export function useAppContext(): IAppContext {
 
 	return context;
 }
-
-export const usePluginContext = useAppContext;

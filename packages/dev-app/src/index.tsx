@@ -2,7 +2,7 @@ import {
 	nindoApp,
 	getDefaultPlugin,
 	// nindoBackofficeApp,
-	// usePluginContext,
+	// useAppContext,
 	// useAppData,
 } from './exports';
 
@@ -27,8 +27,8 @@ nindoApp<IPluginData, {}>({
 	},
 });
 
-// const Text = () => {
-// 	const context = usePluginContext();
+// const Dashboard = () => {
+// 	const context = useAppContext();
 // 	const [appData, updateData] = useAppData<{ test: string }>();
 
 // 	return (
@@ -41,14 +41,12 @@ nindoApp<IPluginData, {}>({
 // };
 
 // nindoBackofficeApp<IPluginData, {}>({
-// 	defaultData: {
-// 		test: 'hey',
-// 	} as any,
+// 	defaultData: getDefaultPlugin<IPluginData>(defaultPluginData()),
 // 	pages: [
 // 		{
 // 			id: 'dashboard',
 // 			name: 'Dashboard',
-// 			component: <Text />,
+// 			component: <Dashboard />,
 // 		},
 // 		{
 // 			id: 'other',

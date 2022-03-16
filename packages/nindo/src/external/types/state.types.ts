@@ -1,4 +1,3 @@
-import { IAppData } from './backofficeApp.types';
 import { IAppContext } from './context.types';
 import { IEditorState } from './editor.types';
 import { IPlugin } from './plugin.types';
@@ -13,8 +12,4 @@ interface ICommonState<T, P = {}> {
 
 export interface IAppState<T, P = {}> extends ICommonState<T, P> {
 	plugin: IPlugin<T>;
-}
-
-export interface IBackofficeAppState<T, P = {}> extends ICommonState<T, P> {
-	appData: IAppData<T>;
 }

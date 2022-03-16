@@ -3,7 +3,7 @@ import { NavLink, useRouteMatch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 // import { IHttpResult } from '../../../external/types/http.types';
-import { pluginService } from '../../services';
+import { localStorageService, pluginService } from '../../services';
 import {
 	NinjaSkeletonTheme,
 	NinjaSkeleton,
@@ -14,16 +14,17 @@ import { AppMenu } from '../appMenu/appMenu.comp';
 import { ContextMenu } from '../contextMenu/contextMenu.comp';
 import {
 	// gotPluginData,
-	getPlanFeatures,
+	getPlanFeatures, gotPluginData,
 } from '../../actions/plugin.actions';
 import { IUser } from '../../../external/types/user.types';
-import { TPlatform, IBackofficeAppState } from '../../../external/types';
+import { IAppState, IPlugin, TPlatform } from '../../../external/types';
 import { useQuery } from '../../../external/hooks/query.hook';
 import { VendorUpgradePopup } from '../vendorUpgradePopup/vendorUpgradePopup.comp';
 import { premiumHelper } from '../../../external/helpers';
 import { contextUpdated } from '../../actions/context.actions';
 import { IAppMainPage } from '../../../external/types/backofficeApp.types';
 import { ICNBackofficeEditor } from './backofficeEditor.types';
+import { historyChange } from '../../actions/history.actions';
 
 import './cnEditor.scss';
 
@@ -35,15 +36,17 @@ const pluginTitle = process.env.REACT_APP_NINJA_PLUGIN_TITLE || 'App Name';
 export const CNBackofficeEditor = ({
 	pages,
 	loaderComp,
-}: ICNBackofficeEditor) => {
+	defaultPluginData,
+	postGetDataProcess = (data: IPlugin<any>) => data,
+}: ICNBackofficeEditor<any>) => {
 	const query = useQuery();
 	const dispatch = useDispatch();
 	const { params } = useRouteMatch();
-	const { page, nestedPage, vendor } = params as any;
+	const { page, nestedPage, vendor, pluginId } = params as any;
 	const { isSaved, appData, user } = useSelector(
-		(state: IBackofficeAppState<any>) => ({
+		(state: IAppState<any>) => ({
 			isSaved: state.editor.isSaved,
-			appData: state.appData,
+			appData: state.plugin.data,
 			user: state.user,
 		})
 	);
@@ -61,14 +64,28 @@ export const CNBackofficeEditor = ({
 		setLoading(true);
 		setError('');
 
-		// TODO: get data from server
-		// try {
-		// 	// Set plugin for plugin global state
-		// 	dispatch(gotPluginData(pluginData));
-		// 	dispatch(historyChange(pluginData, true));
-		// } catch (e) {
-		// 	setError((e as Error).message);
-		// }
+		try {
+			const result = await pluginService.getForEditor(
+				pluginId,
+				defaultPluginData,
+				vendor
+			);
+
+			if (!result || !result.success) {
+				throw new Error(result.message || 'Could not load plugin.');
+			}
+
+			const pluginData: IPlugin<any> = await postGetDataProcess(result.data);
+
+			// Set plugin ID for local storage
+			localStorageService.pluginId = pluginData.guid as string;
+
+			// Set plugin for plugin global state
+			dispatch(gotPluginData(pluginData));
+			dispatch(historyChange(pluginData, true));
+		} catch (e) {
+			setError((e as Error).message);
+		}
 
 		setLoading(false);
 	}
@@ -157,7 +174,6 @@ export const CNBackofficeEditor = ({
 
 	useEffect(() => {
 		const nextActivePage = pages.find((p) => p.id === page);
-		console.log('nextActivePage', nextActivePage);
 		setActivePage(nextActivePage);
 	}, [page]);
 

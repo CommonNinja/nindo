@@ -10,19 +10,22 @@ import {
 	editorReducer,
 	contextReducer,
 	pluginReducer,
-	appReducer,
 	globalStateReducer,
 	userReducer,
 } from '../../reducers';
 import { IPlugin } from '../../../external/types/plugin.types';
 import { IAppConfig } from '../../../external/types/app.types';
-import { IAppState, IBackofficeAppState } from '../../../external/types/state.types';
-import { IAppData, IBackofficeAppConfig } from '../../../external/types/backofficeApp.types';
+import { IAppState } from '../../../external/types/state.types';
+import { IBackofficeAppConfig } from '../../../external/types/backofficeApp.types';
 
 let store: AppStateStore<any, any>;
 
-const commonReducers = (globalState: any, appType: 'widget' | 'backoffice') => {
-	return {
+function provideReducers<T, P = {}>(
+	defaultPluginData: IPlugin<T>,
+	appType: 'widget' | 'backoffice',
+	globalState?: P
+): Reducer<any> {
+	return combineReducers({
 		user: userReducer,
 		globalState: globalStateReducer(globalState),
 		context: contextReducer({
@@ -33,26 +36,7 @@ const commonReducers = (globalState: any, appType: 'widget' | 'backoffice') => {
 			appType,
 		}),
 		editor: editorReducer,
-	}
-}
-
-function provideReducers<T, P = {}>(
-	defaultPluginData: IPlugin<T>,
-	globalState?: P
-): Reducer<any> {
-	return combineReducers({
-		...commonReducers(globalState, 'widget'),
 		plugin: pluginReducer(defaultPluginData),
-	});
-}
-
-function providerBackofficeReducers<T, P = {}>(
-	defaultAppData: IAppData<T>,
-	globalState?: P
-): Reducer<any> {
-	return combineReducers({
-		...commonReducers(globalState, 'backoffice'),
-		appData: appReducer(defaultAppData),
 	});
 }
 
@@ -66,15 +50,14 @@ export function genStore<T, P>(
 	if (type === 'widget') {
 		reducers = provideReducers(
 			(appConfig as IAppConfig<T>).plugin.defaultData,
+			'widget',
 			(appConfig as IAppConfig<T>).globalState || {}
 		);
 	} else {
 		// Backoffice apps
-		reducers = providerBackofficeReducers(
-			{
-				data: (appConfig as IBackofficeAppConfig<T>).defaultData || {},
-				planFeatures: {},
-			},
+		reducers = provideReducers(
+			(appConfig as IBackofficeAppConfig<T>).defaultData,
+			'backoffice',
 			(appConfig as IBackofficeAppConfig<T>).globalState || {}
 		);
 	}
@@ -92,5 +75,3 @@ export function getStore<T, P>(): AppStateStore<T, P> {
 }
 
 export type AppStateStore<T, P> = Store<IAppState<T, P>>;
-
-export type BackofficeAppStateStore<T, P> = Store<IBackofficeAppState<T, P>>;

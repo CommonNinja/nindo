@@ -7,7 +7,7 @@ import {
 	RouteProps,
 } from 'react-router-dom';
 import { AppNotifications } from '../appNotifications/appNotifications.comp';
-import { IAppMainPage } from '../../../external/types/backofficeApp.types';
+import { IBackofficeAppConfig } from '../../../external/types/backofficeApp.types';
 import { CNBackofficeEditor } from '../../components/cnEditor/backofficeEditor.comp';
 
 import './cnApp.scss';
@@ -23,10 +23,7 @@ const basename = '';
 const pluginPath = REACT_APP_NINJA_PLUGIN_PATH || 'YOUR_PLUGIN_PATH';
 const env = NODE_ENV === 'production' ? 'prod' : 'dev';
 
-export const CNBackofficeApp = (config: {
-	pages: IAppMainPage[];
-	loaderComp?: ReactElement;
-}) => {
+export const CNBackofficeApp = (config: IBackofficeAppConfig) => {
 	if (
 		!REACT_APP_NINJA_SERVICE_NAME ||
 		!REACT_APP_NINJA_PLUGIN_TYPE ||
@@ -39,7 +36,7 @@ export const CNBackofficeApp = (config: {
 			REACT_APP_NINJA_PLUGIN_PATH
 		`);
 	}
-	const { pages = [], loaderComp } = config;
+	const { pages = [], loaderComponent: loaderComp } = config;
 	const routes: RouteProps[] = [
 		{
 			exact: false,
@@ -67,7 +64,11 @@ export const CNBackofficeApp = (config: {
 								}
 								key={`route_${idx}`}
 							>
-								<CNBackofficeEditor pages={pages} loaderComp={loaderComp} />
+								<CNBackofficeEditor
+									pages={pages}
+									loaderComp={loaderComp}
+									defaultPluginData={config.defaultData}
+								/>
 							</Route>
 						);
 					})}
