@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Spartan:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,500,600,700&display=swap');
+@import url('https://www.commoninja.com/static/styles/fonts.css');
+@import '../../../nindo//src/external/styles/vars';
+
+// Rewrite commonninja styleguide
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: $black-40;
+  padding: 40px;
+  margin: 0;
+  /* font-family: "Spartan","Helvetica Neue",Helvetica; */
+  font-family: "Open Sans", sans-serif;
+  line-height: 1.5em;
+  font-weight: 500;
+  font-size: 16px;
+  color: #fff;
+
+  .loading-error {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+	}
+
+  #root {
+    padding: 20px;
+  }
+
+  .loader {
+    div {
+      border-top-color: $pink-10;
+      border-bottom-color: $pink-10;
+    }
+  }
+  
+  .story-section{
+      padding: 20px 30px;
+  }
+  
+  .panel {
+    background: $black-20;
+  
+    &.active {
+      section {
+        overflow: visible;
+      }
+    }
+  
+    header > div {
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      align-items: center;
+      flex: 1;
+      max-width: calc(100% - 30px);
+  
+      i, svg {
+        font-size: 16px;
+      }
+    }
+  }
+  
+  .color-picker-wrapper {
+    .selected-color {
+      box-shadow: 0 0 0 2px rgba(255,255,255,0.1);
+    }
+  }
+  
+  .form-row {
+    > label {
+      color: $gray-20;
+      flex-basis: 170px;
+    }
+  
+    .row-message {
+      font-size: 11px;
+      color: $gray-20;
+    }
+  
+    select {
+      fill: $white-10;
+  
+      option {
+        background: $white-10;
+        color: $black-20;
+      }
+    }
+  
+    input[type=text], select, textarea, input[type=url], input[type=number], input[type=date], input[type=email], input[type=password] {
+      border: none;
+      color: $gray-20;
+      background-color: rgba(255, 255, 255, 0.1);
+      font-family: $secondaryFont;
+  
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.2);
+      }
+  
+      &::selection {
+        background: $white-10;
+      }
+      
+      &:focus {
+        background-color: rgba(255, 255, 255, 0.2);
+        color: $white-10;
+      }
+    }
+  }
+
+  .customize-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    margin-top: 5px;
+    padding: 0;
+    margin: 0;
+    transform: translateY(-50%);
+    color: $white-10;
+  }
+
+  .center {
+    text-align: center;
+  }
+
+  .date-picker-wrapper .button {
+		color: $gray-20;
+		border: none;
+		padding: 7px;
+		width: 100%;
+		text-align: left;
+		background: rgba(255, 255, 255, 0.1);
+
+		i, svg {
+			margin-left: 10px;
+			font-size: 1.1em;
+		}
+	}
+}
+
+.css-props-editor {
+  max-width: 320px;
+}
