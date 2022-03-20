@@ -5,6 +5,7 @@ import './card.scss';
 
 interface ICardProps {
     className?: string
+    children?: ReactNode
     backgroundColor?: string
     title?: string
     titleSize?: number
@@ -12,7 +13,6 @@ interface ICardProps {
     buttonTextSize?: number
     titleColor?: string
     textColor?: string
-    text?: string
     imgUrl?: string
     topLineColor?: string
     disableTopLine?: boolean
@@ -25,21 +25,23 @@ interface ICardProps {
 }
 
 export const Card = (props: ICardProps) => {
-    const { titleSize, textSize, buttonTextSize, backgroundColor, buttonText, className, titleColor, textColor, text, widthUnit, width, disableTopLine = false, disableButton = false, buttonColor, onClick = () => { }, title, imgUrl, topLineColor } = props
+    const { titleSize, children, textSize, buttonTextSize, backgroundColor, buttonText, className, titleColor, textColor, widthUnit, width, disableTopLine = false, disableButton = false, buttonColor, onClick = () => { }, title, imgUrl, topLineColor } = props
 
     return (
-        <div className={`card-wrapper ${className || ''}`} style={{ maxWidth: `${width || 300}${widthUnit || 'px'}`, backgroundColor: backgroundColor || "#fff" }}>
+        <div className={`card-wrapper ${className || ''}`} style={{ maxWidth: `${width}${widthUnit || 'px'}`, backgroundColor: backgroundColor }}>
             {!disableTopLine &&
-                <div style={{ backgroundColor: topLineColor || "#629cff" }} className="top-line"></div>
+                <div style={{ backgroundColor: topLineColor }} className="top-line"></div>
             }
             {imgUrl &&
                 <img src={imgUrl} alt="card cover" />
             }
             <div className="content">
-                <h4 style={{ color: titleColor || '#636363', fontSize: `${titleSize}px` || '22px' }} className="card-title">{title}</h4>
-                <p className="card-text" style={{ color: textColor || '#a7a7a7', fontSize: `${textSize}px` || '14px' }}>{text}</p>
+                <h4 style={{ color: titleColor, fontSize: `${titleSize}px` }} className="card-title">{title}</h4>
+                <div className="card-text" style={{ color: textColor, fontSize: `${textSize}px` }}>
+                    {children}
+                </div>
                 {!disableButton &&
-                    <button onClick={() => onClick()} style={{ backgroundColor: buttonColor || '629cff', fontSize: `${buttonTextSize}px` || '14px' }} className="card-btn">{buttonText || 'Click!'}</button>
+                    <button onClick={() => onClick()} style={{ backgroundColor: buttonColor, fontSize: `${buttonTextSize}px` }} className="card-btn">{buttonText || 'Click!'}</button>
                 }
             </div>
         </div>

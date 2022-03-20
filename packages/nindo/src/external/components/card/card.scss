@@ -5,7 +5,9 @@
 	position: relative;
 	transition: 0.2s;
 	min-width: 250px;
-    line-height: normal;
+	line-height: normal;
+	max-width: 300px;
+	background-color: #fff;
 
 	&:hover {
 		box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
@@ -19,6 +21,7 @@
 		min-width: 100%;
 		border-radius: 6px 6px 0 0;
 		height: 5px;
+		background-color: #629cff;
 	}
 
 	img {
@@ -33,11 +36,15 @@
 		.card-title {
 			margin: 0;
 			margin: 15px 0 20px;
+			font-size: 22px;
+			color: #636363;
 		}
 
-		p {
+		.card-text {
 			font-weight: 400;
 			margin: 0;
+			color: #a7a7a7;
+			font-size: 14px;
 		}
 
 		.card-btn {
@@ -47,9 +54,10 @@
 			background-color: transparent;
 			padding: 10px 25px;
 			border-radius: 4px;
-			background-color: rgb(97, 187, 255);
+			background-color: #629cff;
 			color: white;
 			transition: 0.2s;
+			font-size: 14px;
 
 			&:hover {
 				transform: translateY(3px);
