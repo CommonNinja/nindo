@@ -29,6 +29,7 @@ export interface IAppConfigMocks {
 export interface IAppMeta {
 	name?: string;
 	icon?: string;
+	url?: string;
 }
 
 export interface IAppConfig<T, P = {}> {
@@ -41,7 +42,6 @@ export interface IAppConfig<T, P = {}> {
 		config: IEditorConfig<T>;
 		props?: TPluginEditorProps<T>;
 	};
-	globalState?: P;
 	viewer?: {
 		props?: TPluginViewerProps<T>;
 	};
@@ -49,7 +49,8 @@ export interface IAppConfig<T, P = {}> {
 		extraRoutes?: IExtraRouteProps[];
 		defaultRoutePath?: string;
 		onInit?: () => void;
-		meta?: IAppMeta;
 	};
+	globalState?: P;
+	meta?: IAppMeta;
 	mocks?: IAppConfigMocks;
 }

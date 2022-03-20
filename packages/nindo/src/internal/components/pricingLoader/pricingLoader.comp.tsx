@@ -19,7 +19,6 @@ import {
 } from '../pricingTable/pricingTable.comp';
 import { PricingComparisonTable } from '../pricingComparisonTable/pricingComparisonTable.comp';
 import { TPlatform } from '../../../external/types';
-import { getPluginNameByService } from '../../helpers';
 
 import './pricingLoader.scss';
 
@@ -204,10 +203,7 @@ export const PricingLoader = ({
 			setActiveCycleId(activeCycle);
 
 			if (rewriteDocumentTitle) {
-				document.title = `Pricing for ${getPluginNameByService(
-					plansData.services[0],
-					plansData.name
-				)}`;
+				document.title = `Pricing for ${plansData.name}`;
 			}
 		} catch (e) {
 			onPlanDataLoad?.(null);

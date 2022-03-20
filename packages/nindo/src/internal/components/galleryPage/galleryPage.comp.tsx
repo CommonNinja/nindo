@@ -38,7 +38,6 @@ export const GalleryPage = (props: {
 	return (
 		<>
 			<AppHeader
-				componentName="Common Ninja"
 				anonymousUser={false}
 				userProps={{
 					user,

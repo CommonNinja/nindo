@@ -1,7 +1,5 @@
 import { ComponentType, ReactChild, ReactElement, ReactNode } from 'react';
 
-import { TComponentType } from './component.types';
-
 export type TChildren =
 	| ReactNode
 	| ReactChild
@@ -22,7 +20,7 @@ export type IPluginLoaderComp = (props: {
 export type TPluginMode = 'preview' | 'editor' | 'viewer';
 
 export interface IPlugin<T> {
-	type: TComponentType;
+	type: string;
 	data: T;
 	galleryId: string | null;
 	guid: string | null;

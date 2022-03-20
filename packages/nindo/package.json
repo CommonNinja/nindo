@@ -7,8 +7,6 @@
 		"test": "jest",
 		"clean": "rm -rf dist",
 		"prepare": "npm run build",
-		"postinstall": "node ./scripts/pre-build.js",
-		"prebuild": "node ./scripts/pre-build.js",
 		"build": "npm run clean && npm run rollup",
 		"rollup": "rollup -c"
 	},

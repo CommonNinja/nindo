@@ -246,10 +246,6 @@ REACT_APP_NINJA_SERVICE_NAME=       service-name
 REACT_APP_NINJA_PLUGIN_TYPE=        ${packageName.replace(/-/g, '_')}
 # Plugin path (comparison-tables, bracket, etc.) - Should be one / two words, kebab-case
 REACT_APP_NINJA_PLUGIN_PATH=        ${packageName}
-# Plugin title (will appear at the top of the editor)
-REACT_APP_NINJA_PLUGIN_TITLE=       ${capitalize(
-			packageName.replace(/-/g, ' ')
-		)}
   `
 	);
 

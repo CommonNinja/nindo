@@ -63,7 +63,8 @@
 			}
 
 			img {
-				margin-right: 10px;
+				height: 37px;
+				margin: 0 10px 0 0;
 			}
 
 			i,
@@ -112,7 +113,7 @@
 
 		img {
 			height: 30px;
-			margin: 5px 0;
+			margin: 7px 0 0;
 
 			@media screen and (max-width: $breakpoint-4) {
 				height: 25px;
