@@ -80,6 +80,7 @@ export function nindoBackofficeApp<T, P = {}>(
 			mocks: [
 				...(appConfig?.mocks?.customMocks || []),
 				...userMocks(userState),
+				...pluginMocks(userState, appConfig.defaultData),
 				...eventMocks(),
 				...assetMocks(),
 				...apiMocks(),

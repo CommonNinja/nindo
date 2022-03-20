@@ -8,7 +8,7 @@ import { FormRow } from '../../../external/components/formRow/formRow.comp';
 import { ContextMenuWrapper } from '../../../external/components/contextMenuWrapper/contextMenuWrapper.comp';
 import { ContextMenuSection } from '../../../external/components/contextMenuSection/contextMenuSection.comp';
 import { Tabs } from '../../../external/components/tabs/tabs.comp';
-import { usePluginContext } from '../../../external/hooks/pluginContext.hook';
+import { useAppContext } from '../../../external/hooks/context.hook';
 
 import './publishSettings.scss';
 
@@ -18,7 +18,7 @@ type PublishSettingsProps = {
 
 export const PublishSettingsComp = (props: PublishSettingsProps) => {
 	const { pluginId } = props;
-	const { platform } = usePluginContext();
+	const { platform } = useAppContext();
 
 	function renderForShopify() {
 		const items = [

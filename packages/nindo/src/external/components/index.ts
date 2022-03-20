@@ -22,6 +22,7 @@ export * from './itemsManager';
 export * from './loader';
 export * from './nameFieldEditor';
 export * from './nindoApp';
+export * from './noCodeCSSProps';
 export * from './paginated';
 export * from './panel';
 export * from './pluginSkeleton';

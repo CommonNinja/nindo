@@ -1,10 +1,17 @@
-import { nindoApp, getDefaultPlugin } from './exports';
+import {
+	nindoApp,
+	getDefaultPlugin,
+	// nindoBackofficeApp,
+	// useAppContext,
+	// useAppData,
+} from './exports';
 
 import userStateMock from './mocks/userState.mocks';
 import { getEditorConfig } from './components/editor/editor.config';
 import { Plugin } from './components/plugin/plugin.comp';
 import { defaultPluginData } from './components/plugin/plugin.default';
 import { IPluginData } from './components/plugin/plugin.types';
+// import { ContentSettingsComp } from './components/editor/contentSettings/contentSettings.comp';
 
 // Initialize Nindo app
 nindoApp<IPluginData, {}>({
@@ -20,12 +27,26 @@ nindoApp<IPluginData, {}>({
 	},
 });
 
+// const Dashboard = () => {
+// 	const context = useAppContext();
+// 	const [appData, updateData] = useAppData<{ test: string }>();
+
+// 	return (
+// 		<>
+// 			<p>App Type: {context.appType}</p>
+// 			<p>{appData.test || 'empty'}</p>
+// 			<button onClick={() => updateData({ test: 'clicked!' })}>Click me</button>
+// 		</>
+// 	);
+// };
+
 // nindoBackofficeApp<IPluginData, {}>({
+// 	defaultData: getDefaultPlugin<IPluginData>(defaultPluginData()),
 // 	pages: [
 // 		{
 // 			id: 'dashboard',
 // 			name: 'Dashboard',
-// 			component: <div>Dashboard</div>,
+// 			component: <Dashboard />,
 // 		},
 // 		{
 // 			id: 'other',

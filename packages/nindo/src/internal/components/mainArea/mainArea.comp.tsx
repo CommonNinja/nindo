@@ -13,6 +13,7 @@ import {
 import { useQuery } from '../../../external/hooks/query.hook';
 import { notificationHelper } from '../../../external/helpers/notification.helper';
 import { BackgroundPicker } from '../backgroundPicker/backgroundPicker.comp';
+import { IAppState } from '../../../external/types/state.types';
 
 import './mainArea.scss';
 
@@ -44,7 +45,7 @@ export const MainArea = ({
 	extraToolbarButtons,
 	preSaveValidation,
 }: IMainAreaProps) => {
-	const { user, plugin, hasError, saving } = useSelector((state: any) => ({
+	const { user, plugin, hasError, saving } = useSelector((state: IAppState<any>) => ({
 		user: state.user,
 		hasError: state.editor.hasError,
 		saving: state.editor.saving,

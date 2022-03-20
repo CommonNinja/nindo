@@ -1,6 +1,6 @@
-import { IAppContext, IPluginContext } from '../../external/types/context.types';
+import { IAppContext } from '../../external/types/context.types';
 
-export const contextReducer = (defaultState: IPluginContext | IAppContext) =>
+export const contextReducer = (defaultState: IAppContext) =>
 	(state = defaultState, action: any) => {
 		switch (action.type) {
 			case 'CONTEXT_UPDATED':

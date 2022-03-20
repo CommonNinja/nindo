@@ -280,7 +280,7 @@ export const RichEditorWithImages = (props: IRichEditorWithImageProps) => {
 											container: modules.toolbar,
 									  },
 						  }
-						: defaultFormatsWithImage
+						: defaultModulesWithImage
 				}
 				bounds=".rich-editor-wrapper"
 			/>

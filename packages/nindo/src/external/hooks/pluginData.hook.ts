@@ -10,6 +10,7 @@ export function usePluginData<T>(): [
 	const { pluginData } = useSelector((state: IAppState<T>) => ({
 		pluginData: state.plugin,
 	}));
+
 	const dispatch = useDispatch();
 
 	function updateData<T>(updatedData: T) {
@@ -18,3 +19,5 @@ export function usePluginData<T>(): [
 
 	return [pluginData.data, updateData];
 }
+
+export const useAppData = usePluginData;

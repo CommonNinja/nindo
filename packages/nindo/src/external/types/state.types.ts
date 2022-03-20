@@ -1,21 +1,15 @@
-import { IAppData } from './backofficeApp.types';
-import { IAppContext, IPluginContext } from './context.types';
+import { IAppContext } from './context.types';
 import { IEditorState } from './editor.types';
 import { IPlugin } from './plugin.types';
 import { IUser } from './user.types';
 
-export interface IAppState<T, P = {}> {
+interface ICommonState<T, P = {}> {
 	user: IUser;
-	plugin: IPlugin<T>;
-	pluginState: P;
-	pluginContext: IPluginContext;
+	globalState: P;
+	context: IAppContext;
 	editor: IEditorState<T>;
 }
 
-export interface IBackofficeAppState<T, P = {}> {
-	user: IUser;
-	appData: IAppData<T>;
-	appState: P;
-	appContext: IAppContext;
-	editor: IEditorState<T>;
+export interface IAppState<T, P = {}> extends ICommonState<T, P> {
+	plugin: IPlugin<T>;
 }

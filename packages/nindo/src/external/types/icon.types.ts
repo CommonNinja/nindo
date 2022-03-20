@@ -1,4 +1,5 @@
 export type TPluginIcon = 
+  'product-blobs' | 
   'brackets' | 
   'testimonials' | 
   'compare-tables' | 
@@ -22,6 +23,7 @@ export type TPluginIcon =
   'logo-showcase';
 
 export const iconToNumberOfPaths: { [key: string]: number } = {
+  'product-blobs': 1,
   'brackets': 2,
   'testimonials': 7,
   'compare-tables': 8,

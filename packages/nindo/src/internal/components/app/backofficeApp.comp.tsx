@@ -10,15 +10,12 @@ interface IBackofficeAppProps<T> {
 }
 
 export const BackofficeApp = ({ appConfig }: IBackofficeAppProps<any>) => {
-	const loaderComp = appConfig.loaderComponent;
-	
 	// If there's an init function, call it
 	appConfig.onInit?.();
 	
 	return (
 		<CNBackofficeApp
-			pages={appConfig.pages}
-			loaderComp={loaderComp}
+			{...appConfig}
 		/>
 	);
 };
