@@ -42,7 +42,8 @@ export const CNBackofficeEditor = ({
 	const query = useQuery();
 	const dispatch = useDispatch();
 	const { params } = useRouteMatch();
-	const { page, nestedPage, vendor, pluginId } = params as any;
+	const instanceId = query.get('instanceId') || '';
+	const { page, nestedPage, vendor } = params as any;
 	const { isSaved, appData, user } = useSelector(
 		(state: IAppState<any>) => ({
 			isSaved: state.editor.isSaved,
@@ -66,7 +67,7 @@ export const CNBackofficeEditor = ({
 
 		try {
 			const result = await pluginService.getForEditor(
-				pluginId,
+				instanceId,
 				defaultPluginData,
 				vendor
 			);
@@ -227,6 +228,7 @@ export const CNBackofficeEditor = ({
 		dispatch(
 			contextUpdated({
 				platform: vendor,
+				instanceId,
 			})
 		);
 		// eslint-disable-next-line

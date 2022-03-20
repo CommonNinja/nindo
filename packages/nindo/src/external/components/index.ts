@@ -40,4 +40,5 @@ export * from './sortableList';
 export * from './table';
 export * from './tabs';
 export * from './toggler';
+export * from './toolbar';
 export * from './tooltip';

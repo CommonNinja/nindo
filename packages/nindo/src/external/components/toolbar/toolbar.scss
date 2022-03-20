@@ -1,0 +1,104 @@
+@import '../../../external/styles/_vars';
+
+.toolbar {
+	margin: 0;
+	padding: 8px 20px;
+	background: #e8eaf1;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	min-height: $editorMenuHeight;
+	position: relative;
+	z-index: 20;
+
+	@media screen and (max-width: $breakpoint-3) {
+		width: 100%;
+		flex-wrap: wrap;
+		justify-content: center;
+
+		.history-toolbar {
+			display: none;
+		}
+	}
+
+	* > {
+		flex: 1;
+	}
+
+	.history {
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+
+		button {
+			background: none;
+			border: none;
+			padding: 3px;
+			margin: 0 3px;
+			font-size: 14px;
+			cursor: pointer;
+			color: #7d808a;
+
+			&:hover {
+				color: #2b3037;
+			}
+
+			&[disabled] {
+				color: #cbd0d4;
+			}
+		}
+	}
+
+	.buttons-wrapper {
+		position: relative;
+		margin: 2px 0;
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+
+		> span {
+			font-size: 12px;
+			margin: 0 0 0 10px;
+		}
+
+		.button {
+			margin-left: 15px;
+			padding: 6px 15px;
+			font-size: 12px;
+			font-weight: 300;
+		}
+	}
+}
+
+.change-name-popup {
+	$popup-width: 520px;
+	cursor: default;
+
+	.popup-content {
+		width: $popup-width;
+		padding: 0;
+
+		h2 {
+			padding: 20px;
+			background: #eaecf3;
+		}
+	}
+
+	section {
+		padding: 20px 40px;
+
+		.buttons-wrapper {
+			padding-bottom: 0;
+		}
+
+		input[type='text'] {
+			display: block;
+			width: 100%;
+			box-sizing: border-box;
+			font-size: 16px;
+			padding: 10px;
+			color: #999;
+			border: 1px dashed #999;
+		}
+	}
+}

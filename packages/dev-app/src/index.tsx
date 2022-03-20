@@ -4,6 +4,7 @@ import {
 	// nindoBackofficeApp,
 	// useAppContext,
 	// useAppData,
+	// Toolbar,
 } from './exports';
 
 import userStateMock from './mocks/userState.mocks';
@@ -33,6 +34,7 @@ nindoApp<IPluginData, {}>({
 
 // 	return (
 // 		<>
+// 			<Toolbar />
 // 			<p>App Type: {context.appType}</p>
 // 			<p>{appData.test || 'empty'}</p>
 // 			<button onClick={() => updateData({ test: 'clicked!' })}>Click me</button>
