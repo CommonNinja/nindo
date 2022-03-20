@@ -10,7 +10,7 @@
 		"bootstrap": "lerna bootstrap",
 		"format": "prettier --write --ignore-unknown .",
 		"format:check": "prettier --check --ignore-unknown .",
-		"build": "cd packages/storybook && npm i && npm run build-storybook"
+		"build": "npm run bootstrap && cd packages/storybook && npm i && npm run build-storybook"
 	},
 	"devDependencies": {
 		"lerna": "^4.0.0",
