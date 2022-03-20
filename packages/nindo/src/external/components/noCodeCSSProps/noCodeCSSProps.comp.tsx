@@ -10,9 +10,10 @@ export const NoCodeCSSProps = ({ items, onChange }: {
 	items: INoCodeCSSItem[];
 	onChange: (propName: string, value: CSSProperties) => void;
 }) => {
-	const [activeItem, setActiveItem] = useState<INoCodeCSSItem | null>(null);
+	const [activeProp, setActiveProp] = useState<string>('');
 
 	function renderCSSPropertiesEditor() {
+		const activeItem: INoCodeCSSItem | undefined = items.find((item) => item.propName === activeProp);
 		if (!activeItem) {
 			return <></>;
 		}
@@ -21,18 +22,15 @@ export const NoCodeCSSProps = ({ items, onChange }: {
 			<div className="css-props-editor-wrapper">
 				<Button
 					className="close-css-props-editor"
-					onClick={() => setActiveItem(null)}
+					onClick={() => setActiveProp('')}
 				>
 					<SystemIcon size={20} type="arrow-left" />
 					<span>Back</span>
 				</Button>
 				<CSSPropertiesEditor
-					currentProperties={activeItem.value}
+					currentProperties={{ ...activeItem.value }}
 					onChange={(nextProperties) => {
-						onChange(activeItem.propName, {
-							...activeItem.value,
-							...nextProperties
-						});
+						onChange(activeProp, nextProperties);
 					}}
 					availablePropertiesGroups={activeItem.allowedProps}
 				/>
@@ -45,11 +43,11 @@ export const NoCodeCSSProps = ({ items, onChange }: {
 			{
 				items.map((item) => (
 					<FormRow key={`nocode-css-${item.propName}`}>
-						<FormLabel>{item.label || item.value}</FormLabel>
+						<FormLabel>{item.label || item.propName}</FormLabel>
 						<Button
 							className="customize-btn"
 							color="transparent"
-							onClick={() => setActiveItem(item)}
+							onClick={() => setActiveProp(item.propName)}
 						>
 							Customize
 						</Button>
