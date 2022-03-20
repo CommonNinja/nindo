@@ -53,6 +53,7 @@ const Template: ComponentStory<typeof Panel> = (args) => {
       {
         items.map((item) => (
           <Panel
+            key={item.id}
             {...args}
             titleComponent={`Panel ${item.id}`}
           >

@@ -18,28 +18,31 @@ export default {
         ),
       },
     },
+    backgrounds: {
+      default: 'dark-gray'
+    }
   },
 };
 
-const WithImagesTemplate: ComponentStory<typeof RichEditorWithImages> = (args) => {
-  const [html, setHtml] = useState('');
+// const WithImagesTemplate: ComponentStory<typeof RichEditorWithImages> = (args) => {
+//   const [html, setHtml] = useState('');
 
-  return (
-    <FormRow flow="column">
-      <label>Content</label>
-      <RichEditorWithImages
-        {...args}
-        html={html}
-        onChange={(nextHtml) => setHtml(nextHtml)}
-      />
-    </FormRow>
-  );
-};
+//   return (
+//     <FormRow flow="column">
+//       <label>Content</label>
+//       <RichEditorWithImages
+//         {...args}
+//         html={html}
+//         onChange={(nextHtml) => setHtml(nextHtml)}
+//       />
+//     </FormRow>
+//   );
+// };
 
-export const Rich_Editor_With_Images = WithImagesTemplate.bind({});
-Rich_Editor_With_Images.args = {
-  imageUploadEnabled: true,
-}
+// export const richEditorWithImages = WithImagesTemplate.bind({});
+// richEditorWithImages.args = {
+//   imageUploadEnabled: true,
+// }
 
 const Template: ComponentStory<typeof RichEditorWithImages> = (args) => {
   const [html, setHtml] = useState('');
@@ -56,7 +59,7 @@ const Template: ComponentStory<typeof RichEditorWithImages> = (args) => {
   );
 };
 
-export const Rich_Editor_Text_Only = Template.bind({});
-Rich_Editor_Text_Only.args = {}
+export const richEditorTextOnly = Template.bind({});
+richEditorTextOnly.args = {}
 
 // TODO

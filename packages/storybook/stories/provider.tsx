@@ -1,7 +1,7 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { BrowserRouter } from 'react-router-dom';
 import thunk from 'redux-thunk';
 
 import { editorReducer } from '../../nindo/src/internal/reducers/editor.reducer';
@@ -9,7 +9,7 @@ import { userReducer } from '../../nindo/src/internal/reducers/user.reducer';
 import { pluginReducer } from '../../nindo/src/internal/reducers/plugin.reducer';
 import { TComponentType } from '../../nindo/src/external/types/component.types';
 
-const store: any = createStore(
+export const store: any = createStore(
     combineReducers({
         editor: editorReducer,
         user: userReducer,

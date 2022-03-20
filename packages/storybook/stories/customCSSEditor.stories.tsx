@@ -4,6 +4,7 @@ import dedent from 'ts-dedent';
 
 import { CustomCSSEditor } from '../../nindo/src/external/components/customCSSEditor';
 import { Popup } from '../../nindo/src/external/components/popup';
+import { AssetType } from '../../nindo/src';
 
 export default {
   title: 'Editor/Custom CSS Editor',
@@ -19,12 +20,16 @@ export default {
       },
     },
   },
-};
+} as ComponentMeta<typeof CustomCSSEditor>;
 
 const Template: ComponentStory<typeof CustomCSSEditor> = (args) => {
   const [cssPopupOpened, setCSSPopupOpened] = useState(false);
   const [css, setCSS] = useState('');
-
+  function blob(): any {
+    return (
+      <h1>hi</h1>
+    )
+  }
   return (
     <>
       <button
@@ -41,16 +46,15 @@ const Template: ComponentStory<typeof CustomCSSEditor> = (args) => {
         >
           <CustomCSSEditor
             {...args}
-          // css={css}
-          // onUpdate={(newStyles) => {
-          // setCSS(newStyles);
-          // setCSSPopupOpened(false);
-          // }}
-          >
-            <div>Try me</div>
-          </CustomCSSEditor>
+            css={css}
+            onUpdate={(newStyles) => {
+              setCSS(newStyles);
+              setCSSPopupOpened(false);
+            }}
+          />
         </Popup>
-      )}
+      )
+      }
     </>
   );
 };
