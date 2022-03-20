@@ -31,6 +31,18 @@
 			}
 
 			.settings-card {
+				box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+				border-radius: 6px;
+				transition: 0.2s;
+				min-width: 250px;
+				line-height: normal;
+				max-width: 300px;
+				background-color: #fff;
+				padding: 30px;
+
+				&:hover {
+					box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+				}
 			}
 		}
 	}

@@ -1,13 +1,10 @@
 import React, { ReactNode } from 'react'
-import { FormRow } from '../formRow';
-import { Card } from '../card'
 
 import './settingsSection.scss';
 
 interface ISettingsSectionProps {
     data: object[]
 }
-
 
 export const SettingsSection = (props: ISettingsSectionProps) => {
     const {data} = props
