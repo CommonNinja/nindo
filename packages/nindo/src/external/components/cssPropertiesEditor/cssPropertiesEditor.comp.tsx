@@ -177,7 +177,6 @@ const selectOptions = {
 		{ value: 'none', label: 'None' },
 		{ value: 'underline', label: 'Underline' },
 		{ value: 'overline', label: 'Overline' },
-		{ value: 'line-through', label: 'Line Through' },
 	],
 	textDecorationStyle: [
 		{ value: 'solid', label: 'Solid' },
