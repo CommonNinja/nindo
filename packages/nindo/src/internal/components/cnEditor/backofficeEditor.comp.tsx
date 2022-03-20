@@ -1,5 +1,5 @@
 import React, { useState, useEffect, ComponentType, ReactElement } from 'react';
-import { NavLink, useRouteMatch } from 'react-router-dom';
+import { NavLink, useHistory, useRouteMatch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 // import { IHttpResult } from '../../../external/types/http.types';
@@ -41,6 +41,7 @@ export const CNBackofficeEditor = ({
 }: ICNBackofficeEditor<any>) => {
 	const query = useQuery();
 	const dispatch = useDispatch();
+	const history = useHistory();
 	const { params } = useRouteMatch();
 	const instanceId = query.get('instanceId') || '';
 	const { page, nestedPage, vendor } = params as any;
@@ -175,6 +176,10 @@ export const CNBackofficeEditor = ({
 
 	useEffect(() => {
 		const nextActivePage = pages.find((p) => p.id === page);
+		if (!nextActivePage) {
+			history.push(`/${pathPrefix}/${pages[0].id}`);
+			return;
+		}
 		setActivePage(nextActivePage);
 	}, [page]);
 
