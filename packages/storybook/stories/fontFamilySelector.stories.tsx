@@ -5,7 +5,11 @@ import { FontFamilySelector } from '../../nindo/src/external/components/fontFami
 export default {
     title: 'Editor/Font Family Selector',
     component: FontFamilySelector,
-
+    parameters:{
+        backgrounds: {
+            default: 'dark-gray'
+        }
+    }
 } as ComponentMeta<typeof FontFamilySelector>;
 
 const Template: ComponentStory<typeof FontFamilySelector> = (args) => {

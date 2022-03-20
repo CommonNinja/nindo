@@ -6,6 +6,11 @@ import { FormRow } from '../../nindo/src/external/components/formRow';
 export default {
   title: 'Editor/Copy Input',
   component: CopyInput,
+  parameters: {
+    backgrounds: {
+      default: "dark-gray"
+    }
+  }
 
 } as ComponentMeta<typeof CopyInput>;
 

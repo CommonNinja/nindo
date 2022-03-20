@@ -3,6 +3,7 @@ import dedent from 'ts-dedent';
 import { AssetsGalleryOpener } from '../../nindo/src/external/components/assetsGalleryOpener';
 import { FormRow } from '../../nindo/src/external/components/formRow';
 import { ComponentStory } from '@storybook/react';
+import { ProviderWrapper } from './provider';
 
 
 export default {
@@ -20,6 +21,7 @@ export default {
     },
   },
 };
+
 
 const Template: ComponentStory<typeof AssetsGalleryOpener> = (args) => {
   const [url, setUrl] = useState('');
@@ -45,11 +47,13 @@ const Template: ComponentStory<typeof AssetsGalleryOpener> = (args) => {
 
 
 export const assetsGallery = Template.bind({});
-assetsGallery.decorators = [
-  (Story) => (
-    <Story />
-  )
-]
+// assetsGallery.decorators = [
+//   (Story) => (
+//     <ProviderWrapper>
+//       <Story />
+//     </ProviderWrapper>
+//   )
+// ]
 assetsGallery.args = {
   enabled: true,
   submitCallback: (url) => alert(url),

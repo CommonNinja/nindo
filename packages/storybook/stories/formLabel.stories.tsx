@@ -25,6 +25,9 @@ export default {
                 ),
             },
         },
+        backgrounds: {
+            default: 'dark-gray'
+        }
     },
 } as ComponentMeta<typeof FormLabel>
 

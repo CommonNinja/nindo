@@ -2,8 +2,8 @@ import React, { forwardRef, useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import dedent from 'ts-dedent';
 import { DatePicker } from '../../nindo/src/external/components/datePicker';
-import { Button } from '../../nindo/src/external/components/button';
 import { FormRow } from '../../nindo/src/external/components/formRow';
+import { FormLabel } from '../../nindo/src/external/components/formLabel';
 
 export default {
     title: 'Editor/Date Picker',
@@ -19,12 +19,18 @@ export default {
                 ),
             },
         },
+        backgrounds: {
+            default: 'dark-gray'
+        }
     },
 } as ComponentMeta<typeof DatePicker>;
 
 const Template: ComponentStory<typeof DatePicker> = (args) => {
     return (
-        <DatePicker {...args} />
+        <FormRow>
+            <FormLabel> Date Picker</FormLabel>
+            <DatePicker {...args} />
+        </FormRow>
     )
 };
 

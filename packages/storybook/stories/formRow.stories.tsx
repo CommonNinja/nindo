@@ -17,6 +17,9 @@ export default {
                 ),
             },
         },
+        backgrounds: {
+            default: 'dark-gray'
+        }
     },
 };
 

@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { ColorPicker } from '../../nindo/src/external/components/colorPicker';
 import { FormRow } from '../../nindo/src/external/components/formRow';
@@ -6,6 +6,11 @@ import { FormRow } from '../../nindo/src/external/components/formRow';
 export default {
   title: 'Editor/Color Picker',
   component: ColorPicker,
+  parameters: {
+    backgrounds: {
+      default: "dark-gray"
+    }
+  }
 
 } as ComponentMeta<typeof ColorPicker>;
 

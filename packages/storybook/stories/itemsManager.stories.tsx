@@ -5,6 +5,11 @@ import { ItemsManager } from '../../nindo/src/external/components/itemsManager';
 export default {
     title: 'Editor/Items Manager',
     component: ItemsManager,
+    parameters: {
+        backgrounds: {
+            default: 'dark-gray'
+        }
+    }
 } as ComponentMeta<typeof ItemsManager>;
 
 const Template: ComponentStory<typeof ItemsManager> = (args) => {

@@ -5,6 +5,8 @@ import { Popup } from '../../nindo/src/external/components/popup';
 import { Button } from '../../nindo/src/external/components/button';
 import { ComponentStory } from '@storybook/react';
 
+import './styles/rewrite.scss';
+
 export default {
   title: 'Editor/Popup',
   component: Popup,
@@ -44,7 +46,7 @@ popup.args = {
     <>
       <h2>Popup Title</h2>
       <section className="story-section">
-        Popup Content
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, nobis nam! Ad repudiandae magnam molestias odit asperiores enim iste veritatis blanditiis ea excepturi maiores, perferendis distinctio deserunt quasi, ex explicabo?
       </section>
     </>
   )
