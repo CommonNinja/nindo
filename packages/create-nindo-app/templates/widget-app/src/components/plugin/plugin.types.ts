@@ -15,9 +15,8 @@ export interface IPluginSettings {
 }
 
 export interface IPluginStyles {
-	background: CSSProperties;
+	mainWrapper: CSSProperties;
 	title: CSSProperties;
-	description: CSSProperties;
 	layoutId: 'default';
 	fontId: string;
 	customCSS: string;

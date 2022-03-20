@@ -5,9 +5,8 @@ export const defaultPluginData = (): IPluginData => ({
 		showTitle: true,
 	},
 	styles: {
-		background: {},
+		mainWrapper: {},
 		title: {},
-		description: {},
 		fontId: 'default',
 		layoutId: 'default',
 		customCSS: '',
