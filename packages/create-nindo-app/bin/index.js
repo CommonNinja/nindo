@@ -10,7 +10,7 @@ const { lightCyan, red } = require('kolorist');
 
 const cwd = process.cwd();
 
-const TEMPLATES = ['widget' /*, 'backoffice' */]; // We'll support backoffice apps in the future
+const TEMPLATES = ['widget', 'backoffice'];
 
 const renameFiles = {
 	_gitignore: '.gitignore',
