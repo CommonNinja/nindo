@@ -9,8 +9,6 @@ import {
 } from '../../../external/types';
 import { IUser } from '../../../external/types';
 import { Button } from '../../../external/components/button/button.comp';
-// import { EnterpriseBox } from '../enterpriseBox/enterpriseBox.comp';
-// import { ServiceSelector, ServiceSelectorLoader } from '../serviceSelector/serviceSelector.comp';
 import {
 	CycleSelector,
 	CycleSelectorLoader,
@@ -130,9 +128,7 @@ interface IPricingLoaderProps {
 	onUserSubscriptionLoad?: (subscriptionData: any) => void;
 	onServiceChange?: (serviceName: string) => void;
 	rewriteDocumentTitle?: boolean;
-	showServiceSelector?: boolean;
 	showCycleSelector?: boolean;
-	showEnterpriseBox?: boolean;
 	showFullComparison?: boolean;
 	vendor?: TPlatform;
 }
@@ -145,9 +141,7 @@ export const PricingLoader = ({
 	onServiceChange,
 	onPlanSelect,
 	rewriteDocumentTitle,
-	showServiceSelector,
 	showCycleSelector = true,
-	// showEnterpriseBox = true,
 	showFullComparison = true,
 	vendor,
 }: IPricingLoaderProps) => {
@@ -238,7 +232,6 @@ export const PricingLoader = ({
 	function renderLoader() {
 		return (
 			<>
-				{/* <ServiceSelectorLoader /> */}
 				<CycleSelectorLoader />
 				<PricingTableLoader />
 			</>
@@ -271,11 +264,6 @@ export const PricingLoader = ({
 
 		return (
 			<>
-				{/* <ServiceSelector 
-          planData={planData}
-          onChange={(nextServiceName) => setServiceName(nextServiceName)}
-          showServices={showServiceSelector}
-        /> */}
 				{showCycleSelector && (
 					<CycleSelector
 						activeCycleId={activeCycleId}
@@ -299,10 +287,6 @@ export const PricingLoader = ({
 					vendor={vendor}
 					vendorFeaturesBlockList={vendorFeaturesBlockList}
 				/>
-				{/* {
-          showEnterpriseBox &&
-          <EnterpriseBox />
-        } */}
 				{showFullComparison && (
 					<PricingComparisonTable
 						activeCycle={planData.cycles[activeCycleId]}
