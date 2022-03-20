@@ -1,0 +1,37 @@
+.settings-section {
+	width: 100%;
+	color: rgb(65, 65, 65);
+
+	.settings-title {
+		font-size: 22px;
+		margin-bottom: 50px;
+	}
+
+	.row-wrapper {
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+
+		.settings-row {
+			display: flex;
+			justify-content: space-between;
+			gap: 25px;
+
+			.details {
+				.title {
+					font-size: 18px;
+					margin: 0 0 10px;
+				}
+				.text {
+					margin: 0;
+					font-size: 14px;
+					color: gray;
+					font-weight: 400;
+				}
+			}
+
+			.settings-card {
+			}
+		}
+	}
+}

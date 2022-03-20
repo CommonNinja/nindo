@@ -42,3 +42,5 @@ export * from './tabs';
 export * from './toggler';
 export * from './toolbar';
 export * from './tooltip';
+export * from './settingsSection';
+export * from './card';
