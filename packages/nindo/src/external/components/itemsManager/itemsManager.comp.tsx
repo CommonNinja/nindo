@@ -61,7 +61,7 @@ export const ItemsManager = <T extends { id: string }>({
 }: IItemsManagerProps<T>) => {
 	const [search, setSearch] = useState<string>('');
 	const trimmedSearch = search.toLowerCase().trim();
-	const filteredItems = items.filter(filterBySearch);
+	const filteredItems = items?.filter(filterBySearch);
 
 	function filterBySearch(item: T): boolean {
 		if (!searchable || !searchFilter) {
@@ -83,8 +83,8 @@ export const ItemsManager = <T extends { id: string }>({
 		e.preventDefault();
 		e.stopPropagation();
 
-		const nextItems = items.filter((a) => a.id !== itemId);
-		if (minItems && nextItems.length < minItems) {
+		const nextItems = items?.filter((a) => a.id !== itemId);
+		if (minItems && nextItems?.length < minItems) {
 			notificationHelper.removeAll();
 			notificationHelper.warning({
 				title: `Sorry, but the minimum number of ${itemsText} is ${minItems}.`,
@@ -110,7 +110,7 @@ export const ItemsManager = <T extends { id: string }>({
 	}
 
 	function addItem() {
-		if (maxItems && items.length + 1 > maxItems) {
+		if (maxItems && items?.length + 1 > maxItems) {
 			notificationHelper.removeAll();
 			notificationHelper.warning({
 				title: '✭ You reached the maximum',
@@ -212,7 +212,7 @@ export const ItemsManager = <T extends { id: string }>({
 				</FormRow>
 			)}
 			<ContextMenuSection>
-				{filteredItems.length === 0 ? (
+				{filteredItems?.length === 0 ? (
 					<p className="center message">No {itemsText} found.</p>
 				) : (
 					<SortableList

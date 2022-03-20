@@ -2,11 +2,11 @@ import { addDecorator } from '@storybook/react';
 import { ProviderWrapper, store } from '../stories/provider';
 
 // Add global decorators
-// addDecorator((Story) => (
-// 	<ProviderWrapper>
-// 		<Story />
-// 	</ProviderWrapper>
-// ));
+addDecorator((Story) => (
+	<ProviderWrapper>
+		<Story />
+	</ProviderWrapper>
+));
 
 export const parameters = {
 	actions: { argTypesRegex: '^on[A-Z].*' },
