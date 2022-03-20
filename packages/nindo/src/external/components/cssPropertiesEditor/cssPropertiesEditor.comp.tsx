@@ -38,6 +38,10 @@ const cssPropertiesGroups: ICSSPropertyGroup[] = [
 			'fontWeight',
 			'fontSize',
 			'lineHeight',
+			'textDecorationLine',
+			'textDecorationStyle',
+			'textDecorationThickness',
+			'textDecorationColor',
 			'letterSpacing',
 		],
 	},
@@ -120,6 +124,7 @@ const maxMinOptions: IMinMaxOption = {
 	borderBottomWidth: { min: 0, max: 20 },
 	borderRadius: { min: 0, max: 50, unit: 'em' },
 	fontSize: { min: 6, max: 120 },
+	textDecorationThickness: { min: 1, max: 5 },
 };
 
 const selectOptions = {
@@ -167,6 +172,18 @@ const selectOptions = {
 		{ value: 'center', label: 'Center' },
 		{ value: 'left', label: 'Left' },
 		{ value: 'right', label: 'Right' },
+	],
+	textDecorationLine: [
+		{ value: 'none', label: 'None' },
+		{ value: 'underline', label: 'Underline' },
+		{ value: 'overline', label: 'Overline' },
+	],
+	textDecorationStyle: [
+		{ value: 'solid', label: 'Solid' },
+		{ value: 'double', label: 'Double' },
+		{ value: 'dotted', label: 'Dotted' },
+		{ value: 'dashed', label: 'Dashed' },
+		{ value: 'wavy', label: 'Wavy' },
 	],
 	fontFamily: fontsList.map((f) => ({ value: f.id, label: f.name })),
 };
@@ -237,6 +254,7 @@ const renderCSSPropertyEditor = (
 		case 'backgroundColor':
 		case 'borderColor':
 		case 'color':
+		case 'textDecorationColor':
 			return (
 				<FormRow key={cssPropName}>
 					<FormLabel>{displayName}</FormLabel>
@@ -278,6 +296,8 @@ const renderCSSPropertyEditor = (
 		case 'fontStyle':
 		case 'textAlign':
 		case 'fontFamily':
+		case 'textDecorationLine':
+		case 'textDecorationStyle':
 			return (
 				<FormRow key={cssPropName}>
 					<FormLabel>{displayName}</FormLabel>
@@ -317,6 +337,7 @@ const renderCSSPropertyEditor = (
 		case 'borderBottomWidth':
 		case 'borderRadius':
 		case 'fontSize':
+		case 'textDecorationThickness':
 			return (
 				<FormRow key={cssPropName} flow="column">
 					<FormLabel>
