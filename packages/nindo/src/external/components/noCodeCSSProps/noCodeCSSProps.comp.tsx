@@ -29,7 +29,10 @@ export const NoCodeCSSProps = ({ items, onChange }: {
 				<CSSPropertiesEditor
 					currentProperties={activeItem.value}
 					onChange={(nextProperties) => {
-						onChange(activeItem.propName, nextProperties);
+						onChange(activeItem.propName, {
+							...activeItem.value,
+							...nextProperties
+						});
 					}}
 					availablePropertiesGroups={activeItem.allowedProps}
 				/>
