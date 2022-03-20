@@ -20,6 +20,12 @@ export type TPluginEditorProps<T> =
 type TViewerPropsGenerator<T> = (pluginData: IPlugin<T>) => IViewerProps<T>;
 export type TPluginViewerProps<T> = IViewerProps<T> | TViewerPropsGenerator<T>;
 
+export interface IAppConfigMocks {
+	disable?: boolean;
+	userState?: Partial<IUserStateMocks>;
+	customMocks?: any[];
+}
+
 export interface IAppConfig<T, P = {}> {
 	plugin: {
 		defaultData: IPlugin<T>;
@@ -39,9 +45,5 @@ export interface IAppConfig<T, P = {}> {
 		defaultRoutePath?: string;
 		onInit?: () => void;
 	};
-	mocks?: {
-		disable?: boolean;
-		userState?: Partial<IUserStateMocks>;
-		customMocks?: any[];
-	};
+	mocks?: IAppConfigMocks;
 }
