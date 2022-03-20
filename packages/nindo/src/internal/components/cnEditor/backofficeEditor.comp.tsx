@@ -263,7 +263,7 @@ export const CNBackofficeEditor = ({
 				{activePage?.nestedRoutes?.map((route) => (
 					<NavLink
 						key={`submenu-${activePage.id}-${route.id}`}
-						to={`/${pathPrefix}/${activePage.id}/${route.id}`}
+						to={`/${pathPrefix}/${activePage.id}/${route.id}?${query.toString()}`}
 						activeClassName="active"
 						exact
 					>{route.name || route.id}</NavLink>

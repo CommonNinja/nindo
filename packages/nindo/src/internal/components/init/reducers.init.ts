@@ -14,9 +14,7 @@ import {
 	userReducer,
 } from '../../reducers';
 import { IPlugin } from '../../../external/types/plugin.types';
-import { IAppConfig } from '../../../external/types/app.types';
 import { IAppState } from '../../../external/types/state.types';
-import { IBackofficeAppConfig } from '../../../external/types/backofficeApp.types';
 
 let store: AppStateStore<any, any>;
 

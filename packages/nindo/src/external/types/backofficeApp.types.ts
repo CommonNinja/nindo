@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { IUserStateMocks } from './mocks.types';
+import { IAppConfigMocks, IAppMeta } from './app.types';
 import { IPlugin } from './plugin.types';
 
 export interface IAppPage {
@@ -19,9 +19,6 @@ export interface IBackofficeAppConfig<T = {}, P = {}> {
 	globalState?: P;
 	loaderComponent?: ReactElement;
 	onInit?: () => void;
-	mocks?: {
-		disable?: boolean;
-		userState?: Partial<IUserStateMocks>;
-		customMocks?: any[];
-	};
+	meta?: IAppMeta;
+	mocks?: IAppConfigMocks;
 }

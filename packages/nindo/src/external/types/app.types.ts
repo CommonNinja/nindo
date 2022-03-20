@@ -26,6 +26,11 @@ export interface IAppConfigMocks {
 	customMocks?: any[];
 }
 
+export interface IAppMeta {
+	name?: string;
+	icon?: string;
+}
+
 export interface IAppConfig<T, P = {}> {
 	plugin: {
 		defaultData: IPlugin<T>;
@@ -44,6 +49,7 @@ export interface IAppConfig<T, P = {}> {
 		extraRoutes?: IExtraRouteProps[];
 		defaultRoutePath?: string;
 		onInit?: () => void;
+		meta?: IAppMeta;
 	};
 	mocks?: IAppConfigMocks;
 }

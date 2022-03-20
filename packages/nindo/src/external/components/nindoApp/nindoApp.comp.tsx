@@ -18,6 +18,7 @@ import { App } from '../../../internal/components/app/app.comp';
 import { IBackofficeAppConfig } from '../../types/backofficeApp.types';
 import { BackofficeApp } from '../../../internal';
 import { IPlugin } from '../../types/plugin.types';
+import { setAppConfig } from '../../../internal/services/config.service';
 
 // Polyfill Promise for IE10+
 require('es6-promise').polyfill();
@@ -53,13 +54,15 @@ function loadMocks(defaultData: IPlugin<any>, mocks?: IAppConfigMocks) {
 }
 
 export function nindoApp<T, P = {}>(appConfig: IAppConfig<T, P>) {
+	setAppConfig(appConfig);
+	
 	const store: any = genStore('widget', appConfig.plugin.defaultData, appConfig.globalState);
 	
 	loadMocks(appConfig.plugin.defaultData, appConfig.mocks);
 
 	ReactDOM.render(
 		<Provider store={store}>
-			<App appConfig={appConfig as IAppConfig<T, P>} />
+			<App />
 		</Provider>,
 		document.getElementById('root')
 	);
@@ -73,6 +76,8 @@ export function nindoApp<T, P = {}>(appConfig: IAppConfig<T, P>) {
 export function nindoBackofficeApp<T, P = {}>(
 	appConfig: IBackofficeAppConfig<T, P>
 ) {
+	setAppConfig(appConfig);
+	
 	const store: any = genStore('backoffice', appConfig.defaultData, appConfig.globalState);
 	
 	loadMocks(appConfig.defaultData, appConfig.mocks);
