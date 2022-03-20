@@ -34,7 +34,7 @@ function extractViewerEditorProps<T>(
 }
 
 export const App = () => {
-	const config: IAppConfig<any> = useAppConfig();
+	const config = useAppConfig<IAppConfig<any>>();
 	const pluginData = usePlugin<any>();
 	const pluginComp = config.plugin.pluginComponent;
 	const pluginLoaderComp = config.plugin.loaderComponent;
