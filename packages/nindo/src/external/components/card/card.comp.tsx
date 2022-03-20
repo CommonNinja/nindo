@@ -25,7 +25,26 @@ interface ICardProps {
 }
 
 export const Card = (props: ICardProps) => {
-    const { titleSize, children, textSize, buttonTextSize, backgroundColor, buttonText, className, titleColor, textColor, widthUnit, width, disableTopLine = false, disableButton = false, buttonColor, onClick = () => { }, title, imgUrl, topLineColor } = props
+    const {
+        titleSize,
+        children,
+        textSize,
+        buttonTextSize,
+        backgroundColor,
+        buttonText,
+        className,
+        titleColor,
+        textColor,
+        widthUnit,
+        width,
+        disableTopLine = false,
+        disableButton = false,
+        buttonColor,
+        onClick = () => { },
+        title,
+        imgUrl,
+        topLineColor
+    } = props
 
     return (
         <div className={`card-wrapper ${className || ''}`} style={{ maxWidth: `${width}${widthUnit || 'px'}`, backgroundColor: backgroundColor }}>
