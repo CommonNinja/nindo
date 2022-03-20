@@ -1,14 +1,8 @@
 import {
 	PluginActionTypes,
-	IPluginSettings,
 	TPluginState,
 	TPluginPrivacy,
-	IPluginStyles,
-	IPluginColors,
-	IPluginBackground,
-	IPluginContent,
 	IPlugin,
-	IPluginData,
 } from '../../external/types/plugin.types';
 import { historyChange, savedStateChange } from './history.actions';
 import { userService } from '../services';
@@ -28,7 +22,7 @@ export const gotPluginData = (data: IPlugin<any>) => {
 	};
 };
 
-export const dataUpdated = (data: IPluginData | any) => {
+export const dataUpdated = (data: any) => {
 	return (dispatch: Function, getState: Function) => {
 		const state = getState();
 		const plugin: IPlugin<any> = state.plugin;
@@ -47,54 +41,6 @@ export const dataUpdated = (data: IPluginData | any) => {
 
 		dispatch({
 			type: PluginActionTypes.DATA_UPDATED,
-			data,
-		});
-	};
-};
-
-export const contentUpdated = (data: IPluginContent | any) => {
-	return (dispatch: Function, getState: Function) => {
-		const state = getState();
-		const plugin: IPlugin<any> = state.plugin;
-
-		dispatch(savedStateChange(false));
-
-		dispatch(
-			historyChange({
-				...plugin,
-				data: {
-					...plugin.data,
-					content: data,
-				},
-			})
-		);
-
-		dispatch({
-			type: PluginActionTypes.CONTENT_UPDATED,
-			data,
-		});
-	};
-};
-
-export const settingsUpdated = (data: IPluginSettings | any) => {
-	return (dispatch: Function, getState: Function) => {
-		const state = getState();
-		const plugin: IPlugin<any> = state.plugin;
-
-		dispatch(savedStateChange(false));
-
-		dispatch(
-			historyChange({
-				...plugin,
-				data: {
-					...plugin.data,
-					settings: data,
-				},
-			})
-		);
-
-		dispatch({
-			type: PluginActionTypes.SETTINGS_UPDATED,
 			data,
 		});
 	};
@@ -180,84 +126,6 @@ export const privacyUpdated = (privacy: TPluginPrivacy) => {
 		dispatch({
 			type: PluginActionTypes.PRIVACY_UPDATED,
 			privacy,
-		});
-	};
-};
-
-export const stylesUpdated = (data: IPluginStyles | any) => {
-	return (dispatch: Function, getState: Function) => {
-		const state = getState();
-		const plugin: IPlugin<any> = state.plugin;
-
-		dispatch(savedStateChange(false));
-
-		dispatch(
-			historyChange({
-				...plugin,
-				data: {
-					...plugin.data,
-					styles: data,
-				},
-			})
-		);
-
-		dispatch({
-			type: PluginActionTypes.STYLES_UPDATED,
-			styles: data,
-		});
-	};
-};
-
-export const colorsUpdated = (colors: IPluginColors | any) => {
-	return (dispatch: Function, getState: Function) => {
-		const state = getState();
-		const plugin: IPlugin<any> = state.plugin;
-
-		dispatch(savedStateChange(false));
-
-		dispatch(
-			historyChange({
-				...plugin,
-				data: {
-					...plugin.data,
-					styles: {
-						...plugin.data.styles,
-						colors,
-					},
-				},
-			})
-		);
-
-		dispatch({
-			type: PluginActionTypes.COLORS_UPDATED,
-			colors,
-		});
-	};
-};
-
-export const backgroundUpdated = (background: IPluginBackground) => {
-	return (dispatch: Function, getState: Function) => {
-		const state = getState();
-		const plugin: IPlugin<any> = state.plugin;
-
-		dispatch(savedStateChange(false));
-
-		dispatch(
-			historyChange({
-				...plugin,
-				data: {
-					...plugin.data,
-					styles: {
-						...plugin.data.styles,
-						background,
-					},
-				},
-			})
-		);
-
-		dispatch({
-			type: PluginActionTypes.BACKGROUND_UPDATED,
-			background,
 		});
 	};
 };
