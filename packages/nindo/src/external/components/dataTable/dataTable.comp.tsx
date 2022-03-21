@@ -1,5 +1,8 @@
 import React, { SetStateAction, useEffect, useMemo, useState } from 'react'
 import { TableInstance, useAsyncDebounce, useGlobalFilter, usePagination, useSortBy, useTable } from 'react-table'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 import './dataTable.scss';
 
@@ -126,10 +129,11 @@ export const DataTable = (props: IDataTableProps) => {
             </table>
             <div className="table-pagination">
                 <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-                    Previous Page
+                    <FontAwesomeIcon icon={faArrowLeft} />
                 </button>
+                {pageIndex + 1}/{ Math.ceil(rows.length / pageSize)}
                 <button onClick={() => nextPage()} disabled={!canNextPage}>
-                    Next Page
+                    <FontAwesomeIcon icon={faArrowRight} />
                 </button>
                 <select
                     value={pageSize}
