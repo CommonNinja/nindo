@@ -68,8 +68,16 @@ export const DataTable = (props: IDataTableProps) => {
         setGlobalFilter
     } = tableInstance as any
 
+    function renderSortArrow(direction: 'top' | 'bottom') {
+        return (
+            <small className={`sort-arrow ${direction}`}>
+                {direction === 'bottom' ? ' ▼' : ' ▲'}
+            </small>
+        )
+    }
+
     return (
-        <>
+        <div className="data-table-wrapper">
             <Filter globalFilter={state.globalFilter} preGlobalFilteredRows={preGlobalFilteredRows} setGlobalFilter={setGlobalFilter} />
             <table className="data-table" {...getTableProps()}>
                 <thead>
@@ -78,7 +86,7 @@ export const DataTable = (props: IDataTableProps) => {
                             {headerGroup.headers.map((column: any) => (
                                 <th {...column.getHeaderProps(column.getSortByToggleProps())}>
                                     {column.render('Header')}
-                                    {column.isSorted ? (column.isSortedDesc ? ' -' : ' +') : ' '}
+                                    {column.isSorted ? (column.isSortedDesc ? renderSortArrow('bottom') : renderSortArrow('top')) : ' '}
                                 </th>
                             ))}
                         </tr>
@@ -101,7 +109,7 @@ export const DataTable = (props: IDataTableProps) => {
                     })}
                 </tbody>
             </table>
-        </>
+        </div>
     )
 }
 
@@ -121,7 +129,7 @@ const Filter = ({ preGlobalFilteredRows, globalFilter, setGlobalFilter }: IFilte
     }, 300)
 
     return (
-        <>
+        <div className="table-search">
             <label htmlFor="a">search</label>
             <input type="text" value={value || ''} onChange={(e: any) => {
                 setValue(e.target.value);
@@ -129,6 +137,6 @@ const Filter = ({ preGlobalFilteredRows, globalFilter, setGlobalFilter }: IFilte
             }}
                 placeholder={`${count} records...`}
             />
-        </>
+        </div>
     )
 }

@@ -10,8 +10,6 @@ export default {
       default: 'light',
     },
   },
-
-
 }
 
 const Template: ComponentStory<typeof Table> = (args) => (
