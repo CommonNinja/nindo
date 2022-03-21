@@ -3,7 +3,6 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { SettingsDetails, SettingsForm, SettingsSection } from '../../nindo/src/external/components/settingsSection/settingsSection.comp';
 import { FormRow } from '../../nindo/src/external/components/formRow/formRow.comp';
 import { FormLabel } from '../../nindo/src/external/components/formLabel/formLabel.comp';
-import { Input } from '../../nindo/src/external/components/input/input.comp';
 
 export default {
   title: 'Editor/Settings Section',
@@ -16,7 +15,7 @@ const Template: ComponentStory<typeof SettingsSection> = (args) => {
 
   return (
     <SettingsSection>
-      <SettingsDetails title='Log in details' description='Your customers will use this information to contact you.' />
+      <SettingsDetails title='Your title' description='Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, ipsum.' />
       <SettingsForm>
         <FormRow className="settings-from-row">
           <FormLabel>Text Field</FormLabel>
