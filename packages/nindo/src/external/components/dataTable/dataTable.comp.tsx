@@ -1,5 +1,5 @@
-import React, { useMemo } from 'react'
-import { TableInstance, useSortBy, useTable } from 'react-table'
+import React, { SetStateAction, useMemo, useState } from 'react'
+import { TableInstance, useAsyncDebounce, useGlobalFilter, useSortBy, useTable } from 'react-table'
 
 import './dataTable.scss';
 
@@ -53,7 +53,8 @@ export const DataTable = (props: IDataTableProps) => {
         {
             columns, data
         },
-        useSortBy
+        useGlobalFilter,
+        useSortBy,
     )
 
     const {
@@ -62,38 +63,72 @@ export const DataTable = (props: IDataTableProps) => {
         headerGroups,
         rows,
         prepareRow,
-    } = tableInstance
+        state,
+        preGlobalFilteredRows,
+        setGlobalFilter
+    } = tableInstance as any
 
     return (
-        <table className="data-table" {...getTableProps()}>
-            <thead>
-                {headerGroups.map(headerGroup => (
-                    <tr {...headerGroup.getHeaderGroupProps()}>
-                        {headerGroup.headers.map((column: any) => (
-                            <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                                {column.render('Header')}
-                                {column.isSorted ? (column.isSortedDesc ? ' -' : ' +') : ' '}
-                            </th>
-                        ))}
-                    </tr>
-                ))}
-            </thead>
-            <tbody {...getTableBodyProps()}>
-                {rows.map(row => {
-                    prepareRow(row)
-                    return (
-                        <tr {...row.getRowProps()}>
-                            {row.cells.map(cell => {
-                                return (
-                                    <td {...cell.getCellProps()}>
-                                        {cell.render('Cell')}
-                                    </td>
-                                )
-                            })}
+        <>
+            <Filter globalFilter={state.globalFilter} preGlobalFilteredRows={preGlobalFilteredRows} setGlobalFilter={setGlobalFilter} />
+            <table className="data-table" {...getTableProps()}>
+                <thead>
+                    {headerGroups.map((headerGroup: any) => (
+                        <tr {...headerGroup.getHeaderGroupProps()}>
+                            {headerGroup.headers.map((column: any) => (
+                                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                                    {column.render('Header')}
+                                    {column.isSorted ? (column.isSortedDesc ? ' -' : ' +') : ' '}
+                                </th>
+                            ))}
                         </tr>
-                    )
-                })}
-            </tbody>
-        </table>
+                    ))}
+                </thead>
+                <tbody {...getTableBodyProps()}>
+                    {rows.map((row: any) => {
+                        prepareRow(row)
+                        return (
+                            <tr {...row.getRowProps()}>
+                                {row.cells.map((cell: any) => {
+                                    return (
+                                        <td {...cell.getCellProps()}>
+                                            {cell.render('Cell')}
+                                        </td>
+                                    )
+                                })}
+                            </tr>
+                        )
+                    })}
+                </tbody>
+            </table>
+        </>
+    )
+}
+
+interface IFilterProps {
+    preGlobalFilteredRows: any
+    globalFilter: React.SetStateAction<any>
+    setGlobalFilter: React.Dispatch<React.SetStateAction<any>>
+}
+
+const Filter = ({ preGlobalFilteredRows, globalFilter, setGlobalFilter }: IFilterProps) => {
+
+    const count = preGlobalFilteredRows.length
+    const [value, setValue] = useState(globalFilter)
+
+    const onChange = useAsyncDebounce((value) => {
+        setGlobalFilter(value || undefined)
+    }, 300)
+
+    return (
+        <>
+            <label htmlFor="a">search</label>
+            <input type="text" value={value || ''} onChange={(e: any) => {
+                setValue(e.target.value);
+                onChange(e.target.value);
+            }}
+                placeholder={`${count} records...`}
+            />
+        </>
     )
 }
