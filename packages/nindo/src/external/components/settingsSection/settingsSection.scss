@@ -1,0 +1,95 @@
+.settings-section {
+	width: 100%;
+	color: rgb(69, 69, 69);
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+	margin-bottom: 30px;
+
+	.bottom-line {
+		width: 100%;
+		border: 0.5px solid rgba(0, 0, 0, 0.057);
+	}
+
+	.settings-row {
+		display: flex;
+		justify-content: space-between;
+		gap: 25px;
+
+		@media screen and (max-width: 1000px) {
+			flex-direction: column;
+			align-items: center;
+		}
+
+		.settings-details {
+			@media screen and (max-width: 1000px) {
+				align-self: flex-start;
+			}
+
+			.title {
+				font-size: 18px;
+				margin: 0 0 10px;
+			}
+			.text {
+				margin: 0;
+				font-size: 14px;
+				color: rgb(143, 143, 143);
+				font-weight: 400;
+			}
+		}
+
+		.settings-form {
+			box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+			border-radius: 6px;
+			transition: 0.2s;
+			line-height: normal;
+			background-color: #fff;
+			padding: 30px;
+			width: 60%;
+
+			@media screen and (max-width: 1000px) {
+				width: 100%;
+			}
+
+			@media screen and (max-width: 400px) {
+				padding: 15px;
+			}
+
+			.form-row.settings-from-row {
+				@media screen and (max-width: 600px) {
+					display: unset;
+					label {
+						margin-bottom: 10px;
+					}
+				}
+
+				input[type='text'],
+				select,
+				textarea,
+				input[type='url'],
+				input[type='number'],
+				input[type='date'],
+				input[type='email'],
+				input[type='password'] {
+
+					@media screen and (max-width: 600px) {
+						margin-bottom: 20px;
+					}
+					
+					border: 1px solid rgba(0, 0, 0, 0.201);
+					color: rgba(0, 0, 0, 0.687);
+					&::placeholder {
+						color: rgba(0, 0, 0, 0.269);
+					}
+
+					&:focus {
+						background-color: unset;
+						outline: none;
+						border: 1px solid rgba(0, 0, 0, 0.413);
+						color: unset;
+					}
+				}
+			}
+		}
+	}
+}
