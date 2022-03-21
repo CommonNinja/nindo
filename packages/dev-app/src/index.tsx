@@ -13,6 +13,7 @@ import { Plugin } from './components/plugin/plugin.comp';
 import { defaultPluginData } from './components/plugin/plugin.default';
 import { IPluginData } from './components/plugin/plugin.types';
 // import { ContentSettingsComp } from './components/editor/contentSettings/contentSettings.comp';
+// import icon from './icon.svg';
 
 // Initialize Nindo app
 nindoApp<IPluginData, {}>({
@@ -44,6 +45,10 @@ nindoApp<IPluginData, {}>({
 
 // nindoBackofficeApp<IPluginData, {}>({
 // 	defaultData: getDefaultPlugin<IPluginData>(defaultPluginData()),
+// 	meta: {
+// 		name: 'Backoffice App',
+// 		// icon,
+// 	},
 // 	pages: [
 // 		{
 // 			id: 'dashboard',

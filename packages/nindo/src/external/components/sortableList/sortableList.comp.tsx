@@ -39,7 +39,7 @@ export const SortableList = SortableContainer(
 	}) => {
 		return (
 			<ul>
-				{items.map((data, index) => (
+				{items?.map((data, index) => (
 					<SortableItem
 						key={`item-${data.id}`}
 						index={index}

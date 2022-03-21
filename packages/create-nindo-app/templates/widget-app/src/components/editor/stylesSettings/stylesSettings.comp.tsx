@@ -55,8 +55,8 @@ export const StylesSettingsComp = () => {
 						onChange={(propName, value) => stylePropChanged(propName, value)}
 						items={[
 							{
-								value: styles.background,
-								propName: 'background',
+								value: styles.mainWrapper,
+								propName: 'mainWrapper',
 								label: 'Main Wrapper',
 							},
 							{

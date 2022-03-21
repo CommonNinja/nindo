@@ -40,7 +40,7 @@ export const SkinPicker = <T,>({
 
 	return (
 		<div className="skins">
-			{skins.map((skin: ISkin<T>, idx) => (
+			{skins?.map((skin: ISkin<T>, idx) => (
 				<div
 					className={`skin ${idx === selectedSkin ? 'selected' : ''}`}
 					key={`skin_${uniqueKey}_${idx}`}

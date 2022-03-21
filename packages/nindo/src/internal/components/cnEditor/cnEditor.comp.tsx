@@ -41,13 +41,14 @@ import { TemplatesPopup } from '../templatesPopup/templatesPopup.comp';
 import { premiumHelper } from '../../../external/helpers';
 import { contextUpdated } from '../../actions/context.actions';
 import { ICNEditor } from './cnEditor.types';
+import { useAppConfig } from '../../../external/hooks/appConfig.hook';
+import { IAppConfig } from '../../../external/types/app.types';
 
 import './cnEditor.scss';
 
 const env = process.env.NODE_ENV === 'production' ? 'prod' : 'dev';
 const pluginPath =
 	process.env.REACT_APP_NINJA_PLUGIN_PATH || 'YOUR_PLUGIN_PATH';
-const pluginTitle = process.env.REACT_APP_NINJA_PLUGIN_TITLE || 'App Name';
 
 export const CNEditor = ({
 	menuLinks,
@@ -69,6 +70,7 @@ export const CNEditor = ({
 	const query = useQuery();
 	const dispatch = useDispatch();
 	const match = useRouteMatch();
+	const config = useAppConfig<IAppConfig<any>>();
 	const { pluginId, page } = match.params as any;
 	const { isSaved, plugin, user } = useSelector((state: IAppState<any>) => ({
 		isSaved: state.editor.isSaved,
@@ -392,7 +394,8 @@ export const CNEditor = ({
 	return (
 		<div className="cn-editor">
 			<AppHeader
-				componentName={pluginTitle}
+				componentName={config.meta?.name || 'My App'}
+				logoImageUrl={config.meta?.icon}
 				anonymousUser={!!vendor}
 				logoUrl={!vendor ? '' : window?.location?.href}
 				userProps={

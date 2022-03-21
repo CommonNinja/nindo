@@ -1,11 +1,7 @@
 import { HttpService } from '../../external/services/http.service';
 import { IHttpResult } from '../../external/types/http.types';
 import { IPlugin } from '../../external/types/plugin.types';
-import {
-	ServiceName,
-	TComponentType,
-} from '../../external/types/component.types';
-import { TPlatform } from '../..';
+import { TPlatform } from '../../external/types/editor.types';
 
 const apiBaseUrl: string = process.env.REACT_APP_PLUGIN_API_URL || '';
 const cdnBaseUrl: string = process.env.REACT_APP_CDN_URL || '';
@@ -24,10 +20,9 @@ function addMetaTag(property: string, content: string) {
 }
 
 class PluginService extends HttpService {
-	public serviceName: ServiceName | '' =
-		(process.env.REACT_APP_NINJA_SERVICE_NAME as ServiceName) || '';
-	public pluginType: TComponentType = (process.env
-		.REACT_APP_NINJA_PLUGIN_TYPE || '') as TComponentType;
+	public serviceName: string | '' =
+		process.env.REACT_APP_NINJA_SERVICE_NAME || '';
+	public pluginType: string = process.env.REACT_APP_NINJA_PLUGIN_TYPE || '';
 
 	public setMetaTags(res: IHttpResult): IHttpResult {
 		try {
@@ -75,7 +70,9 @@ class PluginService extends HttpService {
 	public async get(pluginId: string = '') {
 		const url = `${
 			cdnBaseUrl || apiBaseUrl
-		}/api/v1/plugin/viewer/${pluginId}?serviceName=${this.serviceName}&nindo=true`;
+		}/api/v1/plugin/viewer/${pluginId}?serviceName=${
+			this.serviceName
+		}&nindo=true`;
 		return await this.makeRequest(url).then(this.setMetaTags);
 	}
 

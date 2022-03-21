@@ -12,10 +12,6 @@ interface IBackofficeAppProps<T> {
 export const BackofficeApp = ({ appConfig }: IBackofficeAppProps<any>) => {
 	// If there's an init function, call it
 	appConfig.onInit?.();
-	
-	return (
-		<CNBackofficeApp
-			{...appConfig}
-		/>
-	);
+
+	return <CNBackofficeApp />;
 };

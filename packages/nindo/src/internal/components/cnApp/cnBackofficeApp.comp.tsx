@@ -9,6 +9,7 @@ import {
 import { AppNotifications } from '../appNotifications/appNotifications.comp';
 import { IBackofficeAppConfig } from '../../../external/types/backofficeApp.types';
 import { CNBackofficeEditor } from '../../components/cnEditor/backofficeEditor.comp';
+import { useAppConfig } from '../../../external/hooks/appConfig.hook';
 
 import './cnApp.scss';
 
@@ -23,7 +24,9 @@ const basename = '';
 const pluginPath = REACT_APP_NINJA_PLUGIN_PATH || 'YOUR_PLUGIN_PATH';
 const env = NODE_ENV === 'production' ? 'prod' : 'dev';
 
-export const CNBackofficeApp = (config: IBackofficeAppConfig) => {
+export const CNBackofficeApp = () => {
+	const config = useAppConfig<IBackofficeAppConfig>();
+	
 	if (
 		!REACT_APP_NINJA_SERVICE_NAME ||
 		!REACT_APP_NINJA_PLUGIN_TYPE ||

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, ComponentType, ReactElement } from 'react';
-import { NavLink, useRouteMatch } from 'react-router-dom';
+import { NavLink, useHistory, useRouteMatch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 // import { IHttpResult } from '../../../external/types/http.types';
@@ -22,16 +22,16 @@ import { useQuery } from '../../../external/hooks/query.hook';
 import { VendorUpgradePopup } from '../vendorUpgradePopup/vendorUpgradePopup.comp';
 import { premiumHelper } from '../../../external/helpers';
 import { contextUpdated } from '../../actions/context.actions';
-import { IAppMainPage } from '../../../external/types/backofficeApp.types';
+import { IAppMainPage, IBackofficeAppConfig } from '../../../external/types/backofficeApp.types';
 import { ICNBackofficeEditor } from './backofficeEditor.types';
 import { historyChange } from '../../actions/history.actions';
+import { useAppConfig } from '../../../external/hooks/appConfig.hook';
 
 import './cnEditor.scss';
 
 const env = process.env.NODE_ENV === 'production' ? 'prod' : 'dev';
 const pluginPath =
 	process.env.REACT_APP_NINJA_PLUGIN_PATH || 'YOUR_PLUGIN_PATH';
-const pluginTitle = process.env.REACT_APP_NINJA_PLUGIN_TITLE || 'App Name';
 
 export const CNBackofficeEditor = ({
 	pages,
@@ -40,7 +40,9 @@ export const CNBackofficeEditor = ({
 	postGetDataProcess = (data: IPlugin<any>) => data,
 }: ICNBackofficeEditor<any>) => {
 	const query = useQuery();
+	const config = useAppConfig<IBackofficeAppConfig>();
 	const dispatch = useDispatch();
+	const history = useHistory();
 	const { params } = useRouteMatch();
 	const instanceId = query.get('instanceId') || '';
 	const { page, nestedPage, vendor } = params as any;
@@ -175,6 +177,10 @@ export const CNBackofficeEditor = ({
 
 	useEffect(() => {
 		const nextActivePage = pages.find((p) => p.id === page);
+		if (!nextActivePage) {
+			history.push(`/${pathPrefix}/${pages[0].id}?${query.toString()}`);
+			return;
+		}
 		setActivePage(nextActivePage);
 	}, [page]);
 
@@ -263,7 +269,7 @@ export const CNBackofficeEditor = ({
 				{activePage?.nestedRoutes?.map((route) => (
 					<NavLink
 						key={`submenu-${activePage.id}-${route.id}`}
-						to={`/${pathPrefix}/${activePage.id}/${route.id}`}
+						to={`/${pathPrefix}/${activePage.id}/${route.id}?${query.toString()}`}
 						activeClassName="active"
 						exact
 					>{route.name || route.id}</NavLink>
@@ -309,7 +315,8 @@ export const CNBackofficeEditor = ({
 	return (
 		<div className="cn-editor backoffice">
 			<AppHeader
-				componentName={pluginTitle}
+				componentName={config.meta?.name || 'My App'}
+				logoImageUrl={config.meta?.icon}
 				anonymousUser={!!vendor}
 				logoUrl={!vendor ? '' : window?.location?.href}
 				userProps={

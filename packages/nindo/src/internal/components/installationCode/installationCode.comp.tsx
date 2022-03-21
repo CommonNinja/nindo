@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { TComponentType } from '../../../external/types/component.types';
-
 import { FormRow } from '../../../external/components/formRow/formRow.comp';
 import { CopyInput } from '../../../external/components/copyInput/copyInput.comp';
 import { TPlatform } from '../../../external/types/editor.types';
@@ -10,7 +8,7 @@ import './installationCode.scss';
 
 type InstallationCodeProps = {
 	componentId: string | null;
-	componentType: TComponentType;
+	componentType: string;
 	buttonClassName?: string;
 	className?: string;
 	platform?: TPlatform;
