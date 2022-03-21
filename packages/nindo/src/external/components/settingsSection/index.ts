@@ -1,1 +1,5 @@
-export { SettingsSection } from './settingsSection.comp';
+export {
+	SettingsSection,
+	SettingsDetails,
+	SettingsForm,
+} from './settingsSection.comp';

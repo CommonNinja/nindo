@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { SettingsSection } from '../../nindo/src/external/components/settingsSection/settingsSection.comp';
+import { SettingsDetails, SettingsForm, SettingsSection } from '../../nindo/src/external/components/settingsSection/settingsSection.comp';
 import { FormRow } from '../../nindo/src/external/components/formRow/formRow.comp';
 import { FormLabel } from '../../nindo/src/external/components/formLabel/formLabel.comp';
 import { Input } from '../../nindo/src/external/components/input/input.comp';
@@ -11,31 +11,25 @@ export default {
 
 } as ComponentMeta<typeof SettingsSection>;
 
-const Template: ComponentStory<typeof SettingsSection> = (args) => (
-  <SettingsSection {...args}> </SettingsSection>
-);
+const Template: ComponentStory<typeof SettingsSection> = (args) => {
+  const [inputText, setInputText] = useState('')
 
-export const settingsSection = Template.bind({});
-
-settingsSection.args = {
-  data: [{
-    title: 'Log in dertails', description: 'Log in dertails', form: () => (
-      <div>
-        <FormRow>
-          <FormLabel>Input</FormLabel>
-          <Input />
+  return (
+    <SettingsSection>
+      <SettingsDetails title='Log in details' description='Your customers will use this information to contact you.' />
+      <SettingsForm>
+        <FormRow className="settings-from-row">
+          <FormLabel>Text Field</FormLabel>
+          <input
+            type="text"
+            placeholder="Enter text"
+            value={inputText}
+            onChange={(e: any) => setInputText(e.target.value)}
+          />
         </FormRow>
-      </div>)
-  },
-  {
-    title: 'Log in dertails', description: 'Log in dertails', form: () => (
-      <div>
-        <FormRow>
-          <FormLabel>Input</FormLabel>
-          <Input />
-        </FormRow>
-      </div>)
-  }
-]
+      </SettingsForm>
+    </SettingsSection>
+  )
 };
 
+export const settingsSection = Template.bind({});
