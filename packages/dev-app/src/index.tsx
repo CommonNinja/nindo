@@ -18,7 +18,7 @@ import { IPluginData } from './components/plugin/plugin.types';
 // Initialize Nindo app
 nindoApp<IPluginData, {}>({
 	editor: {
-		config: getEditorConfig(), 
+		config: getEditorConfig(),
 	},
 	plugin: {
 		defaultData: getDefaultPlugin(defaultPluginData(), 'My App'),
