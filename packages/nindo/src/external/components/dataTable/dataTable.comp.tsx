@@ -1,5 +1,5 @@
-import React, { SetStateAction, useMemo, useState } from 'react'
-import { TableInstance, useAsyncDebounce, useGlobalFilter, useSortBy, useTable } from 'react-table'
+import React, { SetStateAction, useEffect, useMemo, useState } from 'react'
+import { TableInstance, useAsyncDebounce, useGlobalFilter, usePagination, useSortBy, useTable } from 'react-table'
 
 import './dataTable.scss';
 
@@ -49,12 +49,13 @@ export const DataTable = (props: IDataTableProps) => {
         []
     )
 
-    const tableInstance = useTable(
+    const tableInstance = useTable<any>(
         {
             columns, data
         },
         useGlobalFilter,
         useSortBy,
+        usePagination,
     )
 
     const {
@@ -63,9 +64,18 @@ export const DataTable = (props: IDataTableProps) => {
         headerGroups,
         rows,
         prepareRow,
-        state,
         preGlobalFilteredRows,
-        setGlobalFilter
+        setGlobalFilter,
+        pageOptions,
+        page,
+        state,
+        gotoPage,
+        previousPage,
+        nextPage,
+        setPageSize,
+        canPreviousPage,
+        canNextPage,
+        state: { pageIndex, pageSize },
     } = tableInstance as any
 
     function renderSortArrow(direction: 'top' | 'bottom') {
@@ -76,8 +86,13 @@ export const DataTable = (props: IDataTableProps) => {
         )
     }
 
+    useEffect(() => {
+        setPageSize(1)
+    }, [])
+
     return (
         <div className="data-table-wrapper">
+
             <Filter globalFilter={state.globalFilter} preGlobalFilteredRows={preGlobalFilteredRows} setGlobalFilter={setGlobalFilter} />
             <table className="data-table" {...getTableProps()}>
                 <thead>
@@ -93,7 +108,7 @@ export const DataTable = (props: IDataTableProps) => {
                     ))}
                 </thead>
                 <tbody {...getTableBodyProps()}>
-                    {rows.map((row: any) => {
+                    {page.map((row: any) => {
                         prepareRow(row)
                         return (
                             <tr {...row.getRowProps()}>
@@ -109,7 +124,27 @@ export const DataTable = (props: IDataTableProps) => {
                     })}
                 </tbody>
             </table>
-        </div>
+            <div className="table-pagination">
+                <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+                    Previous Page
+                </button>
+                <button onClick={() => nextPage()} disabled={!canNextPage}>
+                    Next Page
+                </button>
+                <select
+                    value={pageSize}
+                    onChange={e => {
+                        setPageSize(Number(e.target.value))
+                    }}
+                >
+                    {[1, 2, 30, 40, 50].map(pageSize => (
+                        <option key={pageSize} value={pageSize} >
+                            Show {pageSize}
+                        </option>
+                    ))}
+                </select>
+            </div>
+        </div >
     )
 }
 
@@ -130,7 +165,7 @@ const Filter = ({ preGlobalFilteredRows, globalFilter, setGlobalFilter }: IFilte
 
     return (
         <div className="table-search">
-            <label htmlFor="a">search</label>
+            <label htmlFor="a">search:</label>
             <input type="text" value={value || ''} onChange={(e: any) => {
                 setValue(e.target.value);
                 onChange(e.target.value);

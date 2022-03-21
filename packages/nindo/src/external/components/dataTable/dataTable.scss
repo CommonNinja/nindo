@@ -6,14 +6,19 @@
 	.table-search {
 		margin-bottom: 20px;
 		display: flex;
-		gap: 10px;
+		gap: 20px;
 		color: black;
 		align-items: center;
 		color: rgb(89, 89, 89);
 
+		@media screen and (max-width: 550px) {
+			flex-direction: column;
+            align-items: flex-start;
+		}
+
 		input {
 			width: 300px;
-			border: 1px solid rgba(0, 0, 0, 0.221);
+			border: 1px solid rgba(0, 0, 0, 0.18);
 			outline: unset;
 			font-size: 16px;
 			padding: 7px 15px;
@@ -37,4 +42,8 @@
 	&.top {
 		font-size: 11px;
 	}
+}
+
+.table-pagination{
+    margin-top: 20px;
 }
