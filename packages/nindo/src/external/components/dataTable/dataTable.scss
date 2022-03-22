@@ -45,11 +45,12 @@
 }
 
 .table-pagination {
-	margin-top: 20px;
-    color: rgba(0, 0, 0, 0.623);
+	margin: 20px 0;
+	color: rgba(0, 0, 0, 0.623);
+    
 	button {
 		border: none;
 		background-color: transparent;
-        cursor: pointer;
+		cursor: pointer;
 	}
 }

@@ -8,47 +8,35 @@ import './dataTable.scss';
 
 interface IDataTableProps {
     className?: string
+    pageSize?: number
+    disableSearch?: boolean
+    headers: string[]
+    rows: Array<Array<any>>
 }
 
 export const DataTable = (props: IDataTableProps) => {
-    const { className } = props
+    const { className, rows: tableRows, headers, disableSearch = false } = props
+
+    const tableHeadersObj = headers.map((header: string) => ({
+        Header: header,
+        accessor: header,
+    }))
+
+    const tableRowsObj = tableRows.map((row, idx) => {
+        let dataObj: any = {}
+        headers.forEach((header, innerIdx) => {
+            dataObj[header] = row[innerIdx]
+        })
+        return dataObj
+    })
 
     const columns: any = useMemo(
-        () => [
-            {
-                Header: 'Column 1',
-                accessor: 'col1', // accessor is the "key" in the data
-            },
-            {
-                Header: 'Column 2',
-                accessor: 'col2',
-            },
-            {
-                Header: 'Column 2',
-                accessor: 'col3',
-            },
-        ],
+        () => tableHeadersObj,
         []
     )
 
     const data: any = useMemo(
-        () => [
-            {
-                col1: 'Hello',
-                col2: 'World',
-                col3: 1
-            },
-            {
-                col1: 'react-table',
-                col2: 'rocks',
-                col3: 3
-            },
-            {
-                col1: 'whatever',
-                col2: 'you want',
-                col3: 2
-            },
-        ],
+        () => tableRowsObj,
         []
     )
 
@@ -58,7 +46,7 @@ export const DataTable = (props: IDataTableProps) => {
         },
         useGlobalFilter,
         useSortBy,
-        usePagination,
+        usePagination
     )
 
     const {
@@ -69,10 +57,8 @@ export const DataTable = (props: IDataTableProps) => {
         prepareRow,
         preGlobalFilteredRows,
         setGlobalFilter,
-        pageOptions,
         page,
         state,
-        gotoPage,
         previousPage,
         nextPage,
         setPageSize,
@@ -90,13 +76,16 @@ export const DataTable = (props: IDataTableProps) => {
     }
 
     useEffect(() => {
-        setPageSize(1)
+        console.log(pageSize);
+        
+        setPageSize(pageSize || 20)
     }, [])
 
     return (
-        <div className="data-table-wrapper">
-
-            <Filter globalFilter={state.globalFilter} preGlobalFilteredRows={preGlobalFilteredRows} setGlobalFilter={setGlobalFilter} />
+        <div className={`data-table-wrapper ${className || ''}`}>
+            {!disableSearch &&
+                <Filter globalFilter={state.globalFilter} preGlobalFilteredRows={preGlobalFilteredRows} setGlobalFilter={setGlobalFilter} />
+            }
             <table className="data-table" {...getTableProps()}>
                 <thead>
                     {headerGroups.map((headerGroup: any) => (
@@ -131,22 +120,10 @@ export const DataTable = (props: IDataTableProps) => {
                 <button onClick={() => previousPage()} disabled={!canPreviousPage}>
                     <FontAwesomeIcon icon={faArrowLeft} />
                 </button>
-                {pageIndex + 1}/{ Math.ceil(rows.length / pageSize)}
+                {pageIndex + 1}/{Math.ceil(rows.length / pageSize)}
                 <button onClick={() => nextPage()} disabled={!canNextPage}>
                     <FontAwesomeIcon icon={faArrowRight} />
                 </button>
-                <select
-                    value={pageSize}
-                    onChange={e => {
-                        setPageSize(Number(e.target.value))
-                    }}
-                >
-                    {[1, 2, 30, 40, 50].map(pageSize => (
-                        <option key={pageSize} value={pageSize} >
-                            Show {pageSize}
-                        </option>
-                    ))}
-                </select>
             </div>
         </div >
     )
@@ -159,7 +136,6 @@ interface IFilterProps {
 }
 
 const Filter = ({ preGlobalFilteredRows, globalFilter, setGlobalFilter }: IFilterProps) => {
-
     const count = preGlobalFilteredRows.length
     const [value, setValue] = useState(globalFilter)
 
