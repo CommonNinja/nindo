@@ -10,7 +10,7 @@ const { lightCyan, red } = require('kolorist');
 
 const cwd = process.cwd();
 
-const TEMPLATES = ['widget' /*, 'backoffice' */]; // We'll support backoffice apps in the future
+const TEMPLATES = ['widget', 'backoffice'];
 
 const renameFiles = {
 	_gitignore: '.gitignore',
@@ -246,10 +246,6 @@ REACT_APP_NINJA_SERVICE_NAME=       service-name
 REACT_APP_NINJA_PLUGIN_TYPE=        ${packageName.replace(/-/g, '_')}
 # Plugin path (comparison-tables, bracket, etc.) - Should be one / two words, kebab-case
 REACT_APP_NINJA_PLUGIN_PATH=        ${packageName}
-# Plugin title (will appear at the top of the editor)
-REACT_APP_NINJA_PLUGIN_TITLE=       ${capitalize(
-			packageName.replace(/-/g, ' ')
-		)}
   `
 	);
 

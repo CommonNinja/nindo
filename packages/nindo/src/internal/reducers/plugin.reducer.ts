@@ -17,40 +17,6 @@ export const pluginReducer =
 						...action.data,
 					},
 				});
-			case PluginActionTypes.SETTINGS_UPDATED:
-				return Object.assign({}, state, {
-					data: {
-						...state.data,
-						settings: {
-							...state.data.settings,
-							...action.data,
-						},
-					},
-				});
-			case PluginActionTypes.STYLES_UPDATED:
-				return Object.assign({}, state, {
-					data: {
-						...state.data,
-						styles: {
-							...state.data.styles,
-							...action.styles,
-						},
-					},
-				});
-			case PluginActionTypes.CONTENT_UPDATED:
-				return Object.assign({}, state, {
-					data: {
-						...state.data,
-						// In case content is array type,
-						// don't extend (so you won't accedently append data instead of rewriting it.
-						content: Array.isArray(state.data.content)
-							? action.content
-							: {
-									...state.data.content,
-									...action.data,
-							  },
-					},
-				});
 			case PluginActionTypes.PRIVACY_UPDATED:
 				return Object.assign({}, state, {
 					privacy: action.privacy,

@@ -9,8 +9,6 @@ REACT_APP_NINJA_SERVICE_NAME=       somethingninja
 REACT_APP_NINJA_PLUGIN_TYPE=        plugin_type
 # Plugin path (comparison-tables, bracket, etc.) - Should be one / two words, kebab-case
 REACT_APP_NINJA_PLUGIN_PATH=        plugin-name
-# Plugin title (will appear at the top of the editor)
-REACT_APP_NINJA_PLUGIN_TITLE=       App Name
 ```
 
 #### API variables

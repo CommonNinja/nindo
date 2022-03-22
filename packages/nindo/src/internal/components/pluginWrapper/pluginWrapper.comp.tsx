@@ -20,7 +20,7 @@ export const PluginWrapper = ({
 	const pluginData = useSelector((state: IAppState<any>) => state.plugin);
 	const { styles } = pluginData.data;
 	const activeFont: FontT = fontHelper.getFontDetails(styles.fontId);
-	const pluginStyles: CSSProperties = { ...(styles.background || {}) };
+	const pluginStyles: CSSProperties = { ...(styles.background || styles.mainWrapper || {}) }; // Legacy props
 
 	if (activeFont && activeFont.id !== 'default') {
 		pluginStyles.fontFamily = activeFont.family;

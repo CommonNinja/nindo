@@ -89,7 +89,6 @@ export const VendorUpgrade = ({
 			onPlanDataLoad={(nextPlanData) => setPlanData(nextPlanData)}
 			onPlanSelect={onPlanSelect}
 			vendor={vendor as TPlatform}
-			showEnterpriseBox={false}
 			showCycleSelector={false}
 		/>
 	);

@@ -3,7 +3,6 @@ export * from './appMenu.types';
 export * from './appNotification.types';
 export * from './asset.types';
 export * from './color.types';
-export * from './component.types';
 export * from './context.types';
 export * from './editor.types';
 export * from './http.types';

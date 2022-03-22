@@ -1,13 +1,10 @@
-import { TComponentType } from '../types/component.types';
-
 export class HttpService {
 	public queryParams: string =
 		typeof window !== 'undefined'
 			? (window?.location?.search || '').split('?')[1] || ''
 			: '';
 	public serviceName: string = process.env.REACT_APP_NINJA_SERVICE_NAME || '';
-	public pluginType: TComponentType = (process.env
-		.REACT_APP_NINJA_PLUGIN_TYPE || '') as TComponentType;
+	public pluginType: string = process.env.REACT_APP_NINJA_PLUGIN_TYPE || '';
 
 	async makeRequest(url: string, params: any = {}, isJson: boolean = true) {
 		const req: Response = await fetch(
