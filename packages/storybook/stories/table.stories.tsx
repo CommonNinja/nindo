@@ -1,6 +1,5 @@
-import { ComponentStory } from '@storybook/react';
 import React from 'react';
-
+import { ComponentStory } from '@storybook/react';
 import { Table } from '../../nindo/src/external/components/table';
 
 export default {
@@ -11,8 +10,6 @@ export default {
       default: 'light',
     },
   },
-
-
 }
 
 const Template: ComponentStory<typeof Table> = (args) => (

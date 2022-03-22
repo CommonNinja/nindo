@@ -44,3 +44,4 @@ export * from './toolbar';
 export * from './tooltip';
 export * from './settingsSection';
 export * from './card';
+export * from './dataTable';
