@@ -1,5 +1,6 @@
-import React, { SetStateAction, useEffect, useMemo, useState } from 'react'
-import { TableInstance, useAsyncDebounce, useGlobalFilter, usePagination, useSortBy, useTable } from 'react-table'
+import React, { useEffect, useMemo } from 'react'
+import { Filter } from './filter.comp';
+import { useGlobalFilter, usePagination, useSortBy, useTable } from 'react-table'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
@@ -77,9 +78,6 @@ export const DataTable = (props: IDataTableProps) => {
     }
 
     useEffect(() => {
-        if (disablePagination) {
-            setPageSize(1000000000)
-        }
         setPageSize(pageSize)
     }, [disablePagination])
 
@@ -150,29 +148,3 @@ export const DataTable = (props: IDataTableProps) => {
     )
 }
 
-interface IFilterProps {
-    preGlobalFilteredRows: any
-    globalFilter: React.SetStateAction<any>
-    setGlobalFilter: React.Dispatch<React.SetStateAction<any>>
-}
-
-const Filter = ({ preGlobalFilteredRows, globalFilter, setGlobalFilter }: IFilterProps) => {
-    const count = preGlobalFilteredRows.length
-    const [value, setValue] = useState(globalFilter)
-
-    const onChange = useAsyncDebounce((value) => {
-        setGlobalFilter(value || undefined)
-    }, 300)
-
-    return (
-        <div className="table-search">
-            <label htmlFor="a">search:</label>
-            <input type="text" value={value || ''} onChange={(e: any) => {
-                setValue(e.target.value);
-                onChange(e.target.value);
-            }}
-                placeholder={`${count} records...`}
-            />
-        </div>
-    )
-}

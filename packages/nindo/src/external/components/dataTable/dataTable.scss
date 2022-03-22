@@ -34,23 +34,23 @@
 			}
 		}
 	}
-}
-
-.sort-arrow {
-	font-size: 10px;
-
-	&.top {
-		font-size: 11px;
-	}
-}
-
-.table-pagination {
-	margin: 20px 0;
-	color: rgba(0, 0, 0, 0.623);
     
-	button {
-		border: none;
-		background-color: transparent;
-		cursor: pointer;
+	.sort-arrow {
+		font-size: 10px;
+
+		&.top {
+			font-size: 11px;
+		}
+	}
+
+	.table-pagination {
+		margin: 20px 0;
+		color: rgba(0, 0, 0, 0.623);
+
+		button {
+			border: none;
+			background-color: transparent;
+			cursor: pointer;
+		}
 	}
 }
