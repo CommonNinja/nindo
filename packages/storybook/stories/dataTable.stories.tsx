@@ -21,5 +21,5 @@ export const dataTable = Template.bind({});
 dataTable.args = {
   headers: ['Hey', 'Beautiful', 'Data Table'],
   rows: [['I', 'Hello', 400], ['AM', 'There', 200], ['BATMAN', ':)', 1000], ['cell', 'cell', 100], ['cell', 'cell', 50], ['cell', 'cell', 1400], ['cell', 'cell', 900], ['cell', 'cell', 500], ['cell', 'cell', 50], ['cell', 'cell', 10], ['cell', 'cell', 2000], ['cell', 'cell', 1800]],
-  pageSize: 4
+  pageSize: 3
 };
