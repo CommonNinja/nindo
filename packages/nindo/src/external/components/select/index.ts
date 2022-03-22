@@ -1,1 +1,1 @@
-export { NinjaSelect } from './select.comp';
+export { NinjaSelect, NinjaAsyncSelect } from './select.comp';
