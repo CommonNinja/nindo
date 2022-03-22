@@ -10,12 +10,13 @@ interface IDataTableProps {
     className?: string
     pageSize?: number
     disableSearch?: boolean
+    disablePagination?: boolean
     headers: string[]
     rows: Array<Array<any>>
 }
 
 export const DataTable = (props: IDataTableProps) => {
-    const { className, rows: tableRows, headers, disableSearch = false } = props
+    const { className, rows: tableRows, headers, disableSearch = false, pageSize = 20, disablePagination = false } = props
 
     const tableHeadersObj = headers.map((header: string) => ({
         Header: header,
@@ -64,7 +65,7 @@ export const DataTable = (props: IDataTableProps) => {
         setPageSize,
         canPreviousPage,
         canNextPage,
-        state: { pageIndex, pageSize },
+        state: { pageIndex },
     } = tableInstance as any
 
     function renderSortArrow(direction: 'top' | 'bottom') {
@@ -76,10 +77,11 @@ export const DataTable = (props: IDataTableProps) => {
     }
 
     useEffect(() => {
-        console.log(pageSize);
-        
-        setPageSize(pageSize || 20)
-    }, [])
+        if (disablePagination) {
+            setPageSize(1000000000)
+        }
+        setPageSize(pageSize)
+    }, [disablePagination])
 
     return (
         <div className={`data-table-wrapper ${className || ''}`}>
@@ -100,7 +102,7 @@ export const DataTable = (props: IDataTableProps) => {
                     ))}
                 </thead>
                 <tbody {...getTableBodyProps()}>
-                    {page.map((row: any) => {
+                    {!disablePagination && page.map((row: any) => {
                         prepareRow(row)
                         return (
                             <tr {...row.getRowProps()}>
@@ -114,17 +116,36 @@ export const DataTable = (props: IDataTableProps) => {
                             </tr>
                         )
                     })}
+
+                    {disablePagination && rows.map((row: any) => {
+                        prepareRow(row)
+                        return (
+                            <tr {...row.getRowProps()}>
+                                {row.cells.map((cell: any) => {
+
+                                    return (
+                                        <td {...cell.getCellProps()}>
+                                            {cell.render('Cell')}
+                                        </td>
+                                    )
+                                })}
+                            </tr>
+                        )
+                    })}
+
                 </tbody>
             </table>
-            <div className="table-pagination">
-                <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-                    <FontAwesomeIcon icon={faArrowLeft} />
-                </button>
-                {pageIndex + 1}/{Math.ceil(rows.length / pageSize)}
-                <button onClick={() => nextPage()} disabled={!canNextPage}>
-                    <FontAwesomeIcon icon={faArrowRight} />
-                </button>
-            </div>
+            {!disablePagination &&
+                <div className="table-pagination">
+                    <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+                        <FontAwesomeIcon icon={faArrowLeft} />
+                    </button>
+                    {pageIndex + 1}/{Math.ceil(rows.length / pageSize)}
+                    <button onClick={() => nextPage()} disabled={!canNextPage}>
+                        <FontAwesomeIcon icon={faArrowRight} />
+                    </button>
+                </div>
+            }
         </div >
     )
 }
