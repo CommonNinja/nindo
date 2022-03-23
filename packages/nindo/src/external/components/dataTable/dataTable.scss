@@ -34,7 +34,7 @@
 			}
 		}
 	}
-    
+
 	.sort-arrow {
 		font-size: 10px;
 
@@ -46,6 +46,10 @@
 	.table-pagination {
 		margin: 20px 0;
 		color: rgba(0, 0, 0, 0.623);
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
 
 		button {
 			border: none;

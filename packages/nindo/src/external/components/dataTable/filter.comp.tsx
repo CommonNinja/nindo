@@ -17,12 +17,11 @@ export const Filter = ({ preGlobalFilteredRows, globalFilter, setGlobalFilter }:
 
     return (
         <div className="table-search">
-            <label htmlFor="a">search:</label>
             <input type="text" value={value || ''} onChange={(e: any) => {
                 setValue(e.target.value);
                 onChange(e.target.value);
             }}
-                placeholder={`${count} records...`}
+                placeholder='Search...'
             />
         </div>
     )
