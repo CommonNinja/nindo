@@ -8,6 +8,10 @@ import { IPluginData } from './components/plugin/plugin.types';
 
 // Initialize Nindo app
 nindoApp<IPluginData, {}>({
+	meta: {
+		name: 'My App',
+		icon: 'https://website-assets.commoninja.com/general/default-icon.png',
+	},
 	editor: {
 		config: getEditorConfig(),
 	},

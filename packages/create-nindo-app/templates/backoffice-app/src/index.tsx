@@ -10,6 +10,7 @@ nindoBackofficeApp<IPluginData, {}>({
 	defaultData: getDefaultPlugin<IPluginData>(defaultPluginData()),
 	meta: {
 		name: 'My App',
+		icon: 'https://website-assets.commoninja.com/general/default-icon.png',
 	},
 	pages: [
 		{
