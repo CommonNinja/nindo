@@ -41,7 +41,6 @@ export const DataTable = (props: IDataTableProps) => {
         () => tableRowsObj,
         []
     )
-
     const tableInstance = useTable<any>(
         {
             columns, data

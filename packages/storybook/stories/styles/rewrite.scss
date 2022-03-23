@@ -4,130 +4,314 @@
 @import '../../../nindo//src/external/styles/vars';
 
 // Rewrite commonninja styleguide
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	background: transparent;
+}
+body {
+	line-height: 1;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+	display: block;
+}
+ol,
+ul {
+	list-style: none;
+}
+blockquote,
+q {
+	quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+	content: '';
+	content: none;
+}
+:focus {
+	outline: 0;
+}
+ins {
+	text-decoration: none;
+}
+del {
+	text-decoration: line-through;
+}
+table {
+}
+a:focus {
+	outline: 0;
+}
+::selection {
+	text-shadow: none;
+	background: #909090;
+	color: #fff;
+}
+.clear {
+	margin: 0;
+	padding: 0;
+	clear: both;
+	overflow: hidden;
+	width: 0;
+}
+.clearfix:after {
+	content: '.';
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+.clearfix {
+	display: block;
+}
+ul,
+p,
+dl,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+table,
+address,
+fieldset,
+blockquote {
+	margin-bottom: 20px;
+}
 
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 body {
-  background: $black-40;
-  padding: 40px;
-  margin: 0;
-  /* font-family: "Spartan","Helvetica Neue",Helvetica; */
-  font-family: "Open Sans", sans-serif;
-  line-height: 1.5em;
-  font-weight: 500;
-  font-size: 16px;
-  color: #fff;
+	background: $black-40;
+	padding: 40px;
+	margin: 0;
+	/* font-family: "Spartan","Helvetica Neue",Helvetica; */
+	font-family: 'Open Sans', sans-serif;
+	line-height: 1.5em;
+	font-weight: 500;
+	font-size: 16px;
+	color: #fff;
 
-  .loading-error {
+	#root {
+		padding: 20px;
+	}
+}
+
+.cn-editor {
+	.loading-error {
 		position: absolute;
 		left: 50%;
 		top: 50%;
 		transform: translate(-50%, -50%);
 	}
 
-  #root {
-    padding: 20px;
-  }
+	.loader {
+		div {
+			border-top-color: $pink-10;
+			border-bottom-color: $pink-10;
+		}
+	}
 
-  .loader {
-    div {
-      border-top-color: $pink-10;
-      border-bottom-color: $pink-10;
-    }
-  }
-  
-  .story-section{
-      padding: 20px 30px;
-  }
-  
-  .panel {
-    background: $black-20;
-  
-    &.active {
-      section {
-        overflow: visible;
-      }
-    }
-  
-    header > div {
-      display: flex;
-      flex-wrap: nowrap;
-      justify-content: flex-start;
-      align-items: center;
-      flex: 1;
-      max-width: calc(100% - 30px);
-  
-      i, svg {
-        font-size: 16px;
-      }
-    }
-  }
-  
-  .color-picker-wrapper {
-    .selected-color {
-      box-shadow: 0 0 0 2px rgba(255,255,255,0.1);
-    }
-  }
-  
-  .form-row {
-    > label {
-      color: $gray-20;
-      flex-basis: 170px;
-    }
-  
-    .row-message {
-      font-size: 11px;
-      color: $gray-20;
-    }
-  
-    select {
-      fill: $white-10;
-  
-      option {
-        background: $white-10;
-        color: $black-20;
-      }
-    }
-  
-    input[type=text], select, textarea, input[type=url], input[type=number], input[type=date], input[type=email], input[type=password] {
-      border: none;
-      color: $gray-20;
-      background-color: rgba(255, 255, 255, 0.1);
-      font-family: $secondaryFont;
-  
-      &::placeholder {
-        color: rgba(255, 255, 255, 0.2);
-      }
-  
-      &::selection {
-        background: $white-10;
-      }
-      
-      &:focus {
-        background-color: rgba(255, 255, 255, 0.2);
-        color: $white-10;
-      }
-    }
-  }
+	.story-section {
+		padding: 20px 30px;
+	}
 
-  .customize-btn {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    margin-top: 5px;
-    padding: 0;
-    margin: 0;
-    transform: translateY(-50%);
-    color: $white-10;
-  }
+	.panel {
+		background: $black-20;
 
-  .center {
-    text-align: center;
-  }
+		&.active {
+			section {
+				overflow: visible;
+			}
+		}
 
-  .date-picker-wrapper .button {
+		header > div {
+			display: flex;
+			flex-wrap: nowrap;
+			justify-content: flex-start;
+			align-items: center;
+			flex: 1;
+			max-width: calc(100% - 30px);
+
+			i,
+			svg {
+				font-size: 16px;
+			}
+		}
+	}
+
+	.color-picker-wrapper {
+		.selected-color {
+			box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+		}
+	}
+
+	.form-row {
+		> label {
+			color: $gray-20;
+			flex-basis: 170px;
+		}
+
+		.row-message {
+			font-size: 11px;
+			color: $gray-20;
+		}
+
+		select {
+			fill: $white-10;
+
+			option {
+				background: $white-10;
+				color: $black-20;
+			}
+		}
+
+		input[type='text'],
+		select,
+		textarea,
+		input[type='url'],
+		input[type='number'],
+		input[type='date'],
+		input[type='email'],
+		input[type='password'] {
+			border: none;
+			color: $gray-20;
+			background-color: rgba(255, 255, 255, 0.1);
+			font-family: $secondaryFont;
+
+			&::placeholder {
+				color: rgba(255, 255, 255, 0.2);
+			}
+
+			&::selection {
+				background: $white-10;
+			}
+
+			&:focus {
+				background-color: rgba(255, 255, 255, 0.2);
+				color: $white-10;
+			}
+		}
+	}
+
+	.customize-btn {
+		position: absolute;
+		right: 10px;
+		top: 50%;
+		margin-top: 5px;
+		padding: 0;
+		margin: 0;
+		transform: translateY(-50%);
+		color: $white-10;
+	}
+
+	.center {
+		text-align: center;
+	}
+
+	.date-picker-wrapper .button {
 		color: $gray-20;
 		border: none;
 		padding: 7px;
@@ -135,13 +319,62 @@ body {
 		text-align: left;
 		background: rgba(255, 255, 255, 0.1);
 
-		i, svg {
+		i,
+		svg {
 			margin-left: 10px;
 			font-size: 1.1em;
 		}
 	}
-}
 
-.css-props-editor {
-  max-width: 320px;
+	.css-props-editor-wrapper {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		min-height: calc(100vh - 50px - #{$headerHeight});
+		z-index: 2;
+		background-color: $black-40;
+		padding: 20px;
+
+		.close-css-props-editor {
+			color: #fff;
+			border: none;
+			opacity: 0.7;
+			padding: 0;
+			margin-bottom: 20px;
+			text-transform: uppercase;
+
+			&:hover {
+				opacity: 1;
+			}
+		}
+	}
+
+	.context-nav {
+		background: $black-40;
+		position: sticky;
+		top: 0;
+		margin: 0;
+		padding: 20px 15px;
+		z-index: 5;
+
+		+ .inner {
+			padding-top: 0;
+		}
+
+		&.form-row {
+			input {
+				flex: 3;
+			}
+
+			.button {
+				height: 100%;
+				flex: 0;
+				padding: 7px 10px 8px;
+				line-height: 1em;
+				margin-left: 10px;
+				flex-basis: 40px;
+			}
+		}
+	}
 }

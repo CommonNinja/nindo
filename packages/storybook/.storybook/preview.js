@@ -1,11 +1,15 @@
 import { addDecorator } from '@storybook/react';
 import { ProviderWrapper, store } from '../stories/provider';
 
+import '../stories/styles/rewrite.scss';
+
 // Add global decorators
 addDecorator((Story) => (
-	<ProviderWrapper>
-		<Story />
-	</ProviderWrapper>
+	<div className="cn-editor">
+		<ProviderWrapper>
+			<Story />
+		</ProviderWrapper>
+	</div>
 ));
 
 export const parameters = {
