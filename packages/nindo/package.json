@@ -99,6 +99,7 @@
 		"@rollup/plugin-typescript": "^8.3.0",
 		"@testing-library/react": "^12.1.2",
 		"@types/react-table": "^7.7.10",
+		"@types/react-test-renderer": "^17.0.1",
 		"babel-jest": "^27.3.1",
 		"babel-loader": "^8.2.3",
 		"css-loader": "^6.5.1",

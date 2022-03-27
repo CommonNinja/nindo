@@ -3,4 +3,5 @@ module.exports = {
 	moduleNameMapper: {
 		'.(css|less|scss)$': 'identity-obj-proxy',
 	},
+	testMatch: ['<rootDir>/src/**/*.test.*'],
 };
