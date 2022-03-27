@@ -6,7 +6,7 @@ import '@testing-library/jest-dom'
 describe('Card Tests', () => {
     test("Checks Card text content", () => {
         render(<Card>Im a card!</Card>)
-        expect(screen.getByText('Click!')).toBeInTheDocument()
+        expect(screen.getByText('Im a card!')).toBeInTheDocument()
     })
 
     test("Checks Card class name", () => {
