@@ -10,11 +10,6 @@
 		"build": "npm run clean && npm run rollup",
 		"rollup": "rollup -c"
 	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "npm test"
-		}
-	},
 	"main": "dist/index.js",
 	"module": "dist/index.js",
 	"types": "dist/index.d.ts",
@@ -109,9 +104,10 @@
 		"babel-loader": "^8.2.3",
 		"css-loader": "^6.5.1",
 		"html-webpack-plugin": "^5.5.0",
+		"husky": "^7.0.4",
 		"identity-obj-proxy": "^3.0.0",
 		"jest": "^27.3.1",
-		"pre-commit": "^1.2.2",
+		"lint-staged": "^12.3.7",
 		"react-test-renderer": "^17.0.2",
 		"rimraf": "^3.0.2",
 		"rollup": "^2.60.0",
@@ -121,6 +117,11 @@
 		"sass": "^1.43.5",
 		"sass-loader": "^12.3.0",
 		"style-loader": "^3.3.1"
+	},
+	"line-staged": {
+		"**/*.{jsx,jsx,ts,tsx}": [
+			"npm test --watchAll=false --findRelatedTests --bail"
+		]
 	},
 	"gitHead": "0370ad8a2f3d41b06a64160564a067977960ded8"
 }
