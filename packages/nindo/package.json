@@ -10,6 +10,11 @@
 		"build": "npm run clean && npm run rollup",
 		"rollup": "rollup -c"
 	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "npm test"
+		}
+	},
 	"main": "dist/index.js",
 	"module": "dist/index.js",
 	"types": "dist/index.d.ts",
