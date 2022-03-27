@@ -4,6 +4,6 @@ import { Button } from './button.comp'
 
 describe('hi', () => {
     test("bye", () => {
-        expect(true).toBeTruthy()
+        expect(true).toBeFalsy()
     })
 })
