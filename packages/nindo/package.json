@@ -118,7 +118,7 @@
 		"sass-loader": "^12.3.0",
 		"style-loader": "^3.3.1"
 	},
-	"line-staged": {
+	"lint-staged": {
 		"**/*.{jsx,jsx,ts,tsx}": [
 			"npm test --watchAll=false --findRelatedTests --bail"
 		]
