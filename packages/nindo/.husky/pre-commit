@@ -1,5 +1,5 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-npm tsc
-npm line-staged
+npm test
+npx line-staged
