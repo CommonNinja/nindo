@@ -12,7 +12,7 @@
 	},
 	"husky": {
 		"hooks": {
-			"pre-push": "npm test"
+			"pre-commit": "npm test"
 		}
 	},
 	"main": "dist/index.js",
@@ -111,6 +111,7 @@
 		"html-webpack-plugin": "^5.5.0",
 		"identity-obj-proxy": "^3.0.0",
 		"jest": "^27.3.1",
+		"pre-commit": "^1.2.2",
 		"react-test-renderer": "^17.0.2",
 		"rimraf": "^3.0.2",
 		"rollup": "^2.60.0",
