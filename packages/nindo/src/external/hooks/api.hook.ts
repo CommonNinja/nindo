@@ -13,16 +13,16 @@ interface IApiResource extends IApiResourceState {
 	fetchResource: () => Promise<void>;
 }
 
-const apiBaseUrl: string = process.env.REACT_APP_PLUGIN_API_URL || '';
+const apiBaseUrl: string = process.env.REACT_APP_CN_API_URL || '';
 
 export function useApi({
-	path,
+	resourcePath,
 	method = 'get',
 	platform = 'nindo',
 	data,
 	pagination,
 }: {
-	path: string;
+	resourcePath: string;
 	method?: 'get' | 'post' | 'put' | 'delete';
 	platform?: TPlatform;
 	data?: any;
@@ -32,11 +32,8 @@ export function useApi({
 		page?: string;
 	};
 }): IApiResource {
-	const apiPrefix = '/nindo/api/resource';
-	const resourcePath: string = path.startsWith('/') ? path : `/${path}`;
-	const finalUrl = resourcePath.startsWith(apiPrefix)
-		? resourcePath
-		: `${apiPrefix}${resourcePath}`;
+	const finalBaseUrl = apiBaseUrl.endsWith('/') ? apiBaseUrl.slice(0, -1) : apiBaseUrl;
+	const finalResourcePath: string = resourcePath.startsWith('/') ? resourcePath : `/${resourcePath}`;
 	const [status, setStatus] = useState<IApiResourceState>({
 		loading: false,
 	});
@@ -45,7 +42,7 @@ export function useApi({
 		setStatus({ loading: true });
 
 		try {
-			if (!path) {
+			if (!resourcePath) {
 				throw new Error('Path is required');
 			}
 
@@ -59,19 +56,19 @@ export function useApi({
 				};
 			}
 
-			let queryParams = '';
+			let localQueryParams = `platform=${platform}`;
 			if (method === 'get' && pagination) {
-				queryParams += `&page=${pagination.page || ''}&limit=${
+				localQueryParams += `&page=${pagination.page || ''}&limit=${
 					pagination.limit || ''
 				}`;
 			}
 
 			if (client.queryParams) {
-				queryParams += `&${client.queryParams}`;
+				localQueryParams += `&${client.queryParams}`;
 			}
 
 			const response: IHttpResult = await client.makeRequest(
-				`${apiBaseUrl}${finalUrl}?platform=${platform}${queryParams}`,
+				`${finalBaseUrl}${finalResourcePath}?${localQueryParams}`,
 				{
 					method,
 					...options,
@@ -95,7 +92,7 @@ export function useApi({
 	}
 
 	useEffect(() => {
-		if (path) {
+		if (resourcePath) {
 			fetchResource();
 		}
 	}, []);

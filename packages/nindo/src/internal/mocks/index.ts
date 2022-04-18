@@ -1,4 +1,3 @@
-export * from './api.mocks';
 export * from './assets.mocks';
 export * from './basic.config';
 export * from './event.mocks';
