@@ -14,8 +14,8 @@ export interface IPaginationParams {
 export interface IAPIProps {
 	method: THttpMethod;
 	resourcePath: string;
-	platform: TPlatform;
-	data: any;
+	platform?: TPlatform;
+	data?: any;
   pagination?: IPaginationParams
 }
 
