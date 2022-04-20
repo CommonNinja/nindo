@@ -1,40 +1,28 @@
 import { useEffect, useState } from 'react';
 import { IHttpResult } from '../../external/types/http.types';
-import { HttpService } from '../../external/services/http.service';
-import { TPlatform } from '../../external/types/editor.types';
+import {
+	APIService,
+	IAPIProps,
+} from '../services';
 
-interface IApiResourceState {
+interface IApiResourceState<T> {
 	loading: boolean;
 	error?: string;
-	data?: any;
+	data?: T;
 }
 
-interface IApiResource extends IApiResourceState {
+interface IApiResource<T> extends IApiResourceState<T> {
 	fetchResource: () => Promise<void>;
 }
 
-const apiBaseUrl: string = process.env.REACT_APP_CN_API_URL || '';
-
-export function useApi({
+export function useApi<T = {}>({
 	resourcePath,
 	method = 'get',
 	platform = 'nindo',
 	data,
 	pagination,
-}: {
-	resourcePath: string;
-	method?: 'get' | 'post' | 'put' | 'delete';
-	platform?: TPlatform;
-	data?: any;
-	pagination?: {
-		q?: string;
-		limit?: string;
-		page?: string;
-	};
-}): IApiResource {
-	const finalBaseUrl = apiBaseUrl.endsWith('/') ? apiBaseUrl.slice(0, -1) : apiBaseUrl;
-	const finalResourcePath: string = resourcePath.startsWith('/') ? resourcePath : `/${resourcePath}`;
-	const [status, setStatus] = useState<IApiResourceState>({
+}: IAPIProps): IApiResource<T> {
+	const [status, setStatus] = useState<IApiResourceState<T>>({
 		loading: false,
 	});
 
@@ -46,34 +34,14 @@ export function useApi({
 				throw new Error('Path is required');
 			}
 
-			const client = new HttpService();
-			const options: any = {};
-
-			if (data) {
-				options.body = JSON.stringify(data);
-				options.headers = {
-					'Content-Type': 'application/json',
-				};
-			}
-
-			let localQueryParams = `platform=${platform}`;
-			if (method === 'get' && pagination) {
-				localQueryParams += `&page=${pagination.page || ''}&limit=${
-					pagination.limit || ''
-				}`;
-			}
-
-			if (client.queryParams) {
-				localQueryParams += `&${client.queryParams}`;
-			}
-
-			const response: IHttpResult = await client.makeRequest(
-				`${finalBaseUrl}${finalResourcePath}?${localQueryParams}`,
-				{
-					method,
-					...options,
-				}
-			);
+			const client = new APIService();
+			const response: IHttpResult = await client.request<T>({
+				method,
+				resourcePath,
+				platform,
+				data,
+				pagination,
+			});
 
 			if (!response.success) {
 				throw new Error(response.message);
