@@ -6,9 +6,9 @@ const apiBaseUrl: string = process.env.REACT_APP_CN_API_URL || '';
 export type THttpMethod = 'get' | 'post' | 'put' | 'delete';
 
 export interface IPaginationParams {
-	q?: string;
-	limit?: string;
-	page?: string;
+  limit?: number;
+	page?: string | number;
+  [key: string]: any;
 }
 
 export interface IAPIProps {
@@ -45,9 +45,9 @@ export class APIService extends HttpService {
 
 		let localQueryParams = `platform=${platform}`;
 		if (method === 'get' && pagination) {
-			localQueryParams += `&page=${pagination.page || ''}&limit=${
-				pagination.limit || ''
-			}`;
+      Object.keys(pagination).forEach(key => {
+        localQueryParams += `&${key}=${pagination[key]}`;
+      });
 		}
 
 		if (this.queryParams) {
