@@ -21,8 +21,8 @@ export interface IAPIProps {
 
 export class APIService extends HttpService {
 	public async request<T = {}>({
-		method,
-		resourcePath,
+    resourcePath,
+		method = 'get',
 		platform = 'nindo',
 		data,
     pagination, 
