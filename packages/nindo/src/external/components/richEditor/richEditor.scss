@@ -137,6 +137,19 @@
 		stroke: #fff;
 	}
 
+	// .ql-snow .ql-picker.ql-align .ql-picker-label[data-value=''] svg,
+	// .ql-snow .ql-picker.ql-align .ql-picker-item[data-value=''] svg {
+		// opacity: 0;
+	// }
+
+	// .ql-snow .ql-picker.ql-align .ql-picker-label[data-value='']::before,
+	// .ql-snow .ql-picker.ql-align .ql-picker-item[data-value='']::before {
+	// 	content: '';
+	// 	width: 100%;
+	// 	height: 3px;
+	// 	display: block;
+	// }
+
 	.ql-snow .ql-picker.ql-size .ql-picker-label[data-value='8px']::before,
 	.ql-snow .ql-picker.ql-size .ql-picker-item[data-value='8px']::before {
 		content: '8px';
