@@ -16,5 +16,6 @@ export const getDefaultPlugin = <T>(
 	previewImage: null,
 	privacy: 'public',
 	status: status || 'published',
+	creationSource: 'website',
 	planFeatures: {},
 });
