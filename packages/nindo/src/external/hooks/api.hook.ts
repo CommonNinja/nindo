@@ -4,6 +4,7 @@ import {
 	APIService,
 	IAPIProps,
 } from '../services';
+import { useAppContext } from './context.hook';
 
 interface IApiResourceState<T> {
 	loading: boolean;
@@ -22,6 +23,7 @@ export function useApi<T = {}>({
 	data,
 	pagination,
 }: IAPIProps): IApiResource<T> {
+	const { instanceId = '' } = useAppContext();
 	const [status, setStatus] = useState<IApiResourceState<T>>({
 		loading: false,
 	});
@@ -40,7 +42,10 @@ export function useApi<T = {}>({
 				resourcePath,
 				platform,
 				data,
-				pagination,
+				pagination: {
+					...pagination,
+					componentId: instanceId,
+				},
 			});
 
 			if (!response.success) {
