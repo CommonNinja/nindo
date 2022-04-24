@@ -76,6 +76,7 @@ export enum EditorActionTypes {
 }
 
 export type TPlatform =
+	| 'website'
 	| 'nindo'
 	| 'duda'
 	| 'wix'

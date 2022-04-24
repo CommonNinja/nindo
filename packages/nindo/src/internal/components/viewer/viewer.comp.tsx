@@ -28,7 +28,6 @@ export const Viewer = (props: {
 			contextUpdated({
 				instanceId: pluginId,
 				mode: 'viewer',
-				platform: vendor,
 			})
 		);
 	}, []);
