@@ -43,7 +43,7 @@ export class APIService extends HttpService {
 			};
 		}
 
-		let localQueryParams = `platform=${platform}`;
+		let localQueryParams = `pluginType=${this.pluginType}&platform=${platform}`;
 		if (method === 'get' && pagination) {
       Object.keys(pagination).forEach(key => {
         localQueryParams += `&${key}=${pagination[key]}`;
