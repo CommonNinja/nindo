@@ -22,9 +22,10 @@ export const PreviewPage = (props: IPreviewPageProps) => {
 						// Set plugin context
 						dispatch(
 							contextUpdated({
-								platform: message.plugin.creationSource
-									? message.plugin.creationSource
-									: undefined,
+								platform:
+									message.plugin.creationSource !== 'website'
+										? message.plugin.creationSource
+										: undefined,
 							})
 						);
 					}
