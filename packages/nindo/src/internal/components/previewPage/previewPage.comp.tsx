@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { gotPluginData } from '../../actions/plugin.actions';
 import { contextUpdated } from '../../actions/context.actions';
+import { IPlugin } from '../../../external';
 
 interface IPreviewPageProps {
 	children: any;
@@ -18,13 +19,15 @@ export const PreviewPage = (props: IPreviewPageProps) => {
 			switch (message.type) {
 				case 'editor.update':
 					{
-						dispatch(gotPluginData(message.plugin));
+						const { plugin }: { plugin: IPlugin<any> } = message;
+						dispatch(gotPluginData(plugin));
 						// Set plugin context
 						dispatch(
 							contextUpdated({
+								instanceId: plugin.guid || '',
 								platform:
-									message.plugin.creationSource !== 'website'
-										? message.plugin.creationSource
+									plugin.creationSource !== 'website'
+										? plugin.creationSource
 										: undefined,
 							})
 						);
