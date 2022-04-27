@@ -17,7 +17,17 @@ export const PreviewPage = (props: IPreviewPageProps) => {
 
 			switch (message.type) {
 				case 'editor.update':
-					dispatch(gotPluginData(message.plugin));
+					{
+						dispatch(gotPluginData(message.plugin));
+						// Set plugin context
+						dispatch(
+							contextUpdated({
+								platform: message.plugin.creationSource
+									? message.plugin.creationSource
+									: undefined,
+							})
+						);
+					}
 					break;
 				default:
 					return;

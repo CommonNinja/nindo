@@ -1,0 +1,12 @@
+FROM node:lts
+
+WORKDIR /app
+
+RUN apt update
+RUN apt install build-essential
+
+ADD package.json yarn.lock ./
+
+RUN yarn
+ADD . . 
+CMD ["npm","run","dev"]

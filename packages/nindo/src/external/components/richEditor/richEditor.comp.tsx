@@ -25,7 +25,7 @@ Icons[
 Icons.align['left'] = Icons.align[''];
 
 TextAlignStyle = ReactQuill.Quill.import('attributors/style/align');
-TextAlignStyle.whitelist = ['left', 'center', 'right'];
+TextAlignStyle.whitelist = ['', 'left', 'center', 'right'];
 ReactQuill.Quill.register(TextAlignStyle, true);
 
 Size = ReactQuill.Quill.import('attributors/style/size');
@@ -102,6 +102,7 @@ const defaultModules = {
 				/* 'strike', */
 				{ list: 'ordered' },
 				{ list: 'bullet' },
+				{ align: ['', 'left', 'center', 'right'] },
 				'link',
 			],
 		],
@@ -183,7 +184,7 @@ const defaultModulesWithImage = {
 				// 'strike',
 				{ list: 'ordered' },
 				{ list: 'bullet' },
-				{ align: ['', 'center', 'right'] },
+				{ align: ['', 'left', 'center', 'right'] },
 				'link',
 				'image',
 			],

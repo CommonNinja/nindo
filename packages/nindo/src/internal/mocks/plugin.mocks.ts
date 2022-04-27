@@ -179,6 +179,42 @@ export const pluginMocks = (
 		name: 'Update plugin',
 		origin: origin,
 	};
+	
+	const getDefaultForEditorVendor = {
+		...getDefaultForEditor,
+		id: uuidv4(),
+		url: getDefaultForEditor.url.replace('api/v1', 'api/v1/*'),
+	}
+	
+	const getExistingForEditorVendor = {
+		...getExistingForEditor,
+		id: uuidv4(),
+		url: getExistingForEditor.url.replace('api/v1', 'api/v1/*'),
+	}
+	
+	const getForViewerVendor = {
+		...getForViewer,
+		id: uuidv4(),
+		url: getForViewer.url.replace('api/v1', 'api/v1/*'),
+	}
+	
+	const getForGalleryVendor = {
+		...getForGallery,
+		id: uuidv4(),
+		url: getForGallery.url.replace('api/v1', 'api/v1/*'),
+	}
+	
+	const createPluginVendor = {
+		...createPlugin,
+		id: uuidv4(),
+		url: createPlugin.url.replace('api/v1', 'api/v1/*'),
+	}
+	
+	const updatePluginVendor = {
+		...updatePlugin,
+		id: uuidv4(),
+		url: updatePlugin.url.replace('api/v1', 'api/v1/*'),
+	}
 
 	return [
 		getDefaultForEditor,
@@ -187,5 +223,11 @@ export const pluginMocks = (
 		getForGallery,
 		createPlugin,
 		updatePlugin,
+		getDefaultForEditorVendor,
+		getExistingForEditorVendor,
+		getForViewerVendor,
+		getForGalleryVendor,
+		createPluginVendor,
+		updatePluginVendor,
 	];
 };

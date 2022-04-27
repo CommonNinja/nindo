@@ -169,6 +169,11 @@ export const PluginLoader = ({
 				contextUpdated({
 					instanceId: finalPluginData.guid || '',
 					mode: 'viewer',
+					platform:
+						vendor ||
+						(finalPluginData.creationSource !== 'website'
+							? finalPluginData.creationSource
+							: undefined),
 				})
 			);
 

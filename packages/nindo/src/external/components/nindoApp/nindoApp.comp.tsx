@@ -6,7 +6,6 @@ import * as serviceWorker from './serviceWorker';
 
 import defaultUserState from '../../../internal/mocks/userState.mocks';
 import {
-	apiMocks,
 	assetMocks,
 	eventMocks,
 	pluginMocks,
@@ -41,7 +40,6 @@ function loadMocks(defaultData: IPlugin<any>, mocks?: IAppConfigMocks) {
 				...pluginMocks(userState, defaultData),
 				...eventMocks(),
 				...assetMocks(),
-				...apiMocks(),
 			],
 		};
 

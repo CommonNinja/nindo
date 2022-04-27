@@ -1,6 +1,6 @@
 {
 	"name": "@commonninja/nindo",
-	"version": "1.4.1",
+	"version": "1.4.12",
 	"description": "",
 	"scripts": {
 		"dev": "rollup -c -w",
@@ -120,5 +120,5 @@
 		"sass-loader": "^12.3.0",
 		"style-loader": "^3.3.1"
 	},
-	"gitHead": "0370ad8a2f3d41b06a64160564a067977960ded8"
+	"gitHead": "3d965a1af3e4ac78aff849d1314cc97f663e288c"
 }

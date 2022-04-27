@@ -1,4 +1,5 @@
 import { ComponentType, ReactChild, ReactElement, ReactNode } from 'react';
+import { TPlatform } from './editor.types';
 
 export type TChildren =
 	| ReactNode
@@ -28,6 +29,7 @@ export interface IPlugin<T> {
 	name: string;
 	description: string | null;
 	previewImage: string | null;
+	creationSource: TPlatform;
 	privacy: TPluginPrivacy;
 	status: TPluginState;
 	planFeatures: any;

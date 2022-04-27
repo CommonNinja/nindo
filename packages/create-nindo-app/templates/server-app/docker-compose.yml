@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  api:
+    container_name: nindo_server  
+    env_file:
+      - "./.env"
+      - "./.dev.env"
+    build: 
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - 4000:4000   
+    expose:
+      - "4000"
+    volumes:
+      - ./src:/app/src
+      - ./package.json:/app/package.json
+      - ./package-lock.json:/app/package-lock.json
+    networks:
+      - default
+  localtunnel:
+    image: node:lts-alpine
+    command: npx localtunnel --port 4000 --local-host nindo_server
+    depends_on:
+      - api
+
