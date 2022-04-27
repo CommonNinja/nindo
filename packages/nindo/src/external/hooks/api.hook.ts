@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
 import { IHttpResult } from '../../external/types/http.types';
-import {
-	APIService,
-	IAPIProps,
-} from '../services';
+import { APIService, IAPIProps } from '../services';
+import { TPlatform } from '../types';
 import { useAppContext } from './context.hook';
 
 interface IApiResourceState<T> {
@@ -16,13 +14,10 @@ interface IApiResource<T> extends IApiResourceState<T> {
 	fetchResource: () => Promise<void>;
 }
 
-export function useApi<T = {}>({
-	resourcePath,
-	method = 'get',
-	platform = 'nindo',
-	data,
-	pagination,
-}: IAPIProps): IApiResource<T> {
+export function useApi<T = {}>(
+	{ resourcePath, method = 'get', data, pagination }: IAPIProps,
+	platform?: TPlatform
+): IApiResource<T> {
 	const { instanceId = '' } = useAppContext();
 	const [status, setStatus] = useState<IApiResourceState<T>>({
 		loading: false,
@@ -36,11 +31,10 @@ export function useApi<T = {}>({
 				throw new Error('Path is required');
 			}
 
-			const client = new APIService();
-			const response: IHttpResult = await client.request<T>({
+			const client = new APIService(platform);
+			const response = await client.request<T>({
 				method,
 				resourcePath,
-				platform,
 				data,
 				pagination: {
 					...pagination,
@@ -65,7 +59,7 @@ export function useApi<T = {}>({
 	}
 
 	useEffect(() => {
-		if (resourcePath) {
+		if (resourcePath && method === 'get') {
 			fetchResource();
 		}
 	}, []);

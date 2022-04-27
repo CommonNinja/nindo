@@ -17,8 +17,8 @@ export interface IPaginationQueryParams {
 	desc: boolean;
 }
 
-export interface IPaginationResponse {
-	docs: any[];
+export interface IPaginationResponse<T = any> {
+	docs: T[];
 	total: number;
 	limit: number;
 	offset?: number;
