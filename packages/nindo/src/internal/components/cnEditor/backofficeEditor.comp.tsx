@@ -60,7 +60,7 @@ export const CNBackofficeEditor = ({
 	const [activePage, setActivePage] = useState<IAppMainPage | undefined>(
 		pages.find((p) => p.id === page)
 	);
-	const vendorPath = vendor ? `v/${vendor}/` : '';
+	const vendorPath = vendor ? `/v/${vendor}` : '';
 	const pathPrefix = `${pluginPath}${vendorPath}`;
 
 	async function getData() {

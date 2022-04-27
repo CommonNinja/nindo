@@ -26,7 +26,7 @@ const env = NODE_ENV === 'production' ? 'prod' : 'dev';
 
 export const CNBackofficeApp = () => {
 	const config = useAppConfig<IBackofficeAppConfig>();
-	
+
 	if (
 		!REACT_APP_NINJA_SERVICE_NAME ||
 		!REACT_APP_NINJA_PLUGIN_TYPE ||
@@ -42,12 +42,12 @@ export const CNBackofficeApp = () => {
 	const { pages = [], loaderComponent: loaderComp } = config;
 	const routes: RouteProps[] = [
 		{
-			exact: false,
-			path: '/:page/:nestedPage?',
+			exact: true,
+			path: '/v/:vendor/:page/:nestedPage?',
 		},
 		{
-			exact: false,
-			path: '/v/:vendor/:page/:nestedPage?',
+			exact: true,
+			path: '/:page/:nestedPage?',
 		},
 	];
 
@@ -57,16 +57,11 @@ export const CNBackofficeApp = () => {
 				<Switch>
 					{routes.map((route, idx) => {
 						const routePath: string = (route.path as string) || '';
+						const finalPath: string = !routePath.startsWith(`/${pluginPath}`)
+							? `/${pluginPath}/${routePath.replace(/^\//g, '')}`
+							: routePath;
 						return (
-							<Route
-								{...route}
-								path={
-									!routePath.startsWith(`/${pluginPath}`)
-										? `/${pluginPath}/${routePath.replace(/^\//g, '')}`
-										: routePath
-								}
-								key={`route_${idx}`}
-							>
+							<Route {...route} path={finalPath} key={`route_${idx}`}>
 								<CNBackofficeEditor
 									pages={pages}
 									loaderComp={loaderComp}
