@@ -18,23 +18,17 @@ function getCommonNinjaClient(req: Request) {
     appSecret: COMMONNINJA_APP_SECRET,
     accessToken: req.query.token as string,
     env: CommonNinja.envs.production,
+    logs: true,
   });
 }
 
 // Authentication
-router.get('/authenticate', async (req: Request, res: Response) => {
-  const { platform } = req.query;
-
-  if (!platform) {
-    res.status(500).send('Missing platform parameter.');
-    return;
-  }
-
+router.get('/connect', async (req: Request, res: Response) => {
   // Get a new Common Ninja instance
   const client = getCommonNinjaClient(req);
 
   // Get authentication url for platform
-  const url = client.getAuthenticationUrl(platform as any);
+  const url = client.auth.getConnectUrl();
 
   // Redirect to authentication url
   res.redirect(url);
@@ -42,14 +36,14 @@ router.get('/authenticate', async (req: Request, res: Response) => {
 
 // Proxy requests to Common Ninja's API
 router.all(
-  '/api/resource*',
+  '/api*',
   async (req: Request, res: Response) => {
     try {
       // Get a new Common Ninja instance
       const client = getCommonNinjaClient(req);
 
       // Extract the resource path from the request
-      const [, path] = req.path.split('resource/');
+      const [, path] = req.path.split('api/');
 
       if (!path) {
         throw new Error('Could not find resource');
@@ -57,14 +51,14 @@ router.all(
 
       console.log('path', path, req.method);
       
-      // Make the request to Common Ninja's api
-      const result = await client.request({
+      // Request the resource from Common Ninja's api
+      const result = await client.api.request({
         path,
         method: req.method as any,
         data: req.body,
         queryParams: {
-          limit: req.query.limit || 10,
-          page: req.query.page || '',
+          limit: Number(req.query.limit || 10),
+          page: String(req.query.page || ''),
         },
       });
 
@@ -93,8 +87,8 @@ router.post('/webhooks', async (req: Request, res: Response) => {
       env: CommonNinja.envs.production,
     });
 
-    // Use the Common Ninja SDK to validate the webhook
-    const validated = client.validateWebhook(req);
+    // Validate webhook message source
+    const validated = client.webhooks.validateWebhook(req);
     if (!validated) {
       throw new Error('Cannot validate signature.');
     }

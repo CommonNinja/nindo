@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/CommonNinja/nindo#readme",
   "dependencies": {
-    "@commonninja/node-sdk": "^1.0.10",
+    "@commonninja/node-sdk": "^1.1.5",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",

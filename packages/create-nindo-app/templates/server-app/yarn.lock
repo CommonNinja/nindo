@@ -2,12 +2,12 @@
 # yarn lockfile v1
 
 
-"@commonninja/node-sdk@^1.0.10":
-  version "1.0.10"
-  resolved "https://registry.yarnpkg.com/@commonninja/node-sdk/-/node-sdk-1.0.10.tgz#bec9ad15018a53cdc583b89366919092452f18bb"
-  integrity sha512-3XkicWXdm1mc+wdxbZs8t2M5xn19F4rcu9NuAv7NK/FvtoHheI5OKMzWvDXzUCMjl0VqW0w6CDNYwUUuOgJGoA==
+"@commonninja/node-sdk@^1.1.5":
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/@commonninja/node-sdk/-/node-sdk-1.1.5.tgz#a10310a4908936e75dd48d861d4b735d87dc5407"
+  integrity sha512-DLWjokg1YjlYiEHHvSXzaepSIjWyd76uA729uD17qF0aN2VBwjc7NVc0AaEfJepX7cuw9LgzbXMdwcuHqCBAkA==
   dependencies:
-    "@commonninja/types" "^1.2.1"
+    "@commonninja/types" "^1.2.26"
     axios "^0.26.0"
     bunyan "^1.8.12"
     bunyan-debug-stream "^2.0.0"
@@ -16,10 +16,10 @@
     express "^4.17.3"
     path "^0.12.7"
 
-"@commonninja/types@^1.2.1":
-  version "1.2.4"
-  resolved "https://registry.yarnpkg.com/@commonninja/types/-/types-1.2.4.tgz#5197f8d0dd02468853c42040ce40a27df14de67d"
-  integrity sha512-3xMBlNev0D6msX7z0OQ145pIx+NlogI/zNByEuuU7fChNDXa/iD1atOY2xZHLcs8Adw3TI4TDIrZ2NahTlsHlw==
+"@commonninja/types@^1.2.26":
+  version "1.2.26"
+  resolved "https://registry.yarnpkg.com/@commonninja/types/-/types-1.2.26.tgz#443c4ca1516640eb8ea289fd3ded32383310109f"
+  integrity sha512-lsJWQlEcFjQUOuuweEFy5JF2z55EnET5GYLFHXDI7mmkhREB/eygzgYVvQe+lJDZX4eLq9K9wZ1heB0g8VgSww==
   dependencies:
     bunyan "^1.8.12"
     bunyan-debug-stream "^2.0.0"

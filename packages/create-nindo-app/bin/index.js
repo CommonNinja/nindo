@@ -240,12 +240,14 @@ async function init() {
 	write(
 		'.env',
 		`
-# The server app name
-REACT_APP_NINJA_SERVICE_NAME=       service-name
 # Plugin type (chart, feed, table, etc.) - Should be one / two words, snake_case
 REACT_APP_NINJA_PLUGIN_TYPE=        ${packageName.replace(/-/g, '_')}
 # Plugin path (comparison-tables, bracket, etc.) - Should be one / two words, kebab-case
 REACT_APP_NINJA_PLUGIN_PATH=        ${packageName}
+# The server app name
+REACT_APP_NINJA_SERVICE_NAME=       service-name
+# API path
+REACT_APP_CN_API_URL=        				/api
   `
 	);
 
