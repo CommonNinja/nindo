@@ -3,6 +3,7 @@ import {
 	getDefaultPlugin,
 	// nindoBackofficeApp,
 	// useAppContext,
+	// useGlobalState,
 	// useAppData,
 	// Toolbar,
 } from './exports';
@@ -30,21 +31,21 @@ nindoApp<IPluginData, {}>({
 });
 
 // const Dashboard = () => {
-// 	const context = useAppContext();
-// 	const [appData, updateData] = useAppData<{ test: string }>();
+// 	const { appType, platform } = useAppContext();
+// 	const [appState, updateAppState] = useGlobalState<{ test: string }>();
 
 // 	return (
 // 		<>
 // 			<Toolbar />
-// 			<p>App Type: {context.appType}</p>
-// 			<p>{appData.test || 'empty'}</p>
-// 			<button onClick={() => updateData({ test: 'clicked!' })}>Click me</button>
+// 			<p>App Type: {appType}</p>
+// 			<p>Platform: {platform || 'none'}</p>
+// 			<p>App State: {appState.test || 'empty'}</p>
+// 			<button onClick={() => updateAppState({ test: 'clicked!' })}>Click me</button>
 // 		</>
 // 	);
 // };
 
-// nindoBackofficeApp<IPluginData, {}>({
-// 	defaultData: getDefaultPlugin<IPluginData>(defaultPluginData()),
+// nindoBackofficeApp<{}>({
 // 	meta: {
 // 		name: 'Backoffice App',
 // 		// icon,
@@ -82,3 +83,4 @@ nindoApp<IPluginData, {}>({
 // 		userState: userStateMock,
 // 	},
 // });
+

@@ -12,19 +12,18 @@ import { AppHeader } from '../appHeader/appHeader.comp';
 import * as userActions from '../../actions/user.actions';
 import { AppMenu } from '../appMenu/appMenu.comp';
 import { ContextMenu } from '../contextMenu/contextMenu.comp';
-import {
-	// gotPluginData,
-	getPlanFeatures, gotPluginData,
-} from '../../actions/plugin.actions';
+import { getPlanFeatures } from '../../actions/plugin.actions';
 import { IUser } from '../../../external/types/user.types';
-import { IAppState, IPlugin, TPlatform } from '../../../external/types';
+import { IAppState, TPlatform } from '../../../external/types';
 import { useQuery } from '../../../external/hooks/query.hook';
 import { VendorUpgradePopup } from '../vendorUpgradePopup/vendorUpgradePopup.comp';
 import { premiumHelper } from '../../../external/helpers';
 import { contextUpdated } from '../../actions/context.actions';
-import { IAppMainPage, IBackofficeAppConfig } from '../../../external/types/backofficeApp.types';
+import {
+	IAppMainPage,
+	IBackofficeAppConfig,
+} from '../../../external/types/backofficeApp.types';
 import { ICNBackofficeEditor } from './backofficeEditor.types';
-import { historyChange } from '../../actions/history.actions';
 import { useAppConfig } from '../../../external/hooks/appConfig.hook';
 
 import './cnEditor.scss';
@@ -36,25 +35,17 @@ const pluginPath =
 export const CNBackofficeEditor = ({
 	pages,
 	loaderComp,
-	defaultPluginData,
-	postGetDataProcess = (data: IPlugin<any>) => data,
 }: ICNBackofficeEditor<any>) => {
 	const query = useQuery();
 	const config = useAppConfig<IBackofficeAppConfig>();
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const { params } = useRouteMatch();
-	const instanceId = query.get('instanceId') || '';
 	const { page, nestedPage, vendor } = params as any;
-	const { isSaved, appData, user } = useSelector(
-		(state: IAppState<any>) => ({
-			isSaved: state.editor.isSaved,
-			appData: state.plugin.data,
-			user: state.user,
-		})
-	);
-	const [loading, setLoading] = useState<boolean>(false);
-	const [error, setError] = useState<string>('');
+	const { isSaved, user } = useSelector((state: IAppState<any>) => ({
+		isSaved: state.editor.isSaved,
+		user: state.user,
+	}));
 	const [activeVendorUpgradePopup, setActiveVendorUpgradePopup] =
 		useState<null | TPlatform>(null);
 	const [activePage, setActivePage] = useState<IAppMainPage | undefined>(
@@ -62,36 +53,6 @@ export const CNBackofficeEditor = ({
 	);
 	const vendorPath = vendor ? `/v/${vendor}` : '';
 	const pathPrefix = `${pluginPath}${vendorPath}`;
-
-	async function getData() {
-		setLoading(true);
-		setError('');
-
-		try {
-			const result = await pluginService.getForEditor(
-				instanceId,
-				defaultPluginData,
-				vendor
-			);
-
-			if (!result || !result.success) {
-				throw new Error(result.message || 'Could not load plugin.');
-			}
-
-			const pluginData: IPlugin<any> = await postGetDataProcess(result.data);
-
-			// Set plugin ID for local storage
-			localStorageService.pluginId = pluginData.guid as string;
-
-			// Set plugin for plugin global state
-			dispatch(gotPluginData(pluginData));
-			dispatch(historyChange(pluginData, true));
-		} catch (e) {
-			setError((e as Error).message);
-		}
-
-		setLoading(false);
-	}
 
 	function getPageComponent() {
 		const pageData = pages.find((p) => p.id === page);
@@ -102,16 +63,16 @@ export const CNBackofficeEditor = ({
 
 		if (!nestedPage && pageData.component) {
 			return pageData.component;
-		} 
-		
+		}
+
 		if (!nestedPage && pageData.nestedRoutes?.[0]?.component) {
 			return pageData.nestedRoutes[0].component;
 		}
-		
+
 		const nestedPageData = pageData.nestedRoutes?.find(
 			(p) => p.id === nestedPage
 		);
-		
+
 		if (nestedPageData?.component) {
 			return nestedPageData.component;
 		}
@@ -219,12 +180,9 @@ export const CNBackofficeEditor = ({
 			);
 		}
 		// eslint-disable-next-line
-	}, [appData.planFeatures]);
+	}, []);
 
 	useEffect(() => {
-		// Get apps's data
-		getData();
-
 		if (vendor) {
 			// If exists, load JS sdk
 			loadJSSdk(`${vendor}-sdk`, query.get('jsSdkUrl'));
@@ -234,34 +192,33 @@ export const CNBackofficeEditor = ({
 		dispatch(
 			contextUpdated({
 				platform: vendor,
-				instanceId,
 			})
 		);
 		// eslint-disable-next-line
 	}, []);
 
-	function renderAppLoader() {
-		return (
-			<main className="editor-wrapper">
-				<aside className="main-menu">
-					<div className="inner">
-						<NinjaSkeletonTheme leadColor="#1c242a">
-							{Array.from(new Array(5)).map((y, i) => (
-								<div key={`menu_${i}`} style={{ marginBottom: '5px' }}>
-									<NinjaSkeleton height={40} />
-								</div>
-							))}
-						</NinjaSkeletonTheme>
-					</div>
-				</aside>
-				<section className="plugin-area">
-					<section className="main-area">
-						<div className="editor-plugin-preview">{loaderComp}</div>
-					</section>
-				</section>
-			</main>
-		);
-	}
+	// function renderAppLoader() {
+	// 	return (
+	// 		<main className="editor-wrapper">
+	// 			<aside className="main-menu">
+	// 				<div className="inner">
+	// 					<NinjaSkeletonTheme leadColor="#1c242a">
+	// 						{Array.from(new Array(5)).map((y, i) => (
+	// 							<div key={`menu_${i}`} style={{ marginBottom: '5px' }}>
+	// 								<NinjaSkeleton height={40} />
+	// 							</div>
+	// 						))}
+	// 					</NinjaSkeletonTheme>
+	// 				</div>
+	// 			</aside>
+	// 			<section className="plugin-area">
+	// 				<section className="main-area">
+	// 					<div className="editor-plugin-preview">{loaderComp}</div>
+	// 				</section>
+	// 			</section>
+	// 		</main>
+	// 	);
+	// }
 
 	function renderRoutesMenu() {
 		return (
@@ -269,20 +226,20 @@ export const CNBackofficeEditor = ({
 				{activePage?.nestedRoutes?.map((route) => (
 					<NavLink
 						key={`submenu-${activePage.id}-${route.id}`}
-						to={`/${pathPrefix}/${activePage.id}/${route.id}?${query.toString()}`}
+						to={`/${pathPrefix}/${activePage.id}/${
+							route.id
+						}?${query.toString()}`}
 						activeClassName="active"
 						exact
-					>{route.name || route.id}</NavLink>
+					>
+						{route.name || route.id}
+					</NavLink>
 				))}
 			</nav>
 		);
 	}
 
 	function renderEditor() {
-		if (error) {
-			return <div className="loading-error">{error}</div>;
-		}
-
 		return (
 			<main className="editor-wrapper">
 				<AppMenu
@@ -349,7 +306,7 @@ export const CNBackofficeEditor = ({
 				}
 				vendor={vendor}
 			/>
-			{loading ? renderAppLoader() : renderEditor()}
+			{renderEditor()}
 			{activeVendorUpgradePopup && (
 				<VendorUpgradePopup
 					user={user}

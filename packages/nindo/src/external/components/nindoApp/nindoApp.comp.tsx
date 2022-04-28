@@ -76,9 +76,9 @@ export function nindoBackofficeApp<T, P = {}>(
 ) {
 	setAppConfig(appConfig);
 	
-	const store: any = genStore('backoffice', appConfig.defaultData, appConfig.globalState);
+	const store: any = genStore('backoffice', undefined, appConfig.globalState);
 	
-	loadMocks(appConfig.defaultData, appConfig.mocks);
+	// loadMocks(appConfig.defaultData, appConfig.mocks);
 
 	ReactDOM.render(
 		<Provider store={store}>

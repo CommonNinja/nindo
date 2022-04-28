@@ -3,6 +3,7 @@ import {
 	combineReducers,
 	createStore,
 	Reducer,
+	ReducersMapObject,
 	Store,
 } from 'redux';
 import thunk from 'redux-thunk';
@@ -20,10 +21,10 @@ let store: AppStateStore<any, any>;
 
 function provideReducers<T, P = {}>(
 	appType: 'widget' | 'backoffice',
-	defaultPluginData: IPlugin<T>,
+	defaultPluginData?: IPlugin<T>,
 	globalState?: P
 ): Reducer<any> {
-	return combineReducers({
+	const reducers: ReducersMapObject<any, any> = {
 		user: userReducer,
 		globalState: globalStateReducer(globalState),
 		context: contextReducer({
@@ -34,13 +35,16 @@ function provideReducers<T, P = {}>(
 			appType,
 		}),
 		editor: editorReducer,
-		plugin: pluginReducer(defaultPluginData),
-	});
+	};
+	if (defaultPluginData) {
+		reducers.plugin = pluginReducer(defaultPluginData);
+	}
+	return combineReducers(reducers);
 }
 
 export function genStore<T, P>(
 	type: 'widget' | 'backoffice',
-	defaultData: IPlugin<T>,
+	defaultData?: IPlugin<T>,
 	globalState?: P
 ): AppStateStore<T, P> {
 	const reducers = provideReducers(type, defaultData, globalState || {});

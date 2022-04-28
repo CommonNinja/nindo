@@ -17,7 +17,6 @@ const {
 	REACT_APP_NINJA_SERVICE_NAME = 'appninja',
 	REACT_APP_NINJA_PLUGIN_TYPE = 'app_name',
 	REACT_APP_NINJA_PLUGIN_PATH = 'app-name',
-	REACT_APP_NINJA_PLUGIN_NAME = 'My app',
 	NODE_ENV,
 } = process.env;
 const basename = '';
@@ -65,7 +64,6 @@ export const CNBackofficeApp = () => {
 								<CNBackofficeEditor
 									pages={pages}
 									loaderComp={loaderComp}
-									defaultPluginData={config.defaultData}
 								/>
 							</Route>
 						);

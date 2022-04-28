@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import { IAppConfigMocks, IAppMeta } from './app.types';
-import { IPlugin } from './plugin.types';
+// import { IPlugin } from './plugin.types';
 
 export interface IAppPage {
 	id: string;
@@ -15,7 +15,7 @@ export interface IAppMainPage extends IAppPage {
 
 export interface IBackofficeAppConfig<T = {}, P = {}> {
 	pages: IAppMainPage[];
-	defaultData: IPlugin<T>;
+	// defaultData: IPlugin<T>;
 	globalState?: P;
 	loaderComponent?: ReactElement;
 	onInit?: () => void;
