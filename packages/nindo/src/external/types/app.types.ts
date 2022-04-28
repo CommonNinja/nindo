@@ -30,6 +30,7 @@ export interface IAppMeta {
 	name?: string;
 	icon?: string;
 	url?: string;
+	whiteLabelled?: boolean;
 }
 
 export interface IAppConfig<T, P = {}> {

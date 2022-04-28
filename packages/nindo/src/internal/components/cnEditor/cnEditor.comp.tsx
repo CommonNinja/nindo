@@ -396,6 +396,7 @@ export const CNEditor = ({
 			<AppHeader
 				componentName={config.meta?.name || 'My App'}
 				logoImageUrl={config.meta?.icon}
+				hidePoweredBy={config.meta?.whiteLabelled}
 				anonymousUser={!!vendor}
 				logoUrl={!vendor ? '' : window?.location?.href}
 				userProps={

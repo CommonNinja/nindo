@@ -1,13 +1,10 @@
-import { nindoBackofficeApp, getDefaultPlugin } from '@commonninja/nindo';
+import { nindoBackofficeApp } from '@commonninja/nindo';
 
 import userStateMock from './mocks/userState.mocks';
-import { defaultPluginData } from './components/plugin/plugin.default';
-import { IPluginData } from './components/plugin/plugin.types';
 import { Dashboard } from './components/dashboard/dashboard.comp';
 
 // Initialize Nindo backoffice app
-nindoBackofficeApp<IPluginData, {}>({
-	defaultData: getDefaultPlugin<IPluginData>(defaultPluginData()),
+nindoBackofficeApp<{}>({
 	meta: {
 		name: 'My App',
 		icon: 'https://website-assets.commoninja.com/general/default-icon.png',

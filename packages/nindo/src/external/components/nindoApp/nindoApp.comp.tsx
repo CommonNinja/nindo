@@ -24,23 +24,29 @@ require('es6-promise').polyfill();
 
 const env = process.env.NODE_ENV === 'production' ? 'prod' : 'dev';
 
-function loadMocks(defaultData: IPlugin<any>, mocks?: IAppConfigMocks) {
-	if (process.env.NODE_ENV === 'development' && !mocks?.disable) {
+function loadMocks(appMocks?: IAppConfigMocks, defaultData?: IPlugin<any>) {
+	if (process.env.NODE_ENV === 'development' && !appMocks?.disable) {
 		const userState = {
 			...defaultUserState,
-			...(mocks?.userState || {}),
+			...(appMocks?.userState || {}),
 		};
 		// eslint-disable-next-line
 		const Mimic = require('mimic');
-		const mocksConfig = {
-			version: '2.0.0',
-			mocks: [
-				...(mocks?.customMocks || []),
+		let mocks = [
+				...(appMocks?.customMocks || []),
 				...userMocks(userState),
-				...pluginMocks(userState, defaultData),
 				...eventMocks(),
 				...assetMocks(),
-			],
+		];
+		if (defaultData) {
+			mocks = [
+				...mocks,
+				...pluginMocks(userState, defaultData)
+			];
+		}
+		const mocksConfig = {
+			version: '2.0.0',
+			mocks,
 		};
 
 		// Clear old storage
@@ -56,7 +62,7 @@ export function nindoApp<T, P = {}>(appConfig: IAppConfig<T, P>) {
 	
 	const store: any = genStore('widget', appConfig.plugin.defaultData, appConfig.globalState);
 	
-	loadMocks(appConfig.plugin.defaultData, appConfig.mocks);
+	loadMocks(appConfig.mocks, appConfig.plugin.defaultData);
 
 	ReactDOM.render(
 		<Provider store={store}>
@@ -78,7 +84,7 @@ export function nindoBackofficeApp<T, P = {}>(
 	
 	const store: any = genStore('backoffice', undefined, appConfig.globalState);
 	
-	// loadMocks(appConfig.defaultData, appConfig.mocks);
+	loadMocks(appConfig.mocks);
 
 	ReactDOM.render(
 		<Provider store={store}>

@@ -1,5 +1,4 @@
 import { v4 as uuidv4 } from 'uuid';
-
 import { basicMockConfig } from './basic.config';
 
 const { origin, responseBody } = basicMockConfig;
@@ -106,7 +105,7 @@ export const assetMocks = () => {
 				},
 			},
 		},
-		name: 'Report event',
+		name: 'Get Assets',
 		origin: origin,
 	};
 

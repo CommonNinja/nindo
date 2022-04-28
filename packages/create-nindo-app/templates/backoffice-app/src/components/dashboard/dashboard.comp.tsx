@@ -1,15 +1,17 @@
 import React from 'react';
-import { Toolbar, useAppData } from '@commonninja/nindo';
-import { IPluginData } from '../plugin/plugin.types';
+import { Toolbar, useAppContext, useGlobalState } from '@commonninja/nindo';
 
 export const Dashboard = () => {
-	const [appData, updateData] = useAppData<IPluginData>();
+	const { appType, platform } = useAppContext();
+	const [appState, updateAppState] = useGlobalState<{ test: string }>();
 
 	return (
 		<>
 			<Toolbar />
-			<p>{appData.test || 'empty'}</p>
-			<button onClick={() => updateData({ test: 'App data changed!' })}>
+			<p>App Type: {appType}</p>
+			<p>Platform: {platform || 'none'}</p>
+			<p>App State: {appState.test || 'empty'}</p>
+			<button onClick={() => updateAppState({ test: 'clicked!' })}>
 				Click me
 			</button>
 		</>

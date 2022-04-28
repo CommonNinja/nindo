@@ -275,6 +275,7 @@ export const CNBackofficeEditor = ({
 				componentName={config.meta?.name || 'My App'}
 				logoImageUrl={config.meta?.icon}
 				anonymousUser={!!vendor}
+				hidePoweredBy={config.meta?.whiteLabelled}
 				logoUrl={!vendor ? '' : window?.location?.href}
 				userProps={
 					vendor
