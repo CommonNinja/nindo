@@ -10,7 +10,7 @@ const { lightCyan, red } = require('kolorist');
 
 const cwd = process.cwd();
 
-const TEMPLATES = ['widget', 'backoffice'];
+const TEMPLATES = ['widget', 'backoffice', 'server'];
 
 const renameFiles = {
 	_gitignore: '.gitignore',
@@ -80,13 +80,9 @@ function emptyDir(dir) {
 
 function installDeps(pkgManager, folderPath) {
 	try {
-		execSync(
-			[
-				`cd ${folderPath}`,
-				`${pkgManager} install`,
-			].join(' && '),
-			{ stdio: 'inherit' }
-		);
+		execSync([`cd ${folderPath}`, `${pkgManager} install`].join(' && '), {
+			stdio: 'inherit',
+		});
 		return true;
 	} catch (e) {
 		console.log(red(dependenciesErrorMessage));
@@ -94,13 +90,13 @@ function installDeps(pkgManager, folderPath) {
 	}
 }
 
-function getLatestPackageVersion() {
+function getLatestPackageVersion(template) {
+	const packageName =
+		template === 'server' ? '@commonninja/node-sdk' : '@commoninja/nindo-app';
 	try {
-		return execSync(
-			[
-				`npm show @commonninja/nindo version`,
-			].join(' && ')
-		).toString().trim();
+		return execSync([`npm show ${packageName} version`].join(' && '))
+			.toString()
+			.trim();
 	} catch (e) {
 		console.log(red('Could not get latest package version.'), e);
 		return '0.0.0';
@@ -199,7 +195,12 @@ async function init() {
 		template = t;
 	}
 
-	const templateDir = path.join(__dirname, '../', 'templates', `${template}-app`);
+	const templateDir = path.join(
+		__dirname,
+		'../',
+		'templates',
+		`${template}-app`
+	);
 
 	const write = (file, content) => {
 		const targetPath = renameFiles[file]
@@ -228,10 +229,14 @@ async function init() {
 	}
 
 	const pkg = require(path.join(templateDir, `package.json`));
-	const nindoPkgVersion = await getLatestPackageVersion();
+	const mainPkgVersion = await getLatestPackageVersion(template);
 
 	pkg.name = packageName;
-	pkg.dependencies['@commonninja/nindo'] = `^${nindoPkgVersion}`;
+	if (template === 'server') {
+		pkg.dependencies['@commonninja/node-sdk'] = `^${mainPkgVersion}`;
+	} else {
+		pkg.dependencies['@commonninja/nindo'] = `^${mainPkgVersion}`;
+	}
 
 	// Create package.json dynamically with package name
 	write('package.json', JSON.stringify(pkg, null, 2));
@@ -239,7 +244,16 @@ async function init() {
 	// Create default .env file
 	write(
 		'.env',
+		template === 'server'
+			? `
+# Env
+PORT=4000
+
+# Common Ninja App
+COMMONNINJA_APP_ID=
+COMMONNINJA_APP_SECRET=
 		`
+			: `
 # Plugin type (chart, feed, table, etc.) - Should be one / two words, snake_case
 REACT_APP_NINJA_PLUGIN_TYPE=        ${packageName.replace(/-/g, '_')}
 # Plugin path (comparison-tables, bracket, etc.) - Should be one / two words, kebab-case
