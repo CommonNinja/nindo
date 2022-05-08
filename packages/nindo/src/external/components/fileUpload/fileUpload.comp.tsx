@@ -38,7 +38,7 @@ export const FileUpload = (props: IFileUploadProps) => {
 		className,
 		pluginId,
 		postUploadCallback,
-		sizeLimitInMB,
+		sizeLimitInMB = 5,
 		enabled,
 		disabledCallback,
 	} = props;

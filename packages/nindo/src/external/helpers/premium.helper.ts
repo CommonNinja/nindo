@@ -1,17 +1,17 @@
 class PremiumHelper {
 	public planFeatures: any;
 
-	public getFeatureValue(
+	public getFeatureValue<T = boolean | number | null>(
 		featureName: string,
 		planFeatures?: any
-	): boolean | number | null {
+	): T {
 		const value = (this.planFeatures || planFeatures || {})[featureName];
 		// In case that the feature is not defined, return true, just in case
 		if (typeof value === 'undefined') {
 			if (featureName.startsWith('numOf') || featureName.startsWith('number')) {
-				return 1000000;
+				return 1000000 as any;
 			}
-			return true;
+			return true as any;
 		}
 		return value;
 	}
