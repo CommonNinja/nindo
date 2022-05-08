@@ -5,6 +5,8 @@ import {
 	Toolbar,
 	useApi,
 	Card,
+	Button,
+	APIService,
 } from '../../exports';
 
 import './dashboard.scss';
@@ -18,6 +20,32 @@ export const Dashboard = () => {
 		},
 	});
 	const [appState, updateAppState] = useGlobalState<{ test: string }>();
+
+	async function uploadImage() {
+		const elm: HTMLInputElement | null = document.querySelector('#file');
+		if (!elm) {
+			return;
+		}
+		const files = elm.files;
+		if (!files?.length) {
+			return;
+		}
+
+		const data = new FormData();
+    data.append('file', files[0]);
+
+		try {
+			await new APIService().request({
+				method: 'post',
+				resourcePath: 'storage/files',
+				data,
+				dataType: 'form-data',
+			});
+		} catch (e) {
+			console.error(e);
+			alert((e as Error).message);
+		}
+	}
 
 	function renderProducts() {
 		if (loading) {
@@ -54,6 +82,13 @@ export const Dashboard = () => {
             Click me
           </button>
         </section>
+
+				<h1>Storage API</h1>
+				<section>
+					<p>Click to upload image</p>
+					<input type="file" id="file" />
+					<Button onClick={uploadImage}>Upload</Button>
+				</section>
 
 				<h1>Shop Products</h1>
 				{renderProducts()}

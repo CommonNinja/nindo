@@ -2,24 +2,25 @@
 # yarn lockfile v1
 
 
-"@commonninja/node-sdk@^1.1.5":
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/@commonninja/node-sdk/-/node-sdk-1.1.5.tgz#a10310a4908936e75dd48d861d4b735d87dc5407"
-  integrity sha512-DLWjokg1YjlYiEHHvSXzaepSIjWyd76uA729uD17qF0aN2VBwjc7NVc0AaEfJepX7cuw9LgzbXMdwcuHqCBAkA==
+"@commonninja/node-sdk@^1.1.11":
+  version "1.1.11"
+  resolved "https://registry.yarnpkg.com/@commonninja/node-sdk/-/node-sdk-1.1.11.tgz#694abda14a9cd81f0be854ca7e9f6039c72b43e6"
+  integrity sha512-cf2qN//J1i/KVy74/27WNdFtLxk2EY8kqElY1Fi3omd08x0Y8gsig9D83OCTS6L7GUyL/Ml93yT91vYpc2V3Eg==
   dependencies:
-    "@commonninja/types" "^1.2.26"
+    "@commonninja/types" "^1.2.32"
     axios "^0.26.0"
     bunyan "^1.8.12"
     bunyan-debug-stream "^2.0.0"
     crypto "^1.0.1"
     dotenv "^6.2.0"
     express "^4.17.3"
+    http-proxy-middleware "^2.0.6"
     path "^0.12.7"
 
-"@commonninja/types@^1.2.26":
-  version "1.2.26"
-  resolved "https://registry.yarnpkg.com/@commonninja/types/-/types-1.2.26.tgz#443c4ca1516640eb8ea289fd3ded32383310109f"
-  integrity sha512-lsJWQlEcFjQUOuuweEFy5JF2z55EnET5GYLFHXDI7mmkhREB/eygzgYVvQe+lJDZX4eLq9K9wZ1heB0g8VgSww==
+"@commonninja/types@^1.2.32":
+  version "1.2.32"
+  resolved "https://registry.yarnpkg.com/@commonninja/types/-/types-1.2.32.tgz#b8b73afe56302122c6cd273eb38b2dccfdcecdc2"
+  integrity sha512-OojJzRS1mhLrITJLCLcWreVsKohyINywquLZ5g9wBL+AkZcoAaSguWWWgy0HbTHuc23S5jCSWJYrBZgvh7JoQg==
   dependencies:
     bunyan "^1.8.12"
     bunyan-debug-stream "^2.0.0"
@@ -1012,10 +1013,10 @@ http-errors@1.8.1:
     statuses ">= 1.5.0 < 2"
     toidentifier "1.0.1"
 
-http-proxy-middleware@^2.0.3:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/http-proxy-middleware/-/http-proxy-middleware-2.0.4.tgz#03af0f4676d172ae775cb5c33f592f40e1a4e07a"
-  integrity sha512-m/4FxX17SUvz4lJ5WPXOHDUuCwIqXLfLHs1s0uZ3oYjhoXlx9csYxaOa0ElDEJ+h8Q4iJ1s+lTMbiCa4EXIJqg==
+http-proxy-middleware@^2.0.6:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/http-proxy-middleware/-/http-proxy-middleware-2.0.6.tgz#e1a4dd6979572c7ab5a4e4b55095d1f32a74963f"
+  integrity sha512-ya/UeJ6HVBYxrgYotAZo1KvPWlgB48kUJLDePFeneHsVujFaW5WNj2NgWCAE//B1Dl02BIfYlpNgBy8Kf8Rjmw==
   dependencies:
     "@types/http-proxy" "^1.17.8"
     http-proxy "^1.18.1"

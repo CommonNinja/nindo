@@ -15,6 +15,7 @@ export interface IAPIProps {
 	resourcePath: string;
 	method?: THttpMethod;
 	data?: any;
+	dataType?: 'json' | 'form-data';
 	pagination?: IPaginationParams;
 	headers?: any;
 }
@@ -24,15 +25,16 @@ export class APIService extends HttpService {
 
 	constructor(platform?: TPlatform) {
 		super();
-		this.platform = platform || 'nindo';
+		this.platform = platform || '' as TPlatform;
 	}
 
 	public async request<T = any>({
 		resourcePath,
 		method = 'get',
 		data,
+		dataType = 'json',
 		pagination,
-		headers = {},
+		headers = null,
 	}: IAPIProps): Promise<IHttpResult<T>> {
 		const finalBaseUrl = apiBaseUrl.endsWith('/')
 			? apiBaseUrl.slice(0, -1)
@@ -44,11 +46,18 @@ export class APIService extends HttpService {
 		const options: any = {};
 
 		if (data) {
-			options.body = JSON.stringify(data);
-			options.headers = {
-				'Content-Type': 'application/json',
-				...headers,
-			};
+			if (dataType === 'json') {
+				options.body = JSON.stringify(data);
+				options.headers = {
+					'Content-Type': 'application/json',
+				};
+			} else {
+				options.body = data;
+			}
+		}
+
+		if (headers) {
+			options.headers = { ...options.headers, ...headers };
 		}
 
 		let localQueryParams = `pluginType=${this.pluginType}&platform=${this.platform}`;
