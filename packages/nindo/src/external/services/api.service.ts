@@ -16,6 +16,7 @@ export interface IAPIProps {
 	method?: THttpMethod;
 	data?: any;
 	pagination?: IPaginationParams;
+	headers?: any;
 }
 
 export class APIService extends HttpService {
@@ -31,6 +32,7 @@ export class APIService extends HttpService {
 		method = 'get',
 		data,
 		pagination,
+		headers = {},
 	}: IAPIProps): Promise<IHttpResult<T>> {
 		const finalBaseUrl = apiBaseUrl.endsWith('/')
 			? apiBaseUrl.slice(0, -1)
@@ -45,6 +47,7 @@ export class APIService extends HttpService {
 			options.body = JSON.stringify(data);
 			options.headers = {
 				'Content-Type': 'application/json',
+				...headers,
 			};
 		}
 
@@ -70,41 +73,46 @@ export class APIService extends HttpService {
 		return response;
 	}
 
-	public async get<T = any>({ resourcePath, pagination }: IAPIProps) {
+	public async get<T = any>({ resourcePath, pagination, headers }: IAPIProps) {
 		return await this.request<IPaginationResponse<T>>({
 			method: 'get',
 			resourcePath,
 			pagination,
+			headers,
 		});
 	}
 
-	public async getOne<T = any>({ resourcePath }: IAPIProps) {
+	public async getOne<T = any>({ resourcePath, headers }: IAPIProps) {
 		return await this.request<T>({
 			method: 'get',
 			resourcePath,
+			headers,
 		});
 	}
 
-	public async create<T = any>({ resourcePath, data }: IAPIProps) {
+	public async create<T = any>({ resourcePath, data, headers }: IAPIProps) {
 		return await this.request<T>({
 			method: 'post',
 			resourcePath,
 			data,
+			headers,
 		});
 	}
 
-	public async update<T = any>({ resourcePath, data }: IAPIProps) {
+	public async update<T = any>({ resourcePath, data, headers }: IAPIProps) {
 		return await this.request<T>({
 			method: 'put',
 			resourcePath,
 			data,
+			headers,
 		});
 	}
 
-	public async delete<T = any>({ resourcePath }: IAPIProps) {
+	public async delete<T = any>({ resourcePath, headers }: IAPIProps) {
 		return await this.request<T>({
 			method: 'delete',
 			resourcePath,
+			headers,
 		});
 	}
 }
