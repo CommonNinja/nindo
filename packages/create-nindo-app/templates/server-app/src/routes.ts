@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response, Router } from 'express';
 import CommonNinja from '@commonninja/node-sdk';
-import { createProxyMiddleware, Options } from 'http-proxy-middleware';
 
 const router: any = Router();
 const { COMMONNINJA_APP_ID, COMMONNINJA_APP_SECRET } = process.env;
