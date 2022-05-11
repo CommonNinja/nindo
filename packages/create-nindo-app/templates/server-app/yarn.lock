@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@commonninja/node-sdk@^1.1.11":
-  version "1.1.11"
-  resolved "https://registry.yarnpkg.com/@commonninja/node-sdk/-/node-sdk-1.1.11.tgz#694abda14a9cd81f0be854ca7e9f6039c72b43e6"
-  integrity sha512-cf2qN//J1i/KVy74/27WNdFtLxk2EY8kqElY1Fi3omd08x0Y8gsig9D83OCTS6L7GUyL/Ml93yT91vYpc2V3Eg==
+"@commonninja/node-sdk@^1.1.16":
+  version "1.1.16"
+  resolved "https://registry.yarnpkg.com/@commonninja/node-sdk/-/node-sdk-1.1.16.tgz#f51e546fa189b83f40e9956596d1b263764cf6b3"
+  integrity sha512-BGPmsDfQKykcWY6dyMgHALopi/aPrQ99yOLr59zfMcEOrGMOhbWJ0bNgP7oxNK/w7fR+7mWw9WTONRm3uH+CkA==
   dependencies:
     "@commonninja/types" "^1.2.32"
     axios "^0.26.0"

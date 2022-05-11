@@ -40,9 +40,7 @@ router.all('/api*', async (req: Request, res: Response, next: NextFunction) => {
   // /api/ecommerce/products will be proxied to 
   // https://api.commonninja.com/integrations/api/v1/ecommerce/products
   // The middleware will handle the authentication headers and request body
-  return client.apiProxyMiddleware(req, res, next, {
-    '/api/': '/',
-  });
+  return client.apiProxyMiddleware(req, res, next, '/api');
 });
 
 // Validate and handle Common Ninja's webhooks
