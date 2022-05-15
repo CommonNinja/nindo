@@ -19,6 +19,11 @@ function getCommonNinjaClient(req: Request) {
 	});
 }
 
+// Index
+router.get('/', (req: Request, res: Response, next: NextFunction) => {
+	res.send('Hey there!');
+});
+
 // Authentication
 router.get('/connect', async (req: Request, res: Response) => {
 	// Get a new Common Ninja instance
@@ -46,16 +51,7 @@ router.all('/api*', async (req: Request, res: Response, next: NextFunction) => {
 // Validate and handle Common Ninja's webhooks
 router.post('/webhooks', async (req: Request, res: Response) => {
 	try {
-		const { COMMONNINJA_APP_ID, COMMONNINJA_APP_SECRET } = process.env;
-		if (!COMMONNINJA_APP_ID || !COMMONNINJA_APP_SECRET) {
-			throw new Error('Missing Common Ninja app ID or secret key.');
-		}
-
-		const client = new CommonNinja({
-			appId: COMMONNINJA_APP_ID,
-			appSecret: COMMONNINJA_APP_SECRET,
-			env: CommonNinja.envs.production,
-		});
+		const client = getCommonNinjaClient(req);
 
 		// Validate webhook message source
 		const validated = client.webhooks.validateWebhook(req);

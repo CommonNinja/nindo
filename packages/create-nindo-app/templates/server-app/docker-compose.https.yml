@@ -1,0 +1,10 @@
+version: "3.9"
+
+services:
+  localtunnel:
+    container_name: https_tunnel
+    image: node:lts-alpine
+    command: npx localtunnel --port 4000 --local-host nindo_server
+    depends_on:
+      - api
+

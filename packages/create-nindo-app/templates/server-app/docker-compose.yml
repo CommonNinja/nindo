@@ -19,9 +19,3 @@ services:
       - ./package-lock.json:/app/package-lock.json
     networks:
       - default
-  localtunnel:
-    image: node:lts-alpine
-    command: npx localtunnel --port 4000 --local-host nindo_server
-    depends_on:
-      - api
-
