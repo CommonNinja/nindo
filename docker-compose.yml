@@ -6,4 +6,8 @@ services:
     build: .
     command: /bin/sh
     tty: yes
+  storybook:
+    image: nindo:base  
+    working_dir: /app/packages/storybook
+    command: yarn dev
 
