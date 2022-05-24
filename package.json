@@ -6,7 +6,7 @@
 	},
 	"packageManager": "yarn@3.2.1",
 	"workspaces": [
-		"packages/**"
+		"packages/*"
 	],
 	"scripts": {
 		"dev": "cd packages/storybook && npm run storybook",
