@@ -10,7 +10,7 @@
 	],
 	"scripts": {
 		"dev": "cd packages/storybook && npm run storybook",
-		"publish": "lerna publish",
+		"release": "yarn publish",
 		"bootstrap": "lerna bootstrap",
 		"format": "prettier --write --ignore-unknown .",
 		"format:check": "prettier --check --ignore-unknown .",
