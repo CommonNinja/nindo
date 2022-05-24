@@ -1,0 +1,9 @@
+version: "3.9"
+
+services:
+  dev:
+    image: nindo:base
+    build: .
+    command: /bin/sh
+    tty: yes
+
