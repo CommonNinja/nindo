@@ -10,4 +10,5 @@ services:
     image: nindo:base  
     working_dir: /app/packages/storybook
     command: yarn dev
-
+    ports:
+      - 6006
