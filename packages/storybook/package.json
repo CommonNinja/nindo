@@ -1,5 +1,5 @@
 {
-  "name": "storybook",
+  "name": "@commonninja/nindo-storybook",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -30,7 +30,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "npm run storybook",
+    "dev": "yarn storybook",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public"
   },

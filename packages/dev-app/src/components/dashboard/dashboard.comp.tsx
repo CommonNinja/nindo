@@ -32,7 +32,7 @@ export const Dashboard = () => {
 		}
 
 		const data = new FormData();
-    data.append('file', files[0]);
+		data.append('file', files[0]);
 
 		try {
 			await new APIService().request({
@@ -74,14 +74,14 @@ export const Dashboard = () => {
 			<Toolbar />
 			<div className="dashboard editor-plugin-preview">
 				<h1>App Config</h1>
-        <section>
-          <p>App Type: {appType}</p>
-          <p>Platform: {platform || 'none'}</p>
-          <p>App State: {appState.test || 'empty'}</p>
-          <button onClick={() => updateAppState({ test: 'clicked!' })}>
-            Click me
-          </button>
-        </section>
+				<section>
+					<p>App Type: {appType}</p>
+					<p>Platform: {platform || 'none'}</p>
+					<p>App State: {appState.test || 'empty'}</p>
+					<button onClick={() => updateAppState({ test: 'clicked!' })}>
+						Click me
+					</button>
+				</section>
 
 				<h1>Storage API</h1>
 				<section>

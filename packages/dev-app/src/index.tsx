@@ -22,9 +22,7 @@
 // 	},
 // });
 
-import {
-	nindoBackofficeApp,
-} from './exports';
+import { nindoBackofficeApp } from './exports';
 import userStateMock from './mocks/userState.mocks';
 import { Dashboard } from './components/dashboard/dashboard.comp';
 
@@ -66,4 +64,3 @@ nindoBackofficeApp<{}>({
 		userState: userStateMock,
 	},
 });
-

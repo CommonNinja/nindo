@@ -6,8 +6,8 @@
 		"dev": "rollup -c -w",
 		"test": "jest",
 		"clean": "rm -rf dist",
-		"prepare": "npm run build",
-		"build": "npm run clean && npm run rollup",
+		"prepare": "yarn build",
+		"build": "yarn clean && yarn rollup",
 		"rollup": "rollup -c"
 	},
 	"main": "dist/index.js",

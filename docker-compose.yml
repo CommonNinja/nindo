@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  dev:
+    image: nindo:base
+    build: .
+    command: /bin/sh
+    tty: yes
+  storybook:
+    image: nindo:base  
+    working_dir: /app/packages/storybook
+    command: yarn dev
+    ports:
+      - 6006
+  nindo:
+    image: nindo:base
+    working_dir: /app/packages/nindo
+    command: yarn dev
+  create_nindo_app:
+    image: nindo:base
+    working_dir: /app/packages/create_nindo_app
+    tty: yes
+    command: /bin/bash
+  dev_app:
+    image: nindo:base
+    working_dir: /app/packages/dev-app
+    command: yarn start
+  
+  
+
+  
