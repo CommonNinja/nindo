@@ -27,8 +27,6 @@ import userStateMock from './mocks/userState.mocks';
 import { Dashboard } from './components/dashboard/dashboard.comp';
 
 nindoBackofficeApp<{}>({
-	// test
-
 	meta: {
 		name: 'Backoffice App',
 		// whiteLabelled: true,

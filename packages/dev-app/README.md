@@ -14,9 +14,9 @@ REACT_APP_NINJA_PLUGIN_PATH=        plugin-name
 #### API variables
 
 ```
-REACT_APP_CN_API_URL=               
-REACT_APP_PLUGIN_API_URL=           
-REACT_APP_USERS_SERVICE_URL=        
+REACT_APP_CN_API_URL=
+REACT_APP_PLUGIN_API_URL=
+REACT_APP_USERS_SERVICE_URL=
 ```
 
 ## Available Scripts
