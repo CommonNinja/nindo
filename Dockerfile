@@ -16,3 +16,5 @@ COPY /packages/storybook/package.json /app/packages/storybook/package.json
 RUN yarn
 
 ADD . .
+
+CMD ["yarn", "dev"]
