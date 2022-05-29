@@ -280,7 +280,8 @@ REACT_APP_CN_API_URL=        				/api
 To start your project type:
     `);
 		console.log(lightCyan(`  cd ${packageName}`));
-		console.log(lightCyan(`${usesYarn ? `  yarn start` : `  npm start`}`));
+		console.log(lightCyan(`  docker compose up`));
+		// console.log(lightCyan(`${usesYarn ? `  yarn start` : `  npm start`}`));
 		console.log(`
 Go get 'em, Ninja!
 ============================================================`);
