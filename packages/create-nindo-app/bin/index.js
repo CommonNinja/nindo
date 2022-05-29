@@ -10,7 +10,8 @@ const { lightCyan, red } = require('kolorist');
 
 const cwd = process.cwd();
 
-const TEMPLATES = ['widget', 'backoffice', 'server'];
+// const TEMPLATES = ['widget', 'backoffice', 'server'];
+const TEMPLATES = ['server'];
 
 const renameFiles = {
 	_gitignore: '.gitignore',
