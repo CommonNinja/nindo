@@ -6,9 +6,9 @@ import { SystemIcon } from '../../../external/components/icon/icon.comp';
 import { IUserProps } from '../user/user.comp';
 import { TPlatform } from '../../../external/types/editor.types';
 import { useQuery } from '../../../external/hooks/query.hook';
+import { useAppContext } from '../../../external';
 
 import './appHeader.scss';
-import { useAppContext } from '../../../external';
 
 interface AppHeaderProps {
 	userProps: IUserProps;
@@ -24,6 +24,7 @@ const defaultIcon =
 	'https://website-assets.commoninja.com/general/default-icon.png';
 const defaultLogo =
 	'https://website-assets.commoninja.com/general/logo-white.png';
+const noDashboardLinkPlatforms: TPlatform[] = ['website', 'nindo', 'wix'];
 
 export const AppHeader = (props: AppHeaderProps) => {
 	const {
@@ -84,10 +85,8 @@ export const AppHeader = (props: AppHeaderProps) => {
 						</nav>
 					)}
 					{appType !== 'backoffice' &&
-						(vendor === 'duda' ||
-							vendor === 'shopify' ||
-							vendor === 'bigcommerce' ||
-							vendor === 'shift4shop') && (
+						vendor &&
+						!noDashboardLinkPlatforms.includes(vendor) && (
 							<nav className="flex-wrapper">
 								<a
 									title="Back to Dashboard"
