@@ -34,16 +34,9 @@ export const VendorUpgrade = ({
 
 			try {
 				setPostUpgrade(true);
-				let result;
 				const subscriptionTypeId =
 					plan.planIds?.[activeCycle?.period || 'month'].commonninja || '';
-				if (query.get('nindo')) {
-					result = await nindoService.updateSubscription(subscriptionTypeId);
-				} else {
-					result = await shopifyService.createUserSubscription(
-						subscriptionTypeId
-					);
-				}
+				const result = await nindoService.updateSubscription(subscriptionTypeId);
 				if (
 					result?.data?.confirmationUrl &&
 					typeof window !== 'undefined' &&

@@ -70,9 +70,7 @@ class PluginService extends HttpService {
 	public async get(pluginId: string = '') {
 		const url = `${
 			cdnBaseUrl || apiBaseUrl
-		}/api/v1/plugin/viewer/${pluginId}?serviceName=${
-			this.serviceName
-		}&nindo=true`;
+		}/api/v1/plugin/viewer/${pluginId}?serviceName=${this.serviceName}`;
 		return await this.makeRequest(url).then(this.setMetaTags);
 	}
 

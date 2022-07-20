@@ -88,7 +88,7 @@ export const InstallationCode = (props: InstallationCodeProps) => {
 					store’s preferred page
 				</p>
 				<CopyInput
-					value={`<div class="commonninja_component" comp-type="${componentType}" comp-id="${componentId}"></div>`}
+					value={`<div class="commonninja_component pid-${componentId}"></div>`}
 					inputType="textarea"
 					buttonClassName={buttonClassName}
 				/>
@@ -121,7 +121,7 @@ export const InstallationCode = (props: InstallationCodeProps) => {
 	}
 
 	function renderForOthers() {
-		const scriptStr = `<script src="https://cdn.commoninja.com/sdk/latest/commonninja.js" defer></script>\n<div class="commonninja_component" comp-type="${componentType}" comp-id="${componentId}"></div>`;
+		const scriptStr = `<script src="https://cdn.commoninja.com/sdk/latest/commonninja.js" defer></script>\n<div class="commonninja_component pid-${componentId}"></div>`;
 
 		return (
 			<>
